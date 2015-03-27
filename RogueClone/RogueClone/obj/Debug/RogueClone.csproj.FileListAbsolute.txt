@@ -1,1 +1,2 @@
 C:\Users\Pariador\Desktop\Watermelon App\RogueClone\RogueClone\bin\Debug\RogueClone.exe.config
+C:\Users\Pariador\Desktop\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.exe.config

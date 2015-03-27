@@ -43,14 +43,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="RogueClone.Armor">
-    <Position X="7.25" Y="3.75" Width="1.5" />
+    <Position X="7" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Armor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RogueClone.Weapon">
-    <Position X="10.25" Y="3.75" Width="1.5" />
+    <Position X="10.5" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Weapon.cs</FileName>
