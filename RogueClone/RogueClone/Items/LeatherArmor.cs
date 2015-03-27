@@ -5,7 +5,17 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class LeatherArmor : Armor
+    public class WizardArmors : Armor
     {
+        public int ArmorSpell
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
     }
 }

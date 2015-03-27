@@ -7,5 +7,15 @@ namespace RogueClone
 {
     public class Weapon : Item
     {
+        public int Damage
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
     }
 }

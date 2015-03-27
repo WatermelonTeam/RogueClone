@@ -5,4 +5,7 @@ using System.Text;
 
 namespace RogueClone
 {
+    public class Consumables : Item
+    {
+    }
 }

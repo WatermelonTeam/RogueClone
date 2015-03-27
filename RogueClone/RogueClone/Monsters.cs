@@ -5,9 +5,9 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Armor : Item
+    public class Monsters : NPC, IPositionable
     {
-        public int ArmorValue
+        public int Level
         {
             get
             {

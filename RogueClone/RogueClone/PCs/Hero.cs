@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Hero
+    public abstract class Hero : IDamagable, IPositionable, IKillable
     {
         public int HeroHealth
         {
@@ -50,5 +50,71 @@ namespace RogueClone
             {
             }
         }
+
+        public int Weapon
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public int Armor
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public int Gold
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public int Position
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public void TakeDamage()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void MoveTo()
+        {
+            throw new NotImplementedException();
+        }
+
+        public abstract void CastSkillOne()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public abstract void CastSkillTwo()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public event EventHandler Dead;
     }
 }

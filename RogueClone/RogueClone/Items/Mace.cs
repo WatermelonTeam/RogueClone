@@ -5,7 +5,17 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Mace : Weapon
+    public class WizardWeapon : Weapon
     {
+        public int WeaponSpell
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
     }
 }

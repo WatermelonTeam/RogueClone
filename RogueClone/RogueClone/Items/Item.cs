@@ -5,19 +5,8 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Item
+    public abstract class Item
     {
-
-        public int Durability
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
 
         public int Price
         {

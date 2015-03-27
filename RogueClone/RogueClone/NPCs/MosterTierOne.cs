@@ -5,7 +5,4 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class MosterTierOne : NPC
-    {
-    }
 }

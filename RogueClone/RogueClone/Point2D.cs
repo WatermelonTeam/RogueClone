@@ -5,9 +5,9 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Mana : RogueClone.PCs.Interfaces.IStat
+    public struct Point2D
     {
-        public int Max
+        public int X
         {
             get
             {
@@ -18,7 +18,7 @@ namespace RogueClone
             }
         }
 
-        public int Current
+        public int Y
         {
             get
             {
@@ -27,23 +27,6 @@ namespace RogueClone
             set
             {
             }
-        }
-
-        public int ManaRegen
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-
-        public void IncreaseMax()
-        {
-            throw new NotImplementedException();
         }
     }
 }

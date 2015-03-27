@@ -41,33 +41,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Armor.cs" />
+    <Compile Include="Consumables.cs" />
+    <Compile Include="IDamagable.cs" />
+    <Compile Include="IDurable.cs" />
+    <Compile Include="IMovable.cs" />
+    <Compile Include="Interface1.cs" />
+    <Compile Include="Items\Armor.cs" />
     <Compile Include="Dungeon.cs" />
-    <Compile Include="Enemy.cs" />
+    <Compile Include="Monsters.cs" />
+    <Compile Include="NPCs\Enemy.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="Health.cs" />
-    <Compile Include="Hero.cs" />
-    <Compile Include="Item.cs" />
-    <Compile Include="LeatherArmor.cs" />
-    <Compile Include="Level.cs" />
-    <Compile Include="Mace.cs" />
-    <Compile Include="Mana.cs" />
-    <Compile Include="MonsterTierTwo.cs" />
-    <Compile Include="MosterTierOne.cs" />
-    <Compile Include="PlateArmor.cs" />
+    <Compile Include="PCs\Interfaces\ILvL.cs" />
+    <Compile Include="PCs\Interfaces\IStat.cs" />
+    <Compile Include="Point2D.cs" />
+    <Compile Include="Stats\Health.cs" />
+    <Compile Include="PCs\Hero.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\LeatherArmor.cs" />
+    <Compile Include="Stats\Level.cs" />
+    <Compile Include="Items\Mace.cs" />
+    <Compile Include="Stats\Mana.cs" />
+    <Compile Include="NPCs\MonsterTierTwo.cs" />
+    <Compile Include="NPCs\MosterTierOne.cs" />
+    <Compile Include="Items\PlateArmor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rogue.cs" />
-    <Compile Include="ShopKeeper.cs" />
-    <Compile Include="Sword.cs" />
-    <Compile Include="Trinket.cs" />
-    <Compile Include="Weapon.cs" />
-    <Compile Include="Wizard.cs" />
+    <Compile Include="PCs\Rogue.cs" />
+    <Compile Include="NPCs\ShopKeeper.cs" />
+    <Compile Include="Items\Sword.cs" />
+    <Compile Include="Items\Trinket.cs" />
+    <Compile Include="Items\Weapon.cs" />
+    <Compile Include="PCs\Wizard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

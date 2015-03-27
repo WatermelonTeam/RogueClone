@@ -5,4 +5,8 @@ using System.Text;
 
 namespace RogueClone
 {
+    public interface IKillable
+    {
+        event EventHandler Dead;
+    }
 }

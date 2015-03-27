@@ -1,144 +1,198 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="RogueClone.Health">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+  <Class Name="RogueClone.Health" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAABAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Health.cs</FileName>
+      <HashCode>AAAAEAAAABAAAAAAAACAAAAAgAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Stats\Health.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="RogueClone.Mana">
-    <Position X="4" Y="0.5" Width="1.5" />
+  <Class Name="RogueClone.Mana" BaseTypeListCollapsed="true">
+    <Position X="14" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAABAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Mana.cs</FileName>
+      <HashCode>AAAAAAAAABAAAAAAAACAAAAACAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Stats\Mana.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="RogueClone.Hero">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+  <Class Name="RogueClone.Hero" Collapsed="true">
+    <Position X="7.5" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAIACAQAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Hero.cs</FileName>
+      <HashCode>AAAAAAAAIIACAQAgAAAAAAQAAAAIAAgAEAAAiAAAAAE=</HashCode>
+      <FileName>PCs\Hero.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="RogueClone.Rogue">
-    <Position X="2.5" Y="3.5" Width="1.5" />
+  <Class Name="RogueClone.RogueArmor">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <InheritanceLine Type="RogueClone.Armor" FixedToPoint="true">
+      <Path>
+        <Point X="5" Y="3.983" />
+        <Point X="5" Y="4.375" />
+        <Point X="5.5" Y="4.375" />
+        <Point X="5.5" Y="4.75" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Rogue.cs</FileName>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAEAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Items\PlateArmor.cs</FileName>
+      <NewMemberFileName>PCs\Rogue.cs</NewMemberFileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="RogueClone.Wizard">
-    <Position X="0.5" Y="3.5" Width="1.5" />
+  <Class Name="RogueClone.WizardArmors">
+    <Position X="3.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Wizard.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Items\LeatherArmor.cs</FileName>
+      <NewMemberFileName>PCs\Wizard.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RogueClone.Item">
-    <Position X="8.25" Y="2" Width="1.5" />
+    <Position X="5.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAAAAABAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
-      <FileName>Item.cs</FileName>
+      <HashCode>AAAAAAAAAQAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Item.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RogueClone.Armor">
-    <Position X="7" Y="4" Width="1.5" />
+    <Position X="4.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Armor.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Armor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RogueClone.Weapon">
-    <Position X="10.5" Y="4" Width="1.5" />
+    <Position X="8.75" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Weapon.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="RogueClone.Sword">
-    <Position X="11.75" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Sword.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="RogueClone.Mace">
-    <Position X="9.75" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Mace.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="RogueClone.LeatherArmor">
-    <Position X="6.25" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>LeatherArmor.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="RogueClone.PlateArmor">
-    <Position X="8" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>PlateArmor.cs</FileName>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Weapon.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RogueClone.Trinket">
-    <Position X="5" Y="3.75" Width="1.5" />
+    <Position X="0.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Trinket.cs</FileName>
+      <FileName>Items\Trinket.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="RogueClone.Dungeon">
-    <Position X="7.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Dungeon.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="RogueClone.Game">
-    <Position X="9.5" Y="0.5" Width="1.5" />
+  <Class Name="RogueClone.Game" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Game.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RogueClone.NPC">
-    <Position X="12.75" Y="1.25" Width="1.5" />
+    <Position X="1.75" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Enemy.cs</FileName>
+      <HashCode>AAAACACAAAAAAAAAAAEAAAQAAAAAAAAAAAAAiAAAAAA=</HashCode>
+      <FileName>NPCs\Enemy.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="RogueClone.MosterTierOne">
-    <Position X="14.5" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>MosterTierOne.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="RogueClone.MonsterTierTwo">
-    <Position X="14.5" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>MonsterTierTwo.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="RogueClone.Level">
-    <Position X="5.75" Y="0.5" Width="1.5" />
+  <Class Name="RogueClone.Level" Collapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAABAACAAACAAAAAAAA=</HashCode>
-      <FileName>Level.cs</FileName>
+      <FileName>Stats\Level.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="RogueClone.Monsters">
+    <Position X="2.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Monsters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="RogueClone.ShopKeeper">
-    <Position X="11.75" Y="2.5" Width="1.5" />
+    <Position X="0.5" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ShopKeeper.cs</FileName>
+      <HashCode>AAAAAAAAAAAACAAgAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>NPCs\ShopKeeper.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="RogueClone.WizardWeapon">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Mace.cs</FileName>
+      <NewMemberFileName>PCs\Wizard.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RogueClone.RogueWeapon">
+    <Position X="9.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAABAAE=</HashCode>
+      <FileName>Items\Sword.cs</FileName>
+      <NewMemberFileName>PCs\Rogue.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RogueClone.Consumables">
+    <Position X="2.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Consumables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RogueClone.Rogue" Collapsed="true">
+    <Position X="6" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PCs\Rogue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RogueClone.Wizard" Collapsed="true">
+    <Position X="9" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PCs\Wizard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="RogueClone.Point2D" Collapsed="true">
+    <Position X="12.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Point2D.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="RogueClone.PCs.Interfaces.IStat" Collapsed="true">
+    <Position X="15.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAACAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>PCs\Interfaces\IStat.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RogueClone.IDamagable" Collapsed="true">
+    <Position X="12.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>IDamagable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RogueClone.IPositionable">
+    <Position X="14" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IMovable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RogueClone.IDurable">
+    <Position X="12.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>IDurable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RogueClone.IKillable">
+    <Position X="15.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Interface1.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
