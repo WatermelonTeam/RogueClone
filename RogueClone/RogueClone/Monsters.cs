@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Monsters : NPC, IPositionable
+    public class Monsters : NPC, IMovable
     {
         public int Level
         {
@@ -16,6 +16,36 @@ namespace RogueClone
             set
             {
             }
+        }
+
+        public int PositionX
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public int PositionY
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+
+        public void MoveTo(int x, int y)
+        {
+            throw new NotImplementedException();
         }
     }
 }

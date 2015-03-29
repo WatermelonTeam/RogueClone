@@ -5,12 +5,19 @@ using System.Text;
 
 namespace RogueClone
 {
-    public interface IPositionable
+    public interface IMovable
     {
-        int Position
+        int PositionX
         {
             get;
             set;
         }
+        int PositionY
+        {
+            get;
+            set;
+        }
+
+        void MoveTo(int x, int y);
     }
 }
