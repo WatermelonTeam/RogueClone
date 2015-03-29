@@ -7,42 +7,19 @@ namespace RogueClone
 {
     public class Level
     {
-        public int CurrentXP
+        public Level(int level)
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            this.CurrentLevel = level;
         }
+        public int CurrentXP { get; set; }
 
-        public int NeededXP
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public int NeededXP { get; set; }
 
-        public int CurrentLvl
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public int CurrentLevel { get; set; }
 
         public void LevelUp()
         {
-            throw new System.NotImplementedException();
+            this.CurrentLevel++;
         }
     }
 }

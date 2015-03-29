@@ -10,7 +10,7 @@ namespace RogueClone
     {
         static void Main(string[] args)
         {
-            var game = new Game(80, 40, 100);
+            var game = new Game(100, 30, 100);
             game.Start();
             //Test branch
         }

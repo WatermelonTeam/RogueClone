@@ -7,26 +7,14 @@ namespace RogueClone
 {
     public class Mana : RogueClone.PCs.Interfaces.IStat
     {
-        public int Max
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public int Max { get; set; }
 
-        public int Current
+        public int Current { get; set; }
+
+        public Mana(int max)
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            this.Max = max;
+            this.Current = max;
         }
 
         public int ManaRegen
