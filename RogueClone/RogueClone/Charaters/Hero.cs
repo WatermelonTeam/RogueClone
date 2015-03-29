@@ -8,6 +8,8 @@
     public abstract class Hero : IDamagable, IMovable, IKillable
     {
         private readonly string heroName;
+        private readonly char heroIcon;
+
         private int heroHealth;
         private int heroMana;
         private int heroLevel;
@@ -18,7 +20,7 @@
         private int heroPositionX;
         private int heroPositionY;
 
-        public Hero(string name, int health, int mana, int level, int weapon, int armor, int gold, int positionX, int positionY)
+        public Hero(string name, int health, int mana, int level, int weapon, int armor, int gold, Point2D cords, char icon)
         {
 
             this.heroName = name; // readonly does not need Property
@@ -29,8 +31,9 @@
             this.Weapon = weapon;
             this.Armor = armor;
             this.Gold = gold;
-            this.PositionX = positionX;
-            this.PositionY = positionY;
+            this.PositionX = cords.X;
+            this.PositionY = cords.Y;
+            this.heroIcon = icon;
 
         }
 
@@ -48,6 +51,14 @@
             {
                 ////implement validation !!!
                 this.heroHealth = value;
+            }
+        }
+
+        public char Icon
+        {
+            get
+            {
+                return this.heroIcon;
             }
         }
 

@@ -36,13 +36,18 @@
         /// </summary>
         public void Start()
         {
-            var gandalf = new Wizard("Gandalf", 1337, 9999, 10, 3, 127, 500, 10, 10);
+            //Initialise charaters !
+
+            var cords = new Point2D(10, 10);
+            var gandalf = new Wizard("Gandalf", 1337, 9999, 10, 3, 127, 500, cords, '@');
 
             while (true)
             {
-                
+                Console.Clear();
+
                 Game.CheckKeyPressingAndSetMovement(gandalf);
 
+                Engine.Engine.RenderHero(gandalf);
 
                 Thread.Sleep(this.Speed);
             }
@@ -80,11 +85,11 @@
                 }
                 if (pressedKey.Key == ConsoleKey.UpArrow)
                 {
-                    Game.SetHeroPosition(hero, hero.PositionX, hero.PositionY += 1);
+                    Game.SetHeroPosition(hero, hero.PositionX, hero.PositionY -= 1);
                 }
                 if (pressedKey.Key == ConsoleKey.DownArrow)
                 {
-                    Game.SetHeroPosition(hero, hero.PositionX, hero.PositionY -= 1);
+                    Game.SetHeroPosition(hero, hero.PositionX, hero.PositionY += 1);
                 }
             }
 

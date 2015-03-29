@@ -7,12 +7,10 @@ namespace RogueClone
 {
     public class Rogue : Hero
     {
-        public Rogue(string name, int health, int mana, int level, int weapon, int armor, int gold, int positionX, int positionY)
-            : base(name, health, mana, level, weapon, armor, gold, positionX, positionY)
+        public Rogue(string name, int health, int mana, int level, int weapon, int armor, int gold, Point2D cords, char icon)
+            : base(name, health, mana, level, weapon, armor, gold, cords, icon)
         {
-
         }
-
         public override void CastSkillOne()
         {
             throw new NotImplementedException();

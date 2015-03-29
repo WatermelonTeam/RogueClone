@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RogueClone
 {
-    class Program
+    class GameMain
     {
         static void Main(string[] args)
         {
