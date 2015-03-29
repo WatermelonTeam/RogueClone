@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace RogueClone
 {
-    class Program
+    class GameMain
     {
         static void Main(string[] args)
         {
             var game = new Game(80, 40, 100);
             game.Start();
-            
+            //Test branch
         }
     }
 }

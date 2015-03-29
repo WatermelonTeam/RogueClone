@@ -16,10 +16,11 @@
             throw new NotImplementedException();
         }
 
-        // Just print the hero in the dungeon
+        // Just print the hero on the map
         public static void RenderHero(Hero hero)
         {
-            throw new NotImplementedException();
+            Console.SetCursorPosition(hero.PositionX,hero.PositionY);
+            Console.Write(hero.Icon);
         }
 
         // Render the stats at the bottom of the console
