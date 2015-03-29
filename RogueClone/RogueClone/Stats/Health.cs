@@ -7,36 +7,14 @@ namespace RogueClone
 {
     public class Health : RogueClone.PCs.Interfaces.IStat
     {
-        private int max;
-        private int current;
-
-        public int Max
+        public Health(int max)
         {
-            get
-            {
-                return this.max;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ApplicationException("Health can't be less than zero.");
-                }
-
-                this.max = value;
-            }
+            this.Max = max;
+            this.Current = max;
         }
 
-        public int Current
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public int Max { get; set; }
+        public int Current { get; set; }
 
         public void Increase()
         {

@@ -10,9 +10,9 @@
         private readonly string heroName;
         private readonly char heroIcon;
 
-        private int heroHealth;
-        private int heroMana;
-        private int heroLevel;
+        private Health heroHealth;
+        private Mana heroMana;
+        private Level heroLevel;
         private int heroWeapon;
         private int heroArmor;
         private int heroGold;
@@ -20,7 +20,7 @@
         private int heroPositionX;
         private int heroPositionY;
 
-        public Hero(string name, int health, int mana, int level, int weapon, int armor, int gold, Point2D cords, char icon)
+        public Hero(string name, Health health, Mana mana, Level level, int weapon, int armor, int gold, Point2D cords, char icon)
         {
 
             this.heroName = name; // readonly does not need Property
@@ -40,7 +40,7 @@
         // event before properties !
         public event EventHandler Dead;
 
-        public int Health
+        public Health Health
         {
             get
             {
@@ -62,7 +62,7 @@
             }
         }
 
-        public int Mana
+        public Mana Mana
         {
             get
             {
@@ -76,7 +76,7 @@
             }
         }
 
-        public int Level
+        public Level Level
         {
             get
             {

@@ -23,3 +23,9 @@ C:\Users\Slash\Desktop\check\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClo
 C:\Users\Slash\Desktop\check\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.csprojResolveAssemblyReference.cache
 C:\Users\Slash\Desktop\check\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.exe
 C:\Users\Slash\Desktop\check\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.pdb
+C:\Users\Svetlio\Documents\GitHub\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.exe.config
+C:\Users\Svetlio\Documents\GitHub\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.exe
+C:\Users\Svetlio\Documents\GitHub\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.pdb
+C:\Users\Svetlio\Documents\GitHub\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.exe
+C:\Users\Svetlio\Documents\GitHub\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.pdb
+C:\Users\Svetlio\Documents\GitHub\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.csprojResolveAssemblyReference.cache

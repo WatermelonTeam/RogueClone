@@ -39,7 +39,7 @@
             //Initialise charaters !
 
             var cords = new Point2D(10, 10);
-            var gandalf = new Wizard("Gandalf", 1337, 9999, 10, 3, 127, 500, cords, '@');
+            var gandalf = new Wizard("Gandalf", new Health(100), new Mana(200), new Level(1), 9999, 10, 0, cords, '@');
 
             while (true)
             {
@@ -48,6 +48,7 @@
                 Game.CheckKeyPressingAndSetMovement(gandalf);
 
                 Engine.Engine.RenderHero(gandalf);
+                Engine.Engine.RenderStats(gandalf);
 
                 Thread.Sleep(this.Speed);
             }
@@ -95,7 +96,7 @@
 
             //Game.MoveHero(gandalf, 5 + i++, 5);
             Console.Clear();
-            Console.WriteLine("X : {0}, Y : {1} - Use the arrow keys to change values !", hero.PositionX, hero.PositionY);
+            
         }
 
         // Print the player in the dungeon ! This should be in the engine !

@@ -7,7 +7,7 @@ namespace RogueClone
 {
     public class Wizard : Hero
     {
-        public Wizard(string name, int health, int mana, int level, int weapon, int armor, int gold, Point2D cords, char icon)
+        public Wizard(string name, Health health, Mana mana, Level level, int weapon, int armor, int gold, Point2D cords, char icon)
             : base(name, health, mana, level, weapon, armor, gold, cords, icon)
         {
         }
