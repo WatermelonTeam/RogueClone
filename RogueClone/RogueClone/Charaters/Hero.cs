@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public abstract class Hero : IDamagable, IMovable, IKillable
+    public abstract class Hero : IDamagable, IPositionable, IKillable
     {
         private readonly string heroName;
         private readonly char heroIcon;
@@ -22,7 +22,6 @@
 
         public Hero(string name, Health health, Mana mana, Level level, int weapon, int armor, int gold, Point2D cords, char icon)
         {
-
             this.heroName = name; // readonly does not need Property
 
             this.Health = health;
@@ -34,7 +33,6 @@
             this.PositionX = cords.X;
             this.PositionY = cords.Y;
             this.heroIcon = icon;
-
         }
 
         // event before properties !
@@ -175,11 +173,10 @@
             throw new NotImplementedException();
         }
 
-
         // We should remove MoveTo and make it a static class in the Game class !
         public void MoveTo(int x, int y)
         {
-            //Console.SetCursorPosition(x, y);
+            // Console.SetCursorPosition(x, y);
         }
 
         public abstract void CastSkillOne();

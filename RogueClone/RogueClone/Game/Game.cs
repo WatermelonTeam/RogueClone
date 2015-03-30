@@ -5,6 +5,8 @@
     using System.Linq;
     using System.Text;
     using System.Threading;
+    using GameEngine = Engine.Engine;
+    using RogueClone.Items.Consumables;
 
     public class Game : IGame
     {
@@ -14,6 +16,8 @@
             // Set the console size and speed
             Console.SetWindowSize(width, height);
             Console.SetBufferSize(width, height);
+
+            // Set the speed
             this.Speed = speed;
         }
 
@@ -38,21 +42,32 @@
         {
             //Initialise charaters !
 
-            var cords = new Point2D(10, 10);
-            var gandalf = new Wizard("Gandalf", new Health(100), new Mana(200), new Level(1), 9999, 10, 0, cords, '@');
-
+            var gandalf = new Wizard("Gandalf", new Health(100), new Mana(200), new Level(1), 9999, 10, 0, new Point2D(10, 10), '@');
+            
             while (true)
             {
                 Console.Clear();
 
                 Game.CheckKeyPressingAndSetMovement(gandalf);
 
-                Engine.Engine.RenderHero(gandalf);
-                Engine.Engine.RenderStats(gandalf);
+                // GameEngine is alias to Engine.Engine just check the usings              
+                GameEngine.RenderStats(gandalf);
+
+                #region Experimental
+
+                //test the potion
+                GameEngine.RenderItem(new HealthPotion("small potion",10,0,20,20,"+",100));
+
+                #endregion
+
+                //Always render the hero at the end so he can be on top on all the items and monsters !
+                GameEngine.RenderHero(gandalf);
 
                 Thread.Sleep(this.Speed);
+
             }
         }
+
 
 
         // Set the new X and Y of the hero ! Lets hope that this static method is worth ! :D
@@ -70,7 +85,7 @@
 
 
         // This method checks for key pressing and sets the hero X and Y positions(This should be made by the engine. Must optimize !).
-        public static void CheckKeyPressingAndSetMovement(Hero hero)
+        private static void CheckKeyPressingAndSetMovement(Hero hero)
         {
             while (Console.KeyAvailable)
             {
@@ -78,28 +93,31 @@
                 //while (Console.KeyAvailable) Console.ReadKey(true);
                 if (pressedKey.Key == ConsoleKey.RightArrow)
                 {
+                    if (hero.PositionX >= Console.WindowWidth - 1) { break; }
+
                     Game.SetHeroPosition(hero, hero.PositionX += 1, hero.PositionY);
                 }
                 if (pressedKey.Key == ConsoleKey.LeftArrow)
                 {
+                    if (hero.PositionX <= 0) { break; }
+
                     Game.SetHeroPosition(hero, hero.PositionX -= 1, hero.PositionY);
                 }
                 if (pressedKey.Key == ConsoleKey.UpArrow)
                 {
+                    if (hero.PositionY <= 0) { break; }
+
                     Game.SetHeroPosition(hero, hero.PositionX, hero.PositionY -= 1);
                 }
                 if (pressedKey.Key == ConsoleKey.DownArrow)
                 {
+                    if (hero.PositionY >= Console.WindowHeight - 5) { break; }
+
                     Game.SetHeroPosition(hero, hero.PositionX, hero.PositionY += 1);
                 }
             }
 
-            //Game.MoveHero(gandalf, 5 + i++, 5);
             Console.Clear();
-            
         }
-
-        // Print the player in the dungeon ! This should be in the engine !
-
     }
 }

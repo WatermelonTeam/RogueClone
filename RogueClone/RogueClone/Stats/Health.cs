@@ -16,9 +16,9 @@ namespace RogueClone
         public int Max { get; set; }
         public int Current { get; set; }
 
-        public void Increase()
+        public void Increase(int amount)
         {
-            throw new System.NotImplementedException();
+            this.Current += amount;
         }
 
 

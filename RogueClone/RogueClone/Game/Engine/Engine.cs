@@ -19,8 +19,17 @@
         // Just print the hero on the map
         public static void RenderHero(Hero hero)
         {
-            Console.SetCursorPosition(hero.PositionX,hero.PositionY);
-            Console.Write(hero.Icon);
+            PrintOnPosition(hero.PositionX, hero.PositionY, hero.Icon.ToString());
+        }
+
+        public static void RenderMonster(Monsters monster)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void RenderItem(Item item)
+        {
+            PrintOnPosition(item.PositionX, item.PositionY, item.Icon);
         }
 
         // Render the stats at the bottom of the console

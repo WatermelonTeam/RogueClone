@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Monsters : NPC, IMovable
+    public class Monsters : NPC, IPositionable
     {
         public int Level
         {
