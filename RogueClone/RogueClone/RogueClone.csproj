@@ -63,7 +63,7 @@
     <Compile Include="Interfaces\IDamagable.cs" />
     <Compile Include="Interfaces\IDurable.cs" />
     <Compile Include="Game\IGame.cs" />
-    <Compile Include="Interfaces\IPositionable.cs" />
+    <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="Interfaces\IKillable.cs" />
     <Compile Include="Items\Consumables\HealthPotion.cs" />
     <Compile Include="Items\Consumables\IPotion.cs" />

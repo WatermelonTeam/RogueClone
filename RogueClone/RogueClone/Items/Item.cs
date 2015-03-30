@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RogueClone
 {
-    public abstract class Item : IPositionable
+    public abstract class Item : IMovable
     {
         private readonly string itemName;
         private readonly int itemPrice;

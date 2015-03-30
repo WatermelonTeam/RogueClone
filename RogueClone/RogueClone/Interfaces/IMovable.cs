@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RogueClone
 {
-    public interface IPositionable
+    public interface IMovable
     {
         int PositionX
         {

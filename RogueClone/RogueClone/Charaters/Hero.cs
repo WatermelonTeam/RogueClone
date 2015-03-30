@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public abstract class Hero : IDamagable, IPositionable, IKillable
+    public abstract class Hero : IDamagable, IMovable, IKillable
     {
         private readonly string heroName;
         private readonly char heroIcon;
