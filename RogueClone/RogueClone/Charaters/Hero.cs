@@ -172,7 +172,7 @@
         {
             throw new NotImplementedException();
         }
-
+        
         public void UseConsumable(object consumable)
         {
             if (consumable is Potion)
