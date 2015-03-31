@@ -25,7 +25,7 @@
         // Just print the hero on the map
         public static void RenderHero(Hero hero)
         {
-            PrintOnPosition(hero.Position.X, hero.Position.Y, hero.Icon.ToString());
+            PrintOnPosition(hero.Position.X, hero.Position.Y, hero.Icon.ToString(), ConsoleColor.Yellow);
         }
 
         public static void RenderMonster(Monster monster)
@@ -35,7 +35,7 @@
 
         public static void RenderItem(Item item)
         {
-            PrintOnPosition(item.Position.X, item.Position.Y, item.Icon);
+            PrintOnPosition(item.Position.X, item.Position.Y, item.Icon.ToString(), item.Color);
         }
 
         // Render the stats at the bottom of the console
@@ -53,20 +53,16 @@
             PrintOnPosition(65, statsSecondRow, string.Format("Gold: {0}", hero.Gold.ToString().PadRight(9, ' ')));
             PrintOnPosition(83, statsFourthRow, string.Format("X : {0}, Y : {1}", hero.Position.X.ToString().PadRight(3, ' '), hero.Position.Y.ToString().PadRight(3, ' ')));
         }
-
-
-        public static void PrintOnPosition(int x, int y, string text)
+        public static void PrintOnPosition(int x, int y, string text, ConsoleColor foregroundColor = ConsoleColor.White, ConsoleColor backgroundColor = ConsoleColor.Black)
         {
-            Console.SetCursorPosition(x, y);
-            Console.Write(text);
-        }
-
-        public static void PrintOnPosition(int x, int y, string text, ConsoleColor backgroundColor = ConsoleColor.Black, ConsoleColor foregroundColor = ConsoleColor.Gray)
-        {
+            var oldForegroundColor = Console.ForegroundColor;
+            var oldBackgroundColor = Console.BackgroundColor;
             Console.BackgroundColor = backgroundColor;
             Console.ForegroundColor = foregroundColor;
             Console.SetCursorPosition(x, y);
             Console.Write(text);
+            Console.BackgroundColor = oldForegroundColor;
+            Console.ForegroundColor = oldBackgroundColor;
         }
     }
 }

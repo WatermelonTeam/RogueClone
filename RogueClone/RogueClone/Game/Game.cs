@@ -9,40 +9,11 @@ namespace RogueClone
 
     public class Game : IGame
     {
-        private Point2D initialHeroPosition;
-        int gameSpeed;        
-        public Point2D InitialHeroPoisition
-        {
-            get
-            {
-                return this.initialHeroPosition;
-            }
-
-            set // validate
-            {
-                if (value.X < 0 || value.Y < 0 || ConsoleWidth <= value.X || ConsoleHeight <= value.Y)
-                {
-                    throw new ArgumentOutOfRangeException(string.Format("The initial position was ({0},{1}). Valid range is ([{2},{3}),[{2},{4}))", value.X, value.Y, 0, ConsoleWidth, ConsoleHeight));
-                }
-                this.initialHeroPosition = value;
-            }
-        }
-
         public static int ConsoleHeight { get; private set; }
         public static int ConsoleWidth { get; private set; }
-        public int Speed
-        {
-            get
-            {
-                return this.gameSpeed;
-            }
-
-            set
-            {
-                this.gameSpeed = value;
-            }
-        }
-        public Game(int width, int height, int speed, Point2D initialHeroPosition)
+        private char steppedOnItem;
+        private ConsoleColor itemColor;
+        public Game(int width, int height)
         {
             ConsoleWidth = width;
             ConsoleHeight = height;
@@ -50,10 +21,6 @@ namespace RogueClone
             Console.SetWindowSize(ConsoleWidth, ConsoleHeight);
             Console.SetBufferSize(ConsoleWidth, ConsoleHeight);
 
-
-            // Set the speed
-            this.Speed = speed;
-            this.InitialHeroPoisition = initialHeroPosition;
         }
 
         /// <summary>
@@ -64,12 +31,15 @@ namespace RogueClone
             Console.CursorVisible = false;
             //Initialise charaters and items on console!
 
-            var gandalf = new Wizard("Gandalf", new Health(100), new Mana(200), new Level(1), 9999, 10, 0, this.InitialHeroPoisition, '☺');
+            var gandalf = new Wizard("Gandalf", new Health(100), new Mana(200), new Level(3), 9999, 10, 0, new Point2D(10, 10), '☻');
             gandalf.Health.Current = 50;
+            gandalf.Mana.Current = 70;
 
             // Just testing an array of items ...
             var items = new List<Item>();
-            items.Add(new Potion("small potion", 10, 0, new Point2D(20, 20), "+", 100));
+            items.Add(new HealthPotion(new Point2D(20, 20)));
+            items.Add(new ManaPotion(new Point2D(25, 23)));
+            //items.Add(new HealthPotion("small potion", 10, 0, new Point2D(20, 20), '♥', 100));
             Engine.RenderStats(gandalf);
             Engine.RenderHero(gandalf);
             #region Experimental
@@ -86,9 +56,9 @@ namespace RogueClone
             #endregion
             while (true)
             {
-                //Console.Clear();
-
-                Game.CheckKeyPressingAndSetMovement(gandalf);
+                Game.CheckKeyPressingAndSetMovement(gandalf, this.steppedOnItem, this.itemColor);
+                this.steppedOnItem = ' ';
+                this.itemColor = ConsoleColor.White;
 
                 // GameEngine is alias to Engine.Engine just check the usings              
                 Engine.RenderStats(gandalf);
@@ -96,10 +66,19 @@ namespace RogueClone
                 Engine.RenderHero(gandalf);
                 foreach (var item in items)
                 {
-                    if (gandalf.Position == item.Position && item is Potion)
+                    if (gandalf.Position == item.Position)
                     {
-                        gandalf.UseConsumable(item);
+                        this.steppedOnItem = item.Icon;
+                        this.itemColor = item.Color;
+                        if (item is IConsumable && gandalf.Level.CurrentLevel >= item.NeededLvl)
+                        {
+                            gandalf.UseConsumable(item);
+                            this.steppedOnItem = ' ';
+                            this.itemColor = ConsoleColor.White;
+                            break;
+                        }
                     }
+                    
 
                     /*
                     Implement later :   
@@ -110,9 +89,6 @@ namespace RogueClone
                       
                     */
                 }
-                
-
-                //Thread.Sleep(this.Speed);
 
             }
         }
@@ -134,25 +110,23 @@ namespace RogueClone
 
 
         // This method checks for key pressing and sets the hero X and Y positions(This should be made by the engine. Must optimize !).
-        private static void CheckKeyPressingAndSetMovement(Hero hero)
+        private static void CheckKeyPressingAndSetMovement(Hero hero, char steppedOnItem, ConsoleColor itemColor)
         {
                 ConsoleKeyInfo pressedKey = Console.ReadKey(true);
                 switch (pressedKey.Key)
                 {
                     case ConsoleKey.RightArrow:
-                        hero.MoveTo(new Point2D(hero.Position.X + 1, hero.Position.Y)); 
+                        hero.MoveTo(new Point2D(hero.Position.X + 1, hero.Position.Y), steppedOnItem, itemColor); 
                         break;
-                    case ConsoleKey.LeftArrow: hero.MoveTo(new Point2D(hero.Position.X - 1, hero.Position.Y)); 
+                    case ConsoleKey.LeftArrow: hero.MoveTo(new Point2D(hero.Position.X - 1, hero.Position.Y), steppedOnItem, itemColor); 
                         break;
-                    case ConsoleKey.UpArrow: hero.MoveTo(new Point2D(hero.Position.X, hero.Position.Y - 1)); 
+                    case ConsoleKey.UpArrow: hero.MoveTo(new Point2D(hero.Position.X, hero.Position.Y - 1), steppedOnItem, itemColor); 
                         break;
-                    case ConsoleKey.DownArrow: hero.MoveTo(new Point2D(hero.Position.X, hero.Position.Y + 1)); 
+                    case ConsoleKey.DownArrow: hero.MoveTo(new Point2D(hero.Position.X, hero.Position.Y + 1), steppedOnItem, itemColor); 
                         break;
                     default:
                         break;
                 }
-
-            //Console.Clear();
         }
     }
 }

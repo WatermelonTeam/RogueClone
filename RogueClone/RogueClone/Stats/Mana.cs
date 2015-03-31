@@ -5,33 +5,11 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Mana : RogueClone.PCs.Interfaces.IStat
+    public class Mana : Stat
     {
-        public int Max { get; set; }
-
-        public int Current { get; set; }
-
-        public Mana(int max)
+        public Mana(int max) 
+            : base(max)
         {
-            this.Max = max;
-            this.Current = max;
-        }
-
-        public int ManaRegen
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-
-        public void IncreaseMax()
-        {
-            throw new NotImplementedException();
         }
     }
 }

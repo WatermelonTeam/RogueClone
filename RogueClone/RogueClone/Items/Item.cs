@@ -10,36 +10,39 @@ namespace RogueClone
         private readonly string itemName;
         private readonly int itemPrice;
         private readonly int itemNeededLevel;
-        private readonly string itemIcon;
+        private readonly char itemIcon;
+        private readonly ConsoleColor itemColor;
         private Point2D position;
 
         public Item()
         {
             // remember to remove this constructor !
         }
+        public Item(Point2D position)
+        {
+            this.position = position;
+        }
 
-        public Item(string name, int price, int neededLevel, Point2D position, string icon)
+        public Item(string name, int price, int neededLevel, Point2D position, char icon, ConsoleColor color)
+            : this(position)
         {
             this.itemName = name; // assign it only once because it is readonly
             this.itemPrice = price;
             this.itemNeededLevel = neededLevel;
             this.itemIcon = icon;
-            this.position = position;
+            this.itemColor = color;
         }
         public Point2D Position
         {
             get { return this.position; }
         }
 
-        public string Name
-        {
-            get
-            {
-                return this.itemName;
-            }
+        virtual public string Name
+        { 
+            get { return this.itemName; } 
         }
 
-        public int Price
+        virtual public int Price
         {
             get
             {
@@ -47,7 +50,7 @@ namespace RogueClone
             }
         }
 
-        public int NeededLvl
+        virtual public int NeededLvl
         {
             get
             {
@@ -55,11 +58,18 @@ namespace RogueClone
             }
         }
 
-        public string Icon
+        virtual public char Icon 
+        { 
+            get 
+            { 
+                return this.itemIcon; 
+            } 
+        }
+        virtual public ConsoleColor Color
         {
             get
             {
-                return this.itemIcon;
+                return this.itemColor;
             }
         }
 

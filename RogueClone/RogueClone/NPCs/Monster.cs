@@ -17,7 +17,7 @@ namespace RogueClone
             {
             }
         }
-        public void MoveTo(Point2D newPosition)
+        public void MoveTo(Point2D newPosition, char steppedOnItem, ConsoleColor itemColor)
         {
             throw new NotImplementedException();
         }

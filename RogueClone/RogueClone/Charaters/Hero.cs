@@ -40,6 +40,10 @@
             }
             set // validate
             {
+                if (!IsValidPosition(value))
+                {
+                    throw new ArgumentOutOfRangeException(string.Format("The initial position was ({0},{1}). Valid range is ([{2},{3}),[{2},{4}))", value.X, value.Y, 0, Game.ConsoleWidth, (Game.ConsoleHeight - Engine.statsPanelHeight)));
+                }
                 this.position = value;
             }
         }
@@ -156,9 +160,9 @@
         
         public void UseConsumable(object consumable)
         {
-            if (consumable is Potion)
+            if (consumable is IConsumable)
             {
-                this.Health.Increase((consumable as Potion).UsePotion());
+                (consumable as Consumable).Consumed(this);
                 consumable = null;
             }
             else
@@ -178,12 +182,11 @@
 
         public abstract void CastSkillTwo();
 
-        public void MoveTo(Point2D newPosition)
+        public void MoveTo(Point2D newPosition, char steppedOnItem = ' ', ConsoleColor itemColour = ConsoleColor.White)
         {
             if (IsValidPosition(newPosition))
             {
-                Console.SetCursorPosition(this.Position.X, this.Position.Y);
-                Console.Write(" ");
+                Engine.PrintOnPosition(this.Position.X, this.Position.Y, steppedOnItem.ToString(), itemColour);
                 this.Position = newPosition;
                 Console.SetCursorPosition(this.Position.X, this.Position.Y);
             }

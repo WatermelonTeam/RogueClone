@@ -5,11 +5,8 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Health : Stat
+    public interface IConsumable
     {
-        public Health(int max) 
-            : base(max)
-        {
-        }
+        void Consumed(Hero hero);
     }
 }
