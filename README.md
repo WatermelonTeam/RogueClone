@@ -60,3 +60,13 @@ Engine.RenderStats(gandalf);
 ```C#
 Engine.PrintOnPosition(3, Console.WindowHeight - 3, string.Format("HP: {0} \\ {1}", hero.Health.Current, hero.Health.Max));
 ```
+
+###Hero
+
+###Dungeon
+
+###Consumables
+
+###NPCs
+
+###Stats
