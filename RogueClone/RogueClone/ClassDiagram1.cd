@@ -3,7 +3,7 @@
   <Class Name="RogueClone.Hero" Collapsed="true">
     <Position X="14" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAGCEIBIAAAAAGgAAAgAAQAAAAIAEgBEAAAqAEAAAE=</HashCode>
+      <HashCode>AAAACEIBIAAAAAGgAAAgIAQAAAAIAEgBEAAAqAEAAAE=</HashCode>
       <FileName>Charaters\Hero.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -32,7 +32,7 @@
   <Class Name="RogueClone.Game" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="23.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAABQCAQAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAABACAQAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Game\Game.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -79,9 +79,10 @@
   <Class Name="RogueClone.Item" Collapsed="true">
     <Position X="13.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAABQAAAAEsBAAAIAQAABAIAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAEAAAABQAAAAEgBAAAIAQAABAIAAAAAAAAAAEAAAA=</HashCode>
       <FileName>Items\Item.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="RogueClone.WizardWeapon" Collapsed="true">
     <Position X="17.25" Y="4" Width="1.5" />
@@ -117,7 +118,7 @@
   <Class Name="RogueClone.Monsters" Collapsed="true">
     <Position X="10" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAIAAABAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAABAAAAAAAAAAA=</HashCode>
       <FileName>NPCs\Monster.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -233,7 +234,7 @@
   <Interface Name="RogueClone.IMovable" Collapsed="true">
     <Position X="22" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IMovable.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -256,6 +257,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAABAAAAAAAACAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
       <FileName>Charaters\Interfaces\IStat.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RogueClone.IPositionable">
+    <Position X="27.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IPositionable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

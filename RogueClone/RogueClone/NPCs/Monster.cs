@@ -17,33 +17,7 @@ namespace RogueClone
             {
             }
         }
-
-        public int PositionX
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public int PositionY
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-
-        public void MoveTo(int x, int y)
+        public void MoveTo(Point2D newPosition)
         {
             throw new NotImplementedException();
         }

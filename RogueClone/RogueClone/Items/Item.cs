@@ -5,16 +5,12 @@ using System.Text;
 
 namespace RogueClone
 {
-    public abstract class Item
+    public abstract class Item : IPositionable
     {
         private readonly string itemName;
         private readonly int itemPrice;
         private readonly int itemNeededLevel;
         private readonly string itemIcon;
-
-        private int itemPositionX;
-        private int itemPositionY;
-
         private Point2D position;
 
         public Item()
@@ -30,7 +26,6 @@ namespace RogueClone
             this.itemIcon = icon;
             this.position = position;
         }
-
         public Point2D Position
         {
             get { return this.position; }
@@ -68,9 +63,11 @@ namespace RogueClone
             }
         }
 
-        public void MoveTo(int x, int y)
+        void Pick()
         {
-            throw new NotImplementedException();
+ 
         }
+
+        
     }
 }

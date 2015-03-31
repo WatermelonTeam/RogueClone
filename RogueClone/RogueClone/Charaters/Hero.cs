@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public abstract class Hero : IDamagable, IMovable, IKillable
+    public abstract class Hero : IDamagable, IPositionable, IMovable, IKillable
     {
         private readonly string heroName;
         private readonly char heroIcon;
@@ -17,10 +17,9 @@
         private int heroArmor;
         private int heroGold;
 
-        private int heroPositionX;
-        private int heroPositionY;
+        private Point2D position;
 
-        public Hero(string name, Health health, Mana mana, Level level, int weapon, int armor, int gold, Point2D cords, char icon)
+        public Hero(string name, Health health, Mana mana, Level level, int weapon, int armor, int gold, Point2D position, char icon)
         {
             this.heroName = name; // readonly does not need Property
 
@@ -30,14 +29,24 @@
             this.Weapon = weapon;
             this.Armor = armor;
             this.Gold = gold;
-            this.PositionX = cords.X;
-            this.PositionY = cords.Y;
+            this.Position = position;
             this.heroIcon = icon;
+        }
+        public Point2D Position
+        {
+            get
+            {
+                return this.position;
+            }
+            set // validate
+            {
+                this.position = value;
+            }
         }
 
         // event before properties !
         public event EventHandler Dead;
-
+        
         public Health Health
         {
             get
@@ -140,34 +149,6 @@
             }
         }
 
-        public int PositionX
-        {
-            get
-            {
-                return this.heroPositionX;
-            }
-
-            set
-            {
-                ////implement validation !!!
-                this.heroPositionX = value;
-            }
-        }
-
-        public int PositionY
-        {
-            get
-            {
-                return this.heroPositionY;
-            }
-
-            set
-            {
-                ////implement validation !!!
-                this.heroPositionY = value;
-            }
-        }
-
         public void TakeDamage()
         {
             throw new NotImplementedException();
@@ -187,14 +168,30 @@
             
         }
 
-        // We should remove MoveTo and make it a static class in the Game class !
-        public void MoveTo(int x, int y)
-        {
-            // Console.SetCursorPosition(x, y);
-        }
+        //// We should remove MoveTo and make it a static class in the Game class !
+        //public void MoveTo(int x, int y)
+        //{
+        //    // Console.SetCursorPosition(x, y);
+        //}
 
         public abstract void CastSkillOne();
 
         public abstract void CastSkillTwo();
+
+
+
+
+
+
+
+
+
+        public void MoveTo(Point2D newPosition)
+        {
+            Console.SetCursorPosition(this.Position.X, this.Position.Y);
+            Console.Write(" ");
+            this.Position = newPosition;
+            Console.SetCursorPosition(this.Position.X, this.Position.Y);
+        }
     }
 }

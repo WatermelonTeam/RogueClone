@@ -5,8 +5,8 @@ using System.Text;
 
 namespace RogueClone
 {
-    public interface IMovable
+    public interface IPositionable
     {
-        void MoveTo(Point2D newPosition);
+        Point2D Position { get; }
     }
 }

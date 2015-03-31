@@ -19,7 +19,7 @@
         // Just print the hero on the map
         public static void RenderHero(Hero hero)
         {
-            PrintOnPosition(hero.PositionX, hero.PositionY, hero.Icon.ToString());
+            PrintOnPosition(hero.Position.X, hero.Position.Y, hero.Icon.ToString());
         }
 
         public static void RenderMonster(Monsters monster)
@@ -35,7 +35,7 @@
         // Render the stats at the bottom of the console
         public static void RenderStats(Hero hero)
         {
-            PrintOnPosition(0, Console.WindowHeight - 4, new string('-', Console.WindowWidth));
+            PrintOnPosition(0, Console.WindowHeight - 4, new string('─', Console.WindowWidth));
             PrintOnPosition(3, Console.WindowHeight - 3, string.Format("HP: {0} \\ {1}", hero.Health.Current, hero.Health.Max));
             PrintOnPosition(3, Console.WindowHeight - 2, string.Format("MP: {0} \\ {1}", hero.Mana.Current, hero.Mana.Max));
             PrintOnPosition(25, Console.WindowHeight - 3, string.Format("Level: {0}", hero.Level.CurrentLevel));
@@ -43,7 +43,7 @@
             PrintOnPosition(45, Console.WindowHeight - 3, string.Format("Armor: {0}", hero.Armor));
             PrintOnPosition(45, Console.WindowHeight - 2, string.Format("Weapon: {0}", hero.Weapon));
             PrintOnPosition(65, Console.WindowHeight - 3, string.Format("Gold: {0}", hero.Gold));
-            PrintOnPosition(85, Console.WindowHeight - 1, string.Format("X : {0}, Y : {1}", hero.PositionX, hero.PositionY));
+            PrintOnPosition(85, Console.WindowHeight - 1, string.Format("X : {0}, Y : {1}", hero.Position.X, hero.Position.Y));
         }
 
         public static void PrintOnPosition(int x, int y, string text)
