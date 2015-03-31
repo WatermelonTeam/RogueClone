@@ -61,6 +61,8 @@ Engine.RenderStats(gandalf);
 Engine.PrintOnPosition(3, Console.WindowHeight - 3, string.Format("HP: {0} \\ {1}", hero.Health.Current, hero.Health.Max));
 ```
 
+Under construction ...
+
 ###Hero
 
 ###Dungeon
@@ -70,3 +72,5 @@ Engine.PrintOnPosition(3, Console.WindowHeight - 3, string.Format("HP: {0} \\ {1
 ###NPCs
 
 ###Stats
+
+...
