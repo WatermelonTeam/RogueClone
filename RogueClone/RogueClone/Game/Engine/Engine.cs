@@ -1,4 +1,4 @@
-﻿namespace RogueClone.Engine
+﻿namespace RogueClone
 {
     using System;
     using System.Collections.Generic;
@@ -29,7 +29,7 @@
 
         public static void RenderItem(Item item)
         {
-            PrintOnPosition(item.PositionX, item.PositionY, item.Icon);
+            PrintOnPosition(item.Position.X, item.Position.Y, item.Icon);
         }
 
         // Render the stats at the bottom of the console

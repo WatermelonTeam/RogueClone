@@ -5,8 +5,6 @@
     using System.Linq;
     using System.Text;
     using System.Threading;
-    using GameEngine = Engine.Engine;
-    using RogueClone.Items.Consumables;
 
     public class Game : IGame
     {
@@ -40,10 +38,16 @@
         /// </summary>
         public void Start()
         {
-            //Initialise charaters !
+
+            //Initialise charaters and items on console!
 
             var gandalf = new Wizard("Gandalf", new Health(100), new Mana(200), new Level(1), 9999, 10, 0, new Point2D(10, 10), '@');
-            
+
+
+            // Just testing an array of items ...
+            var items = new List<Item>();
+            items.Add(new Potion("small potion", 10, 0, new Point2D(20, 20), "+", 100));
+
             while (true)
             {
                 Console.Clear();
@@ -51,17 +55,38 @@
                 Game.CheckKeyPressingAndSetMovement(gandalf);
 
                 // GameEngine is alias to Engine.Engine just check the usings              
-                GameEngine.RenderStats(gandalf);
-
+                Engine.RenderStats(gandalf);
+                
                 #region Experimental
 
                 //test the potion
-                GameEngine.RenderItem(new HealthPotion("small potion",10,0,20,20,"+",100));
 
+
+                // var testX = potion.Position.X;
+
+                foreach (var item in items)
+                {
+                    if (item is Potion)
+                    {
+                        Engine.RenderItem(item);
+                    }
+
+                    /*
+                    Implement later :   
+                    
+                    if weapon
+                    if trinket
+                    if armor
+                      
+                    */
+                }
+
+
+                gandalf.UseConsumable(items[0]);
                 #endregion
 
                 //Always render the hero at the end so he can be on top on all the items and monsters !
-                GameEngine.RenderHero(gandalf);
+                Engine.RenderHero(gandalf);
 
                 Thread.Sleep(this.Speed);
 

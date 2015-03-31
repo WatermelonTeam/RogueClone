@@ -173,6 +173,20 @@
             throw new NotImplementedException();
         }
 
+        public void UseConsumable(object consumable)
+        {
+            if (consumable is Potion)
+            {
+                this.Health.Increase((consumable as Potion).UsePotion());
+                consumable = null;
+            }
+            else
+            {
+                throw new Exception("Invalid consumable object in UseConsumable method !");
+            }
+            
+        }
+
         // We should remove MoveTo and make it a static class in the Game class !
         public void MoveTo(int x, int y)
         {

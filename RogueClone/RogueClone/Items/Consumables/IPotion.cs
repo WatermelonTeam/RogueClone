@@ -1,4 +1,4 @@
-﻿namespace RogueClone.Items.Consumables
+﻿namespace RogueClone
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +8,6 @@
 
     public interface IPotion
     {
-        int amount { get; } // set it true the constructor and decrease it with the UsePotion method !
-        void UsePotion();
+        int UsePotion();
     }
 }

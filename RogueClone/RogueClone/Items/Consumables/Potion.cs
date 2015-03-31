@@ -4,31 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RogueClone.Items.Consumables
+namespace RogueClone
 {
-    public abstract class Potion : Item
+    public class Potion : Consumable, IPotion
     {
-        private int potionStatsRestored;
-
-        public Potion(string name, int price, int neededLevel, int posX, int posY, string icon, int amountRestored)
-            : base(name, price, neededLevel, posX, posY, icon)
+        public Potion(string name, int price, int neededLevel, Point2D position, string icon, int amountRestored)
+            : base(name, price, neededLevel, position, icon, amountRestored)
         {
-            this.potionStatsRestored = amountRestored;
-        }
 
-        public int AmountStatsRestored
-        {
-            get
-            {
-                return this.potionStatsRestored;
-            }
-        }
-
-        public void RestoreHealth(Hero hero)
-        {
-            hero.Health.Increase(this.potionStatsRestored);
         }
 
 
+        // add IConsumer to the hero so he can consume potions OO ?
+        public int UsePotion()
+        {
+            var restored = this.AmountStatsRestored;
+            this.AmountStatsRestored = 0;
+            return restored;
+        }
     }
 }

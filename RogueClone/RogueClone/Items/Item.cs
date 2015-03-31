@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RogueClone
 {
-    public abstract class Item : IMovable
+    public abstract class Item
     {
         private readonly string itemName;
         private readonly int itemPrice;
@@ -15,21 +15,25 @@ namespace RogueClone
         private int itemPositionX;
         private int itemPositionY;
 
+        private Point2D position;
 
         public Item()
         {
             // remember to remove this constructor !
         }
 
-        public Item(string name, int price, int neededLevel, int posX, int posY,string icon)
+        public Item(string name, int price, int neededLevel, Point2D position, string icon)
         {
             this.itemName = name; // assign it only once because it is readonly
             this.itemPrice = price;
             this.itemNeededLevel = neededLevel;
             this.itemIcon = icon;
+            this.position = position;
+        }
 
-            this.PositionX = posX;
-            this.PositionY = posY;
+        public Point2D Position
+        {
+            get { return this.position; }
         }
 
         public string Name
@@ -56,29 +60,6 @@ namespace RogueClone
             }
         }
 
-        public int PositionX
-        {
-            get
-            {
-                return this.itemPositionX;
-            }
-            set
-            {
-                this.itemPositionX = value;
-            }
-        }
-
-        public int PositionY
-        {
-            get
-            {
-                return this.itemPositionY;
-            }
-            set
-            {
-                this.itemPositionY = value;
-            }
-        }
         public string Icon
         {
             get

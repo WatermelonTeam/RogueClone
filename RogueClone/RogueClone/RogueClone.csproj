@@ -56,7 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Charaters\Point2D.cs" />
+    <Compile Include="Point2D.cs" />
     <Compile Include="Items\Consumables\Consumable.cs" />
     <Compile Include="Game\Engine\IEngine.cs" />
     <Compile Include="Game\Engine\Engine.cs" />
@@ -65,10 +65,8 @@
     <Compile Include="Game\IGame.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="Interfaces\IKillable.cs" />
-    <Compile Include="Items\Consumables\HealthPotion.cs" />
-    <Compile Include="Items\Consumables\IPotion.cs" />
-    <Compile Include="Items\Consumables\ManaPotion.cs" />
     <Compile Include="Items\Consumables\Potion.cs" />
+    <Compile Include="Items\Consumables\IPotion.cs" />
     <Compile Include="Items\Defense\Armor.cs" />
     <Compile Include="Dungeon\Dungeon.cs" />
     <Compile Include="Items\Offense\Staff.cs" />
