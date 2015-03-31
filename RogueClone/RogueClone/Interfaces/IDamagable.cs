@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RogueClone
 {
-    public interface IDamagable
+    public interface IDamageable
     {
         void TakeDamage();
     }

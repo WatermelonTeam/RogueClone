@@ -11,7 +11,6 @@ namespace RogueClone
         public Potion(string name, int price, int neededLevel, Point2D position, string icon, int amountRestored)
             : base(name, price, neededLevel, position, icon, amountRestored)
         {
-
         }
 
 

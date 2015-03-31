@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public abstract class Hero : IDamagable, IPositionable, IMovable, IKillable
+    public abstract class Hero : IDamageable, IPositionable, IMovable, IKillable
     {
         private readonly string heroName;
         private readonly char heroIcon;
@@ -178,20 +178,22 @@
 
         public abstract void CastSkillTwo();
 
-
-
-
-
-
-
-
-
         public void MoveTo(Point2D newPosition)
         {
-            Console.SetCursorPosition(this.Position.X, this.Position.Y);
-            Console.Write(" ");
-            this.Position = newPosition;
-            Console.SetCursorPosition(this.Position.X, this.Position.Y);
+            if (IsValidPosition(newPosition))
+            {
+                Console.SetCursorPosition(this.Position.X, this.Position.Y);
+                Console.Write(" ");
+                this.Position = newPosition;
+                Console.SetCursorPosition(this.Position.X, this.Position.Y);
+            }
+        }
+        private bool IsValidPosition(Point2D position) // later add validation for walls, monsters etc.
+        {
+            return 0 <= position.X 
+                && 0 <= position.Y 
+                && position.X < Game.ConsoleWidth 
+                && position.Y < Game.ConsoleHeight - Engine.statsPanelHeight;
         }
     }
 }

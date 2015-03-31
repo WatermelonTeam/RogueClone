@@ -14,7 +14,6 @@ namespace RogueClone
             : base(name, price, neededLevel, position, icon)
         {
             this.potionStatsRestored = amountRestored;
-
         }
 
         public int AmountStatsRestored
