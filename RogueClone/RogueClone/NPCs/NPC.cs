@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RogueClone
 {
-    public abstract class NPC : IDamagable, IKillable
+    public abstract class NPC : IDamageable, IKillable
     {
         public int Health
         {

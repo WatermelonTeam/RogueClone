@@ -1,4 +1,4 @@
-﻿namespace RogueClone.Engine
+﻿namespace RogueClone
 {
     public interface IEngine
     {

@@ -46,5 +46,19 @@ namespace RogueClone
                 this.y = value;
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            Point2D p = (Point2D)obj;
+            return this.X == p.X && this.Y == p.Y;
+        }
+        public static bool operator ==(Point2D p1, Point2D p2)
+        {
+            return p1.X == p2.X && p1.Y == p2.Y;
+        }
+        public static bool operator !=(Point2D p1, Point2D p2)
+        {
+            return !(p1 == p2);
+        }
     }
 }

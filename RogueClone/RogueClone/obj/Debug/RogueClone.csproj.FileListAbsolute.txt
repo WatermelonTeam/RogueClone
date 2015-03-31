@@ -14,7 +14,6 @@ C:\Users\Pariador\Desktop\UPLOAD\RogueClone\RogueClone\obj\Debug\RogueClone.pdb
 C:\Development\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.exe.config
 C:\Development\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.exe
 C:\Development\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.pdb
-C:\Development\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.csprojResolveAssemblyReference.cache
 C:\Development\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.exe
 C:\Development\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.pdb
 C:\Users\Slash\Desktop\check\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.exe.config
@@ -29,3 +28,9 @@ C:\Users\Svetlio\Documents\GitHub\RogueClone\RogueClone\RogueClone\obj\Debug\Rog
 C:\Users\Svetlio\Documents\GitHub\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.exe
 C:\Users\Svetlio\Documents\GitHub\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.pdb
 C:\Users\Svetlio\Documents\GitHub\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.csprojResolveAssemblyReference.cache
+D:\Ger\Dropbox\SOFTUNI\Telerik\RogueFork\RogueClone\RogueClone\bin\Debug\RogueClone.exe.config
+D:\Ger\Dropbox\SOFTUNI\Telerik\RogueFork\RogueClone\RogueClone\obj\Debug\RogueClone.exe
+D:\Ger\Dropbox\SOFTUNI\Telerik\RogueFork\RogueClone\RogueClone\obj\Debug\RogueClone.pdb
+D:\Ger\Dropbox\SOFTUNI\Telerik\RogueFork\RogueClone\RogueClone\bin\Debug\RogueClone.exe
+D:\Ger\Dropbox\SOFTUNI\Telerik\RogueFork\RogueClone\RogueClone\bin\Debug\RogueClone.pdb
+D:\Ger\Dropbox\SOFTUNI\Telerik\RogueFork\RogueClone\RogueClone\obj\Debug\RogueClone.csprojResolveAssemblyReference.cache

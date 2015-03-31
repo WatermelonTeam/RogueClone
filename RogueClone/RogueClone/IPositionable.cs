@@ -5,7 +5,8 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Consumables : Item
+    public interface IPositionable
     {
+        Point2D Position { get; }
     }
 }

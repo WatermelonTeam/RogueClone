@@ -11,6 +11,21 @@
     <AssemblyName>RogueClone</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -41,8 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Charaters\Point2D.cs" />
-    <Compile Include="Items\Consumables.cs" />
+    <Compile Include="IPositionable.cs" />
+    <Compile Include="Point2D.cs" />
+    <Compile Include="Items\Consumables\Consumable.cs" />
     <Compile Include="Game\Engine\IEngine.cs" />
     <Compile Include="Game\Engine\Engine.cs" />
     <Compile Include="Interfaces\IDamagable.cs" />
@@ -50,29 +66,33 @@
     <Compile Include="Game\IGame.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="Interfaces\IKillable.cs" />
-    <Compile Include="Items\Armor.cs" />
+    <Compile Include="Items\Consumables\Potion.cs" />
+    <Compile Include="Items\Consumables\IPotion.cs" />
+    <Compile Include="Items\Defense\Armor.cs" />
     <Compile Include="Dungeon\Dungeon.cs" />
-    <Compile Include="NPCs\Monsters.cs" />
-    <Compile Include="NPCs\Enemy.cs" />
+    <Compile Include="Items\Offense\Staff.cs" />
+    <Compile Include="NPCs\Agressive\Nazgul.cs" />
+    <Compile Include="NPCs\Monster.cs" />
+    <Compile Include="NPCs\NPC.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Charaters\Interfaces\ILvL.cs" />
     <Compile Include="Charaters\Interfaces\IStat.cs" />
     <Compile Include="Stats\Health.cs" />
     <Compile Include="Charaters\Hero.cs" />
     <Compile Include="Items\Item.cs" />
-    <Compile Include="Items\LeatherArmor.cs" />
+    <Compile Include="Items\Defense\LeatherArmor.cs" />
     <Compile Include="Stats\Level.cs" />
-    <Compile Include="Items\Mace.cs" />
+    <Compile Include="Items\Offense\Mace.cs" />
     <Compile Include="Stats\Mana.cs" />
     <Compile Include="NPCs\MonsterTierTwo.cs" />
     <Compile Include="NPCs\MosterTierOne.cs" />
-    <Compile Include="Items\PlateArmor.cs" />
+    <Compile Include="Items\Defense\PlateArmor.cs" />
     <Compile Include="GameMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Charaters\Rogue.cs" />
-    <Compile Include="NPCs\ShopKeeper.cs" />
-    <Compile Include="Items\Sword.cs" />
-    <Compile Include="Items\Trinket.cs" />
+    <Compile Include="NPCs\Neutral\ShopKeeper.cs" />
+    <Compile Include="Items\Offense\Sword.cs" />
+    <Compile Include="Items\Offense\Trinket.cs" />
     <Compile Include="Items\Weapon.cs" />
     <Compile Include="Charaters\Wizard.cs" />
   </ItemGroup>
@@ -80,7 +100,23 @@
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
