@@ -175,17 +175,6 @@
                 (item as Gold).Take(this);
                 item = null;
         }
-		public void TakeRogueArmor(object item)
-		{
-			(item as RogueArmor).Take(this);
-			item = null;
-
-		}
-		public void TakeWizardArmor(object item)
-		{
-			(item as WizardArmor).Take(this);
-				item=null;
-		}
         public void TakeTrinket(object item)
         {
             (item as Trinket).Take(this);

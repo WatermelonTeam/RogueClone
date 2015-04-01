@@ -19,12 +19,6 @@ namespace RogueClone
         {
             // remember to remove this constructor !
         }
-		//added new constructor so i can randomize the armorvalue :)
-		public Item(int neededLevel,Point2D position)
-		{
-			this.position = position;
-			this.itemNeededLevel = neededLevel;
-		}
         public Item(Point2D position)
         {
             this.position = position;

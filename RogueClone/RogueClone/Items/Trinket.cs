@@ -18,7 +18,7 @@ namespace RogueClone
         private const int crystalLvl = 4;
         private const int pendantLvl = 5;
         private const int horseshoeLvl = 2;
-		// i suggest that the items are all "?" the player shouldnt know what is the item 
+
         public enum trinkets { ring = 'ö', charm = '©', crystal = '♦', pendant = '§', horseshoe = 'Ω' };
         public Trinket(string name, Point2D position, int value)
             : base(name, position, value)
