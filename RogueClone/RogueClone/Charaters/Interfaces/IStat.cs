@@ -4,9 +4,10 @@
 
     interface IStat
     {
-        int Max { get; set; }
+        int Max { get; }
         int Current { get; set; }
 
-        void IncreaseMax();
+        void Increase(int amount);
+        void IncreaseMax(int increasedValue);
     }
 }

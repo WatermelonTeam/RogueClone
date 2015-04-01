@@ -56,7 +56,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPositionable.cs" />
+    <Compile Include="Board\Board.cs" />
+    <Compile Include="Board\BoardFactory.cs" />
+    <Compile Include="Board\BoardsTest.cs" />
+    <Compile Include="Items\Gold.cs" />
+    <Compile Include="Interfaces\IConsumable.cs" />
+    <Compile Include="Items\Consumables\HealthPotion.cs" />
+    <Compile Include="Interfaces\IPositionable.cs" />
+    <Compile Include="Items\Consumables\ManaPotion.cs" />
     <Compile Include="Point2D.cs" />
     <Compile Include="Items\Consumables\Consumable.cs" />
     <Compile Include="Game\Engine\IEngine.cs" />
@@ -67,9 +74,7 @@
     <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="Interfaces\IKillable.cs" />
     <Compile Include="Items\Consumables\Potion.cs" />
-    <Compile Include="Items\Consumables\IPotion.cs" />
     <Compile Include="Items\Defense\Armor.cs" />
-    <Compile Include="Dungeon\Dungeon.cs" />
     <Compile Include="Items\Offense\Staff.cs" />
     <Compile Include="NPCs\Agressive\Nazgul.cs" />
     <Compile Include="NPCs\Monster.cs" />
@@ -77,6 +82,7 @@
     <Compile Include="Game\Game.cs" />
     <Compile Include="Charaters\Interfaces\ILvL.cs" />
     <Compile Include="Charaters\Interfaces\IStat.cs" />
+    <Compile Include="Stats\Stat.cs" />
     <Compile Include="Stats\Health.cs" />
     <Compile Include="Charaters\Hero.cs" />
     <Compile Include="Items\Item.cs" />
@@ -92,13 +98,13 @@
     <Compile Include="Charaters\Rogue.cs" />
     <Compile Include="NPCs\Neutral\ShopKeeper.cs" />
     <Compile Include="Items\Offense\Sword.cs" />
-    <Compile Include="Items\Offense\Trinket.cs" />
+    <Compile Include="Items\Trinket.cs" />
     <Compile Include="Items\Weapon.cs" />
     <Compile Include="Charaters\Wizard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
+    <None Include="RogueClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

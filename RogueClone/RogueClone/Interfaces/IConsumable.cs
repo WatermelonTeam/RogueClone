@@ -5,7 +5,8 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Trinket : Item
+    public interface IConsumable
     {
+        void Consumed(Hero hero);
     }
 }

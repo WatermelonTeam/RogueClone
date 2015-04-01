@@ -7,6 +7,6 @@ namespace RogueClone
 {
     public interface IMovable
     {
-        void MoveTo(Point2D newPosition);
+        void MoveTo(Point2D newPosition, char steppedOnItem, ConsoleColor color);
     }
 }

@@ -5,32 +5,22 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Consumable : Item
+    public abstract class Consumable : Item, IConsumable
     {
-        private int potionStatsRestored;
-
-
-        public Consumable(string name, int price, int neededLevel, Point2D position, string icon, int amountRestored)
-            : base(name, price, neededLevel, position, icon)
+        private int amountStatsRestored;
+        public Consumable(string name, string description, int price, int neededLevel, Point2D position, char icon, ConsoleColor color, int amountRestored)
+            : base(name, description, price, neededLevel, position, icon, color)
         {
-            this.potionStatsRestored = amountRestored;
+            this.amountStatsRestored = amountRestored;
         }
 
-        public int AmountStatsRestored
+        public Consumable(Point2D position)
+            : base(position)
         {
-            get
-            {
-                return this.potionStatsRestored;
-            }
-            set
-            {
-                this.potionStatsRestored = value;
-            }
         }
 
-        public void RestoreHealth(Hero hero)
-        {
-            hero.Health.Increase(this.potionStatsRestored);
-        }
+        virtual public int AmountStatsRestored { get { return this.amountStatsRestored; } }
+        public abstract void Consumed(Hero hero);
+
     }
 }

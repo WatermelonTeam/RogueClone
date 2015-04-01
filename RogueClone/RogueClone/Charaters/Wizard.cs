@@ -5,9 +5,10 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Wizard : Hero
+    public sealed class Wizard : Hero
     {
-        public Wizard(string name, Health health, Mana mana, Level level, int weapon, int armor, int gold, Point2D cords, char icon)
+        public static readonly Wizard Instance = new Wizard("Gandalf", Health.Instance, Mana.Instance, new Level(2), 9999, 10, 0, new Point2D(10, 10), '☻');
+        private Wizard(string name, Health health, Mana mana, Level level, int weapon, int armor, int gold, Point2D cords, char icon)
             : base(name, health, mana, level, weapon, armor, gold, cords, icon)
         {
         }

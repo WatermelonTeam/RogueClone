@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class WizardArmors : Armor
+    public class WizardArmor : Armor
     {
         public int ArmorSpell
         {

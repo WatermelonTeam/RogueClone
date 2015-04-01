@@ -8,12 +8,6 @@
 
     interface IGame
     {
-        int Speed
-        {
-            get;
-            set;
-        }
-
         void Start();
     }
 }
