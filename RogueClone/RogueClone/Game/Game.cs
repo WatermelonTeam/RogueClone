@@ -33,7 +33,8 @@ namespace RogueClone
             Console.CursorVisible = false;
             //Initialise charaters and items on console!
 
-            var gandalf = Wizard.Instance;
+			
+            var gandalf = Rogue.Instance;
             gandalf.Health.Current = 50;
             gandalf.Mana.Current = 70;
 
@@ -49,9 +50,13 @@ namespace RogueClone
             items.Add(new Trinket("Crystal", new Point2D(50, 20), 200));
             items.Add(new Trinket("Pendant", new Point2D(40, 5), 200));
             items.Add(new Trinket("Charm", new Point2D(10, 20), 200));
+			items.Add(new RogueArmor(2,new Point2D(20,21)));
+			items.Add(new WizardArmor(2, new Point2D(30, 13)));
+
             //items.Add(new HealthPotion("small potion", 10, 0, new Point2D(20, 20), '♥', 100));
             Engine.RenderStats(gandalf);
             Engine.RenderHero(gandalf);
+			
             #region Experimental
 
             //test the potion
@@ -115,6 +120,26 @@ namespace RogueClone
                             this.itemColor = ConsoleColor.White;
                             break;
                         }
+						//i made gandalf rouge to try if he can pick armors
+						//TODO: have to implement how to do the dodge and durability stuff
+						if(item is RogueArmor && gandalf is Rogue && gandalf.Level.CurrentLevel>= item.NeededLvl)
+						{
+							gandalf.TakeRogueArmor(item);
+							items.Remove(item);
+							this.steppedOnItem = ' ';
+							this.itemColor = ConsoleColor.White;
+							break;
+						}
+						//trying if gandalf is wizard :)
+						//tell me what shall i implement for the wizard armor ...please "ArmorSpell" WTF ?! :D
+						//if(item is WizardArmor && gandalf is Wizard && gandalf.Level.CurrentLevel>=item.NeededLvl)
+						//{
+						//	gandalf.TakeWizardArmor(item);
+						//	items.Remove(item);
+						//	this.steppedOnItem = ' ';
+						//	this.itemColor = ConsoleColor.White;
+						//	break;
+						//}
                     }
                     
 
