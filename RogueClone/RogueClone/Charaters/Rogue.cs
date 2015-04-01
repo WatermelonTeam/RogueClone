@@ -5,9 +5,10 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Rogue : Hero
+    public sealed class Rogue : Hero
     {
-        public Rogue(string name, Health health, Mana mana, Level level, int weapon, int armor, int gold, Point2D cords, char icon)
+        public static readonly Rogue Instance = new Rogue("BydernIlgenar", Health.Instance, Mana.Instance, new Level(2), 100, 100, 200, new Point2D(10, 10), '☺');
+        private  Rogue(string name, Health health, Mana mana, Level level, int weapon, int armor, int gold, Point2D cords, char icon)
             : base(name, health, mana, level, weapon, armor, gold, cords, icon)
         {
         }

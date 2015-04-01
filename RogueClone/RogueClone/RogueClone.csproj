@@ -56,9 +56,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IConsumable.cs" />
+    <Compile Include="Items\Gold.cs" />
+    <Compile Include="Interfaces\IConsumable.cs" />
     <Compile Include="Items\Consumables\HealthPotion.cs" />
-    <Compile Include="IPositionable.cs" />
+    <Compile Include="Interfaces\IPositionable.cs" />
     <Compile Include="Items\Consumables\ManaPotion.cs" />
     <Compile Include="Point2D.cs" />
     <Compile Include="Items\Consumables\Consumable.cs" />
@@ -95,7 +96,7 @@
     <Compile Include="Charaters\Rogue.cs" />
     <Compile Include="NPCs\Neutral\ShopKeeper.cs" />
     <Compile Include="Items\Offense\Sword.cs" />
-    <Compile Include="Items\Offense\Trinket.cs" />
+    <Compile Include="Items\Trinket.cs" />
     <Compile Include="Items\Weapon.cs" />
     <Compile Include="Charaters\Wizard.cs" />
   </ItemGroup>

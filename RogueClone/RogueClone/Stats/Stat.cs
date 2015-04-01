@@ -14,7 +14,7 @@ namespace RogueClone
             this.Current = max;
         }
 
-        public int Max { get; private set; }
+        public int Max { get; set; }
         public int Current 
         {
             get 

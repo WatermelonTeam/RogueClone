@@ -5,9 +5,10 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Health : Stat
+    public sealed class Health : Stat
     {
-        public Health(int max) 
+        public static readonly Health Instance = new Health(100);
+        private Health(int max) 
             : base(max)
         {
         }

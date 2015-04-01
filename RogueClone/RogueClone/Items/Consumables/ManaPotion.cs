@@ -18,12 +18,19 @@ namespace RogueClone
         }
 
         public override string Name { get { return "Mana Potion"; } }
+        public override string Description
+        {
+            get
+            {
+                return string.Format("Mana +{0}", this.AmountStatsRestored);
+            }
+        }
 
-        public override int Price { get { return 100; } }
+        public override int Value { get { return 100; } }
 
         public override int NeededLvl { get { return 3; } }
 
-        public override char Icon { get { return '☼'; } }
+        public override char Icon { get { return '¤'; } } //≈ ☼ ⌂ 
         public override ConsoleColor Color { get { return ConsoleColor.Cyan; } }
         public override int AmountStatsRestored { get { return 50; } }
 

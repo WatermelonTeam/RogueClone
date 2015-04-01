@@ -8,8 +8,8 @@ namespace RogueClone
     public abstract class Consumable : Item, IConsumable
     {
         private int amountStatsRestored;
-        public Consumable(string name, int price, int neededLevel, Point2D position, char icon, ConsoleColor color, int amountRestored)
-            : base(name, price, neededLevel, position, icon, color)
+        public Consumable(string name, string description, int price, int neededLevel, Point2D position, char icon, ConsoleColor color, int amountRestored)
+            : base(name, description, price, neededLevel, position, icon, color)
         {
             this.amountStatsRestored = amountRestored;
         }

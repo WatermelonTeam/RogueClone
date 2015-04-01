@@ -8,10 +8,11 @@ namespace RogueClone
     public abstract class Item : IPositionable
     {
         private readonly string itemName;
-        private readonly int itemPrice;
+        private readonly int itemValue;
         private readonly int itemNeededLevel;
         private readonly char itemIcon;
         private readonly ConsoleColor itemColor;
+        private readonly string itemDescription;
         private Point2D position;
 
         public Item()
@@ -22,12 +23,22 @@ namespace RogueClone
         {
             this.position = position;
         }
-
-        public Item(string name, int price, int neededLevel, Point2D position, char icon, ConsoleColor color)
+        public Item(Point2D position, int value)
             : this(position)
         {
+            this.itemValue = value;
+        }
+        public Item(string name, Point2D position, int value)
+            : this(position, value)
+        {
+            this.itemName = name;
+        }
+
+        public Item(string name, string description, int value, int neededLevel, Point2D position, char icon, ConsoleColor color)
+            : this(position, value)
+        {
             this.itemName = name; // assign it only once because it is readonly
-            this.itemPrice = price;
+            this.itemDescription = description;
             this.itemNeededLevel = neededLevel;
             this.itemIcon = icon;
             this.itemColor = color;
@@ -41,43 +52,35 @@ namespace RogueClone
         { 
             get { return this.itemName; } 
         }
-
-        virtual public int Price
+        virtual public string Description
         {
-            get
-            {
-                return this.itemPrice;
-            }
+            get { return this.itemDescription; }
+        }
+
+        virtual public int Value
+        {
+            get { return this.itemValue; }
         }
 
         virtual public int NeededLvl
         {
-            get
+            get 
             {
-                return this.itemNeededLevel;
+                if (this.itemNeededLevel == 0) 
+                { 
+                    return 1; 
+                } 
+                return this.itemNeededLevel; 
             }
         }
 
         virtual public char Icon 
-        { 
-            get 
-            { 
-                return this.itemIcon; 
-            } 
+        {
+            get { return this.itemIcon; } 
         }
         virtual public ConsoleColor Color
         {
-            get
-            {
-                return this.itemColor;
-            }
+            get { return this.itemColor; }
         }
-
-        void Pick()
-        {
- 
-        }
-
-        
     }
 }

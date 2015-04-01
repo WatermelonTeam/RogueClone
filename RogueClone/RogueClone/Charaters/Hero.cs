@@ -169,7 +169,23 @@
             {
                 throw new Exception("Invalid consumable object in UseConsumable method !");
             }
-            
+        }
+        public void TakeGold(object item)
+        {
+                (item as Gold).Take(this);
+                item = null;
+        }
+        public void TakeTrinket(object item)
+        {
+            (item as Trinket).Take(this);
+            item = null;
+        }
+        public void Pay(int amount)
+        {
+            if (amount <= this.Gold)
+            {
+                this.Gold -= amount;
+            }
         }
 
         //// We should remove MoveTo and make it a static class in the Game class !

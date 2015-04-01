@@ -3,7 +3,7 @@
   <Class Name="RogueClone.Hero" Collapsed="true">
     <Position X="7.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACEIBIAAAAAGgAAAgIAQAAAAIgEgBEAAAqAEAAAE=</HashCode>
+      <HashCode>AAAACEIBIAAAAgGoAABgIAQAAAAIgEgBEAAAqAEAAAE=</HashCode>
       <FileName>Charaters\Hero.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -25,14 +25,14 @@
   <Class Name="RogueClone.Engine" Collapsed="true">
     <Position X="14.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAABAAABAAAAAAAAAAAQAEACCBAAgAAAAAQARAA=</HashCode>
+      <HashCode>AgACAAAFDAABQAQEAAAAAAAYAEACyBAAgAACQAQARAA=</HashCode>
       <FileName>Game\Engine\Engine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RogueClone.Game" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="16.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAABACAAAAAAAAAAAAAAAAACAAAAAEAAAAAAAAA=</HashCode>
+      <HashCode>AAAAQAABACAAAAAAAAAAAAAAAAACAAAAAEEAAAAAAAA=</HashCode>
       <FileName>Game\Game.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -40,7 +40,7 @@
   <Class Name="RogueClone.Consumable" Collapsed="true">
     <Position X="1.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAJCAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAABAAAAAIAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Consumables\Consumable.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -55,11 +55,11 @@
   <Class Name="RogueClone.Armor" Collapsed="true">
     <Position X="4.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAA=</HashCode>
       <FileName>Items\Defense\Armor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="RogueClone.WizardArmors" Collapsed="true">
+  <Class Name="RogueClone.WizardArmor" Collapsed="true">
     <Position X="3.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
@@ -79,13 +79,13 @@
   <Class Name="RogueClone.Item" Collapsed="true">
     <Position X="6.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAABQAAAAEgBAAAJAQAABAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAQAAABAAgAAEiBAAAIAQAABAAAAAAAgAggAEAAAA=</HashCode>
       <FileName>Items\Item.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="RogueClone.WizardWeapon" Collapsed="true">
-    <Position X="10" Y="3.25" Width="1.5" />
+    <Position X="9.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Offense\Mace.cs</FileName>
@@ -93,7 +93,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="RogueClone.RogueWeapon" Collapsed="true">
-    <Position X="12.25" Y="3.25" Width="1.5" />
+    <Position X="11.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAABAAE=</HashCode>
       <FileName>Items\Offense\Sword.cs</FileName>
@@ -103,13 +103,23 @@
   </Class>
   <Class Name="RogueClone.Trinket" Collapsed="true">
     <Position X="7.75" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="RogueClone.Trinket.trinkets" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Items\Trinket.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Items\Offense\Trinket.cs</FileName>
+      <HashCode>ACAAAAAEAAAxAAAABAAACAAABAAAAAAKAAEAgQEAAAA=</HashCode>
+      <FileName>Items\Trinket.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RogueClone.Weapon" Collapsed="true">
-    <Position X="11" Y="1.75" Width="1.5" />
+    <Position X="10.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Weapon.cs</FileName>
@@ -191,15 +201,22 @@
   <Class Name="RogueClone.HealthPotion" Collapsed="true">
     <Position X="0.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAAAAAAAQAAAAAABAAAAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAAAABAAAgAIAABAAAAAQAAAAAAAAAAAAggAEAAAA=</HashCode>
       <FileName>Items\Consumables\HealthPotion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RogueClone.ManaPotion" Collapsed="true">
     <Position X="2.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAAAAABAAAAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAAAABAAAgAIAABAAAAAQAAAAAAAAAAAAggAEAAAA=</HashCode>
       <FileName>Items\Consumables\ManaPotion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RogueClone.Gold" Collapsed="true">
+    <Position X="12.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAEAgAEAAAA=</HashCode>
+      <FileName>Items\Gold.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="RogueClone.Board" Collapsed="true">
@@ -276,14 +293,14 @@
     <Position X="20" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>IPositionable.cs</FileName>
+      <FileName>Interfaces\IPositionable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="RogueClone.IConsumable" Collapsed="true">
     <Position X="16.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>IConsumable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IConsumable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

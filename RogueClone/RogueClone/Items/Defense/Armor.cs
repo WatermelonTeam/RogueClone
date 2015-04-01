@@ -5,16 +5,14 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Armor : Item
+    public abstract class Armor : Item
     {
-        public int ArmorValue
+        private int armorValue;
+        virtual public int ArmorValue
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                return this.armorValue;
             }
         }
     }

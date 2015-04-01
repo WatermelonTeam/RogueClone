@@ -5,9 +5,10 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Mana : Stat
+    public sealed class Mana : Stat
     {
-        public Mana(int max) 
+        public static readonly Mana Instance = new Mana(100);
+        private Mana(int max) 
             : base(max)
         {
         }

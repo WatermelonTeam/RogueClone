@@ -7,20 +7,20 @@ namespace RogueClone
 {
     
 
-    public class Game : IGame
+    public sealed class Game : IGame
     {
+        public static readonly Game Instance = new Game(100,30);
         public static int ConsoleHeight { get; private set; }
         public static int ConsoleWidth { get; private set; }
         private char steppedOnItem;
         private ConsoleColor itemColor;
-        public Game(int width, int height)
+        private Game(int width, int height)
         {
             ConsoleWidth = width;
             ConsoleHeight = height;
             // Set the console size and speed
             Console.SetWindowSize(ConsoleWidth, ConsoleHeight);
             Console.SetBufferSize(ConsoleWidth, ConsoleHeight);
-
         }
 
         /// <summary>
@@ -28,10 +28,12 @@ namespace RogueClone
         /// </summary>
         public void Start()
         {
+            Engine.RenderPanel();
+            Console.OutputEncoding = System.Text.Encoding.Unicode;
             Console.CursorVisible = false;
             //Initialise charaters and items on console!
 
-            var gandalf = new Wizard("Gandalf", new Health(100), new Mana(200), new Level(3), 9999, 10, 0, new Point2D(10, 10), '☻');
+            var gandalf = Wizard.Instance;
             gandalf.Health.Current = 50;
             gandalf.Mana.Current = 70;
 
@@ -39,6 +41,14 @@ namespace RogueClone
             var items = new List<Item>();
             items.Add(new HealthPotion(new Point2D(20, 20)));
             items.Add(new ManaPotion(new Point2D(25, 23)));
+            items.Add(new Gold(new Point2D(30, 15), 91));
+            items.Add(new Gold(new Point2D(33, 10), 200));
+            items.Add(new Gold(new Point2D(40, 11), 150));
+            items.Add(new Trinket("Ring", new Point2D(2,4), 200));
+            items.Add(new Trinket("Horseshoe", new Point2D(2, 12), 500));
+            items.Add(new Trinket("Crystal", new Point2D(50, 20), 200));
+            items.Add(new Trinket("Pendant", new Point2D(40, 5), 200));
+            items.Add(new Trinket("Charm", new Point2D(10, 20), 200));
             //items.Add(new HealthPotion("small potion", 10, 0, new Point2D(20, 20), '♥', 100));
             Engine.RenderStats(gandalf);
             Engine.RenderHero(gandalf);
@@ -53,12 +63,19 @@ namespace RogueClone
             {
                 Engine.RenderItem(item);
             }
+            bool itemStepped = false;
+            int itemDescriptionLength = 0;
+            int itemNameLength = 0;
             #endregion
             while (true)
             {
                 Game.CheckKeyPressingAndSetMovement(gandalf, this.steppedOnItem, this.itemColor);
                 this.steppedOnItem = ' ';
-                this.itemColor = ConsoleColor.White;
+                if (itemStepped)
+                {
+                    Engine.RemoveItemDescription(itemNameLength, itemDescriptionLength);
+                    itemStepped = false;
+                }
 
                 // GameEngine is alias to Engine.Engine just check the usings              
                 Engine.RenderStats(gandalf);
@@ -68,11 +85,32 @@ namespace RogueClone
                 {
                     if (gandalf.Position == item.Position)
                     {
+                        Engine.RenderItemDescription(item);
+                        itemDescriptionLength = item.Description.Length;
+                        itemNameLength = item.Name.Length;
+                        itemStepped = true;
                         this.steppedOnItem = item.Icon;
                         this.itemColor = item.Color;
                         if (item is IConsumable && gandalf.Level.CurrentLevel >= item.NeededLvl)
                         {
                             gandalf.UseConsumable(item);
+                            items.Remove(item);
+                            this.steppedOnItem = ' ';
+                            this.itemColor = ConsoleColor.White;
+                            break;
+                        }
+                        if (item is Gold)
+                        {
+                            gandalf.TakeGold(item);
+                            items.Remove(item);
+                            this.steppedOnItem = ' ';
+                            this.itemColor = ConsoleColor.White;
+                            break;
+                        }
+                        if (item is Trinket && gandalf.Level.CurrentLevel >= item.NeededLvl)
+                        {
+                            gandalf.TakeTrinket(item);
+                            items.Remove(item);
                             this.steppedOnItem = ' ';
                             this.itemColor = ConsoleColor.White;
                             break;
