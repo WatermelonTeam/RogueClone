@@ -7,7 +7,7 @@
         public static void Start()
         {
             Console.CursorVisible = false;
-            BoardFactory factory = new BoardFactory(new Point2D(0, 0), new Point2D(25, 80));
+            BoardFactory factory = new BoardFactory(new Point2D(0, 0), new Point2D(80, 25));
             while (true)
             {
                 Console.Clear();          
