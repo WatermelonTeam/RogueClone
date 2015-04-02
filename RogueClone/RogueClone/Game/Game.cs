@@ -51,6 +51,10 @@ namespace RogueClone
             items.Add(new Trinket("Charm", new Point2D(10, 20), 200));
 			items.Add(new RogueArmor(2, new Point2D(20, 21)));
 			items.Add(new WizardArmor(2, new Point2D(30, 13)));
+			items.Add(new RogueWeapon(2, new Point2D(50, 21)));
+			items.Add(new RogueWeapon(3, new Point2D(50, 22)));
+			items.Add(new RogueWeapon(4, new Point2D(50, 23)));
+			items.Add(new WizardWeapon(2, new Point2D(20, 22)));
             //items.Add(new HealthPotion("small potion", 10, 0, new Point2D(20, 20), '♥', 100));
             Engine.RenderStats(gandalf);
             Engine.RenderHero(gandalf);
@@ -127,7 +131,29 @@ namespace RogueClone
 							this.itemColor = ConsoleColor.White;
 							break;
 						}
+						
+						//trying to pick rogue weapons(working) :D
+						if(item is RogueWeapon && gandalf is Rogue && gandalf.Level.CurrentLevel>=item.NeededLvl)
+						{
+							
+							gandalf.TakeRogueWeapon(item);
+							items.Remove(item);
+							this.steppedOnItem=' ';
+							this.itemColor = ConsoleColor.White;
+							break;
+						}
 						//trying if gandalf is wizard :)
+
+						//if (item is WizardWeapon && gandalf is Wizard && gandalf.Level.CurrentLevel >= item.NeededLvl)
+						//{
+						//
+						//	gandalf.TakeWizardWeapon(item);
+						//	items.Remove(item);
+						//	this.steppedOnItem = ' ';
+						//	this.itemColor = ConsoleColor.White;
+						//	break;
+						//}
+
 						//tell me what shall i implement for the wizard armor ...please "ArmorSpell" WTF ?! :D
 						//if(item is WizardArmor && gandalf is Wizard && gandalf.Level.CurrentLevel>=item.NeededLvl)
 						//{

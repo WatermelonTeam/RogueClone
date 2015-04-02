@@ -7,6 +7,47 @@ namespace RogueClone
 {
     public class WizardWeapon : Weapon
     {
+		
+		public WizardWeapon(int neededLevel,Point2D position)
+			:base(neededLevel,position)
+		{
+
+		}
+		public override string Description
+		{
+			get
+			{
+				return string.Format("Damage +{0}",this.Damage);
+			}
+		}
+		public override string Name
+		{
+			get
+			{
+				return "WizardWeapon";
+			}
+		}
+		public override char Icon
+		{
+			get
+			{
+				return '?';
+			}
+		}
+		public override ConsoleColor Color
+		{
+			get
+			{
+				return ConsoleColor.DarkYellow;
+			}
+		}
+		public void Take(Hero hero)
+		{
+			if(this.Icon=='?')
+			{
+				hero.Weapon += this.Damage;
+			}
+		}
         public int WeaponSpell
         {
             get

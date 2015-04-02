@@ -7,6 +7,47 @@ namespace RogueClone
 {
     public class RogueWeapon : Weapon, IDurable
     {
+		
+		public RogueWeapon(int neededLevel, Point2D position)
+			:base(neededLevel,position)
+		{
+
+		}
+		public override ConsoleColor Color
+		{
+			get
+			{
+				return ConsoleColor.DarkYellow;
+			}
+		}
+		public override string Description
+		{
+			get
+			{
+				return string.Format("Damage +{0}",this.Damage);
+			}
+		}
+		public override char Icon
+		{
+			get
+			{
+				return '?';
+			}
+		}
+		public override string Name
+		{
+			get
+			{
+				return "RogueWeapon";
+			}
+		}
+		public void Take(Hero hero)
+		{
+			if (this.Icon == '?')
+			{
+				hero.Weapon += this.Damage;
+			}
+		}
         public int CritChance
         {
             get

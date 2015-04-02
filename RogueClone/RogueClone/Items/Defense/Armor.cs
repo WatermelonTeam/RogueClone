@@ -7,8 +7,6 @@ namespace RogueClone
 {
     public abstract class Armor : Item
     {
-		//static random so we can generate random for every level armor
-		protected static readonly Random rnd = new Random();
 
 		private int armorValue;
 

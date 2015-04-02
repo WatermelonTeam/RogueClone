@@ -180,6 +180,16 @@
             (item as Trinket).Take(this);
             item = null;
         }
+		public void TakeRogueWeapon(object item)
+		{
+			(item as RogueWeapon).Take(this);
+			item = null;
+		}
+		public void TakeWizardWeapon(object item)
+		{
+			(item as WizardWeapon).Take(this);
+			item = null;
+		}
 		public void TakeRogueArmor(object item)
 		{
 			(item as RogueArmor).Take(this);

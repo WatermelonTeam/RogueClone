@@ -119,7 +119,7 @@
             PrintOnPosition(statsSecondCol, statsSecondRow, string.Format("Level: {0}", hero.Level.CurrentLevel.ToString().PadRight(3, ' ')), fPanelColor, bPanelColor);
             PrintOnPosition(statsSecondCol, statsThirdRow, string.Format("XP: {0}", hero.Level.CurrentXP.ToString().PadRight(7, ' ')), fPanelColor, bPanelColor);
             PrintOnPosition(statsThirdCol, statsSecondRow, string.Format("Armor: {0}", hero.Armor.ToString().PadRight(4, ' ')), fPanelColor, bPanelColor);
-            PrintOnPosition(statsThirdCol, statsThirdRow, string.Format("Weapon: {0}", hero.Weapon.ToString().PadRight(4, ' ')), fPanelColor, bPanelColor);
+            PrintOnPosition(statsThirdCol, statsThirdRow, string.Format("Damage: {0}", hero.Weapon.ToString().PadRight(4, ' ')), fPanelColor, bPanelColor);
             PrintOnPosition(statsFourthCol, statsSecondRow, string.Format("Gold: {0}", hero.Gold.ToString().PadRight(9, ' ')), fPanelColor, bPanelColor);
             PrintOnPosition(83, statsFourthRow, string.Format("X : {0}, Y : {1}", hero.Position.X.ToString().PadRight(3, ' '), hero.Position.Y.ToString().PadRight(3, ' ')), fPanelColor, bPanelColor);
 

@@ -7,6 +7,9 @@ namespace RogueClone
 {
     public abstract class Item : IPositionable
     {
+		//static random variable so we can generate random damage for weapons and armorValue for armors
+		protected static readonly Random rnd = new Random();
+
         private readonly string itemName;
         private readonly int itemValue;
         private readonly int itemNeededLevel;
@@ -23,7 +26,7 @@ namespace RogueClone
         {
             this.position = position;
         }
-		//added new constructor so i can randomize the armorvalue :)
+		//added new constructor so i can randomize the armorvalue and the damage :)
 		public Item(int neededLevel, Point2D position)
 			:this(position)
 		{
