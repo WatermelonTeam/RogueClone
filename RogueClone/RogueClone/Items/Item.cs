@@ -23,6 +23,12 @@ namespace RogueClone
         {
             this.position = position;
         }
+		//added new constructor so i can randomize the armorvalue :)
+		public Item(int neededLevel, Point2D position)
+			:this(position)
+		{
+			this.itemNeededLevel = neededLevel;
+		}
         public Item(Point2D position, int value)
             : this(position)
         {

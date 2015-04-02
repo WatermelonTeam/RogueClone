@@ -180,6 +180,17 @@
             (item as Trinket).Take(this);
             item = null;
         }
+		public void TakeRogueArmor(object item)
+		{
+			(item as RogueArmor).Take(this);
+			item = null;
+
+		}
+		public void TakeWizardArmor(object item)
+		{
+			(item as WizardArmor).Take(this);
+			item = null;
+		}
         public void Pay(int amount)
         {
             if (amount <= this.Gold)
