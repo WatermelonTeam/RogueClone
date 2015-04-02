@@ -10,8 +10,8 @@ namespace RogueClone
     {
         static void Main(string[] args)
         {
-            var game = Game.Instance; // Dont change the values ! They could be magical !
-            game.Start();
+            //var game = Game.Instance; // Dont change the values ! They could be magical !
+            //game.Start();
 
             //BoardsTest.Start();
         }

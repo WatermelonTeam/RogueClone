@@ -59,6 +59,7 @@
     <Compile Include="Board\Board.cs" />
     <Compile Include="Board\BoardFactory.cs" />
     <Compile Include="Board\BoardsTest.cs" />
+    <Compile Include="Common\Validator.cs" />
     <Compile Include="Items\Gold.cs" />
     <Compile Include="Interfaces\IConsumable.cs" />
     <Compile Include="Items\Consumables\HealthPotion.cs" />
@@ -79,16 +80,14 @@
     <Compile Include="NPCs\Monster.cs" />
     <Compile Include="NPCs\NPC.cs" />
     <Compile Include="Game\Game.cs" />
-    <Compile Include="Charaters\Interfaces\ILvL.cs" />
-    <Compile Include="Charaters\Interfaces\IStat.cs" />
+    <Compile Include="Stats\ILvL.cs" />
+    <Compile Include="Stats\IStat.cs" />
     <Compile Include="Stats\Stat.cs" />
-    <Compile Include="Stats\Health.cs" />
     <Compile Include="Charaters\Hero.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\Defense\WizardArmor.cs" />
     <Compile Include="Stats\Level.cs" />
     <Compile Include="Items\Offense\WizardWeapon.cs" />
-    <Compile Include="Stats\Mana.cs" />
     <Compile Include="NPCs\MonsterTierTwo.cs" />
     <Compile Include="NPCs\MosterTierOne.cs" />
     <Compile Include="Items\Defense\RogueArmor.cs" />

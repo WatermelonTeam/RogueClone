@@ -1,20 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace RogueClone
+﻿namespace RogueClone.Stats
 {
-    public abstract class Stat : RogueClone.PCs.Interfaces.IStat
+    using System;
+
+    using Common;
+
+    public class Stat : IStat
     {
         private int current;
+        private int max;
+        private int regenAmount;
+
         public Stat(int max)
         {
             this.Max = max;
-            this.Current = max;
+            this.Current = this.Max;
+            this.RegenAmount = 0;
         }
 
-        public int Max { get; set; }
+        public int Max
+        {
+            get
+            {
+                return this.current;
+            }
+            set
+            {
+                Validator.IsPositive(value, "Stat - Max");
+
+                this.max = value;
+            }
+        }
         public int Current 
         {
             get 
@@ -23,30 +38,37 @@ namespace RogueClone
             }
             set 
             {
-                if (0 > value || this.Max < value)
-                {
-                    throw new ArgumentOutOfRangeException(string.Format("Current {0} {1} cannot be negative or exceed max {0} {2}", this.GetType().Name.ToLower(), value, this.Max));
-                }
+                Validator.IsWithinRange(value, 0, this.Max, "Stat - Current");
+
                 this.current = value;
             } 
         }
-
-        public void Increase(int amount)
+        public int RegenAmount
         {
-            if (this.Current + amount > this.Max)
+            get
+            {
+                return this.regenAmount;
+            }
+            set
+            {
+                Validator.IsPositive(value, "RegenAmount");
+
+                this.regenAmount = value;
+            }
+        }
+
+        public void Regen()
+        {
+            int totalAmount = this.Current + this.RegenAmount;
+
+            if (totalAmount > this.Max)
             {
                 this.Current = this.Max;
             }
             else
             {
-                this.Current += amount;
+                this.Current = totalAmount;
             }
-        }
-
-
-        public void IncreaseMax(int increaseValue)
-        {
-            this.Max += increaseValue;
         }
     }
 }
