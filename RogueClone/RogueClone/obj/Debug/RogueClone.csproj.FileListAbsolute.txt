@@ -40,3 +40,9 @@ C:\Users\Pariador\Desktop\Experimenta\RogueClone\RogueClone\obj\Debug\RogueClone
 C:\Users\Pariador\Desktop\Experimenta\RogueClone\RogueClone\bin\Debug\RogueClone.exe
 C:\Users\Pariador\Desktop\Experimenta\RogueClone\RogueClone\bin\Debug\RogueClone.pdb
 C:\Users\Pariador\Desktop\Experimenta\RogueClone\RogueClone\obj\Debug\RogueClone.csprojResolveAssemblyReference.cache
+C:\Users\edocheva\Desktop\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.exe.config
+C:\Users\edocheva\Desktop\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.exe
+C:\Users\edocheva\Desktop\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.pdb
+C:\Users\edocheva\Desktop\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.exe
+C:\Users\edocheva\Desktop\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.pdb
+C:\Users\edocheva\Desktop\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.csprojResolveAssemblyReference.cache

@@ -22,8 +22,8 @@
         {
             this.TopLeftCorner = topLeftCorner;
             this.BottomRightCorner = bottomRightCorner;
-            this.TotalRows = this.BottomRightCorner.X - this.TopLeftCorner.X + 1;
-            this.TotalCols = this.BottomRightCorner.Y - this.TopLeftCorner.Y + 1;
+            this.TotalCols = this.BottomRightCorner.X - this.TopLeftCorner.X + 1;
+            this.TotalRows = this.BottomRightCorner.Y - this.TopLeftCorner.Y + 1;
             this.PortionRows = this.TotalRows / 3;
             this.PortionCols = this.TotalCols / 3;
 
@@ -251,63 +251,63 @@
                         {
                             if ((row == 0 && col == 0) || (row == 0 && col == roomCols - 1) || (row == roomRows - 1 && col == 0) || (row == roomRows - 1 && col == roomCols - 1))
                             {
-                                board.Corners.Add(new Point2D(this.TopLeftCorner.X + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.Y + start.Y + col + portionCol * this.PortionCols));
+                                board.Corners.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));
                             }
                             else if (row == 0)
                             {
                                 if (portionRow != 0 && col == doorPos.Y)
                                 {
-                                    board.Doors.Add(new Point2D(this.TopLeftCorner.X + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.Y + start.Y + col + portionCol * this.PortionCols));                                    
+                                    board.Doors.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));                                    
                                 }
                                 else
                                 {
-                                    board.HorizontalWalls.Add(new Point2D(this.TopLeftCorner.X + start.X  + row + portionRow * this.PortionRows, this.TopLeftCorner.Y + start.Y + col + portionCol * this.PortionCols));
+                                    board.HorizontalWalls.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));
                                 }
                             }
                             else if (row == roomRows - 1)
                             {
                                 if (portionRow != 2 && col == doorPos.Y)
                                 {
-                                    board.Doors.Add(new Point2D(this.TopLeftCorner.X + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.Y + start.Y + col + portionCol * this.PortionCols));                                                                    
+                                    board.Doors.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));                                                                    
                                 }
                                 else
                                 {
-                                    board.HorizontalWalls.Add(new Point2D(this.TopLeftCorner.X + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.Y + start.Y + col + portionCol * this.PortionCols));                                
+                                    board.HorizontalWalls.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));                                
                                 }
                             }
                             else if (col == 0)
                             {
                                 if (portionCol != 0 && row == doorPos.X)
                                 {
-                                    board.Doors.Add(new Point2D(this.TopLeftCorner.X + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.Y + start.Y + col + portionCol * this.PortionCols));                                    
+                                    board.Doors.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));                                    
                                 }
                                 else
                                 {
-                                    board.VerticalWalls.Add(new Point2D(this.TopLeftCorner.X + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.Y + start.Y + col + portionCol * this.PortionCols));
+                                    board.VerticalWalls.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));
                                 }
                             }
                             else if (col == roomCols - 1)                            
                             {
                                 if (portionCol != 2 && row == doorPos.X)
                                 {
-                                    board.Doors.Add(new Point2D(this.TopLeftCorner.X + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.Y + start.Y + col + portionCol * this.PortionCols));
+                                    board.Doors.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));
                                 }
                                 else
                                 {
-                                    board.VerticalWalls.Add(new Point2D(this.TopLeftCorner.X + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.Y + start.Y + col + portionCol * this.PortionCols));
+                                    board.VerticalWalls.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));
                                 }
                             }
                             else if (atEntryPortion && row == entry.X && col == entry.Y)
                             {
-                                board.EntryStair = new Point2D(this.TopLeftCorner.X + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.Y + start.Y + col + portionCol * this.PortionCols);
+                                board.EntryStair = new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols);
                             }
                             else if (atExitPortion && row == exit.X && col == exit.Y)
                             {
-                                board.ExitStair = new Point2D(this.TopLeftCorner.X + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols);
+                                board.ExitStair = new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols);
                             }
                             else
                             {
-                                board.Floors.Add(new Point2D(this.TopLeftCorner.X + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));
+                                board.Floors.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));
                             }
                         }
                     }
