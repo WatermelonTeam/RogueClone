@@ -46,3 +46,4 @@ C:\Users\edocheva\Desktop\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.
 C:\Users\edocheva\Desktop\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.exe
 C:\Users\edocheva\Desktop\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.pdb
 C:\Users\edocheva\Desktop\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.csprojResolveAssemblyReference.cache
+C:\Development\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.csprojResolveAssemblyReference.cache

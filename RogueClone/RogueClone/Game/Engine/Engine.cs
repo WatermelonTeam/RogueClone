@@ -44,9 +44,13 @@
             throw new NotImplementedException();
         }
 
-        public static void RenderItem(Item item)
+        public static void RenderItems(List<Item> items)
         {
-            PrintOnPosition(item.Position.X, item.Position.Y, item.Icon.ToString(), item.Color);
+            foreach (var item in items)
+            {
+                PrintOnPosition(item.Position.X, item.Position.Y, item.Icon.ToString(), item.Color);
+            }
+           
         }
         public static void RenderItemDescription(Item item)
         {
