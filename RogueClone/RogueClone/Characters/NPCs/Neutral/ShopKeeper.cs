@@ -5,9 +5,15 @@ using System.Text;
 
 namespace RogueClone
 {
-    public abstract class NPC : IDamageable, IKillable
+    public class ShopKeeper : NPC
     {
-        public int Health
+        ShopKeeper(string name, int maxHP)
+            : base(name, maxHP)
+        {
+            ;
+        }
+
+        public int Items
         {
             get
             {
@@ -18,7 +24,7 @@ namespace RogueClone
             }
         }
 
-        public int XPGain
+        public int Gold
         {
             get
             {
@@ -29,33 +35,21 @@ namespace RogueClone
             }
         }
 
-        public int Damage
+        public int Position
         {
             get
             {
-                throw new System.NotImplementedException();
+                throw new NotImplementedException();
             }
             set
             {
+                throw new NotImplementedException();
             }
         }
 
-        public int Name
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public void TakeDamage()
+        public override void TakeDamage()
         {
             throw new NotImplementedException();
         }
-
-        public event EventHandler Dead;
     }
 }
