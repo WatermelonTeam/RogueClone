@@ -5,25 +5,23 @@
     using System.Linq;
     using System.Text;
 
-    public abstract class Hero : IDamageable, IPositionable, IMovable, IKillable
+    using Common;
+
+    public abstract class Hero : Character, IDamageable, IPositionable, IMovable, IKillable
     {
-        private readonly string heroName;
         private readonly char heroIcon;
 
-        private Health heroHealth;
         private Mana heroMana;
         private Level heroLevel;
         private int heroWeapon;
         private int heroArmor;
-        private int heroGold;
+        private int gold;
 
         private Point2D position;
 
-        public Hero(string name, Health health, Mana mana, Level level, int weapon, int armor, int gold, Point2D position, char icon)
+        public Hero(string name, int maxHealth, Mana mana, Level level, int weapon, int armor, int gold, Point2D position, char icon)
+            : base(name, maxHealth)
         {
-            this.heroName = name; // readonly does not need Property
-
-            this.Health = health;
             this.Mana = mana;
             this.Level = level;
             this.Weapon = weapon;
@@ -49,27 +47,25 @@
         }
 
         // event before properties !
-        public event EventHandler Dead;
-        
-        public Health Health
-        {
-            get
-            {
-                return this.heroHealth;
-            }
-
-            set
-            {
-                ////implement validation !!!
-                this.heroHealth = value;
-            }
-        }
 
         public char Icon
         {
             get
             {
                 return this.heroIcon;
+            }
+        }
+        public int Gold
+        {
+            get
+            {
+                return this.gold;
+            }
+            set
+            {
+                Validator.IsPositive(value);
+
+                this.gold = value;
             }
         }
 
@@ -101,16 +97,6 @@
             }
         }
 
-        public string Name
-        {
-            get
-            {
-                return this.heroName;
-            }
-
-            // We don't need setter because it is readonly ! Possible change in the future for rewritable name :D
-        }
-
         public int Weapon
         {
             get
@@ -139,21 +125,7 @@
             }
         }
 
-        public int Gold
-        {
-            get
-            {
-                return this.heroGold;
-            }
-
-            set
-            {
-                ////implement validation !!!
-                this.heroGold = value;
-            }
-        }
-
-        public void TakeDamage()
+        public override void TakeDamage()
         {
             throw new NotImplementedException();
         }

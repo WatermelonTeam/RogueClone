@@ -7,8 +7,7 @@ namespace RogueClone
 {
     public sealed class Mana : Stat
     {
-        public static readonly Mana Instance = new Mana(100);
-        private Mana(int max) 
+        public Mana(int max) 
             : base(max)
         {
         }
