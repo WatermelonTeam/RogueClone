@@ -4,6 +4,8 @@
 
     public interface IKillable
     {
-        event EventHandler Dead;
+        event EventHandler Death;
+
+        void Die();
     }
 }

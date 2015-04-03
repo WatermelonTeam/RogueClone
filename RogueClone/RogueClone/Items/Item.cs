@@ -91,5 +91,17 @@ namespace RogueClone
         {
             get { return this.itemColor; }
         }
+
+        Point2D IPositionable.Position
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

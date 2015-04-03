@@ -7,6 +7,6 @@ namespace RogueClone
 {
     public interface IPositionable
     {
-        Point2D Position { get; }
+        Point2D Position { get; set;  }
     }
 }

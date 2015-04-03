@@ -2,33 +2,35 @@
 {
     using System;
 
-    public class Monster : NPC, IPositionable
+    using Common;
+
+    public class Monster : NPC, IDamageable, IKillable, IPositionable
     {
-        protected Monster(string name, int maxHP)
+        private int level;
+
+        public Monster(string name, int level, int maxHP, int damage, int xpGain, Point2D position)
             : base(name, maxHP)
         {
-            ;
+            base.Damage = damage;
+            base.XPGain = xpGain;
+
+            this.Level = level;
+            this.Position = position;
         }
 
         public int Level
         {
             get
             {
-                throw new System.NotImplementedException();
+                return this.level;
             }
             set
             {
+                Validator.IsPositive(value, "Level");
+
+                this.level = value;
             }
         }
-
-        public override void TakeDamage()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Point2D Position
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public Point2D Position { get; set; }
     }
 }
