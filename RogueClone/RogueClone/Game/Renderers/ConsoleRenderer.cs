@@ -40,63 +40,63 @@
             }
             foreach (var wall in board.VerticalWallsPos)
             {
-                Console.CursorTop = wall.X;
-                Console.CursorLeft = wall.Y;
+                Console.CursorTop = wall.Y;
+                Console.CursorLeft = wall.X;
                 Console.Write((char)Image.Empty);
             }
             foreach (var corner in board.CornersPos)
             {
-                Console.CursorTop = corner.X;
-                Console.CursorLeft = corner.Y;
+                Console.CursorTop = corner.Y;
+                Console.CursorLeft = corner.X;
                 Console.Write((char)Image.Empty);
             }
             Console.BackgroundColor = GlobalConstants.roomColor.ToConsoleColor();
             foreach (var door in board.DoorsPos)
             {
-                Console.CursorTop = door.X;
-                Console.CursorLeft = door.Y;
+                Console.CursorTop = door.Y;
+                Console.CursorLeft = door.X;
                 Console.Write((char)Image.Empty);
             }
             foreach (var floor in board.FloorsPos)
             {
-                Console.CursorTop = floor.X;
-                Console.CursorLeft = floor.Y;
+                Console.CursorTop = floor.Y;
+                Console.CursorLeft = floor.X;
                 Console.Write((char)Image.Empty);
             }
             foreach (var corridor in board.CorridorsPos)
             {
-                Console.CursorTop = corridor.X;
-                Console.CursorLeft = corridor.Y;
+                Console.CursorTop = corridor.Y;
+                Console.CursorLeft = corridor.X;
                 Console.Write((char)Image.Empty);
             }
 
-            //Console.ForegroundColor = Color.Magenta.ToConsoleColor(); // constant?
-            //foreach (var item in board.ItemsPos)
-            //{
-            //    Console.CursorTop = item.X;
-            //    Console.CursorLeft = item.Y;
-            //    Console.Write('?');
-            //}
-            //Console.ForegroundColor = Color.Green.ToConsoleColor(); // constant?
-            //foreach (var pile in board.GoldPositionsPos)
-            //{
-            //    Console.CursorTop = pile.X;
-            //    Console.CursorLeft = pile.Y;
-            //    Console.Write('$');
-            //}
-            //Console.ForegroundColor = Color.Red.ToConsoleColor(); // constant?
-            //Console.CursorTop = board.EntryStairPos.X;
-            //Console.CursorLeft = board.EntryStairPos.Y;
-            //Console.Write('0');
+            Console.ForegroundColor = Color.Magenta.ToConsoleColor(); // constant?
+            foreach (var item in board.ItemsPos)
+            {
+                Console.CursorTop = item.Y;
+                Console.CursorLeft = item.X;
+                Console.Write('?');
+            }
+            Console.ForegroundColor = Color.Green.ToConsoleColor(); // constant?
+            foreach (var pile in board.GoldPositionsPos)
+            {
+                Console.CursorTop = pile.Y;
+                Console.CursorLeft = pile.X;
+                Console.Write('$');
+            }
+            Console.ForegroundColor = Color.Red.ToConsoleColor(); // constant?
+            Console.CursorTop = board.EntryStairPos.Y;
+            Console.CursorLeft = board.EntryStairPos.X;
+            Console.Write('0');
 
-            //Console.CursorTop = board.ExitStairPos.X;
-            //Console.CursorLeft = board.ExitStairPos.Y;
-            //Console.Write('1');
+            Console.CursorTop = board.ExitStairPos.Y;
+            Console.CursorLeft = board.ExitStairPos.X;
+            Console.Write('1');
 
-            //Console.ForegroundColor = Color.Yellow.ToConsoleColor(); // constant?
-            //Console.CursorTop = board.ShopKeeperPos.X;
-            //Console.CursorLeft = board.ShopKeeperPos.Y;
-            //Console.Write('%');
+            Console.ForegroundColor = Color.Yellow.ToConsoleColor(); // constant?
+            Console.CursorTop = board.ShopKeeperPos.Y;
+            Console.CursorLeft = board.ShopKeeperPos.X;
+            Console.Write('%');
             
         }
 
@@ -166,7 +166,7 @@
             for (int i = 1; i <= ConsoleRenderer.StatsPanelHeight; i++)
             {
                 Console.SetCursorPosition(0, RogueEngine.ConsoleHeight - i);
-                Console.Write("".PadRight(RogueEngine.ConsoleWidth, ' '));
+                Console.Write("".PadRight(RogueEngine.ConsoleWidth - 1, ' '));
             }
             Console.BackgroundColor = BScreenColor;
             Console.ForegroundColor = FScreenColor;
@@ -192,13 +192,14 @@
             hero.MoveTo(board, newPosition);
             RenderHero(hero);
             Console.SetCursorPosition(hero.Position.X, hero.Position.Y);
-            RenderObjectRemoval(move.OldPosition);
+            RenderObjectRemoval(move.OldPosition, hero);
             
             
         }
-        public static void RenderObjectRemoval(Position position)
+        public static void RenderObjectRemoval(Position position, Hero hero)
         {
             PrintOnPosition(position, ' '.ToString(), GlobalConstants.roomColor.ToConsoleColor(), GlobalConstants.roomColor.ToConsoleColor());
+            RenderHero(hero);
         }
 
         public static void PrintOnPosition(Position position, string text, ConsoleColor foregroundColor = FScreenColor, ConsoleColor backgroundColor = BScreenColor)

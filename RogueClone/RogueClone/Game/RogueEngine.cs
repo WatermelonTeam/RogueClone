@@ -41,7 +41,7 @@ namespace RogueClone
             //Initialise charaters and items on console!
 
             var gandalf = Rogue.Instance;
-            gandalf.Position = new Position(board.EntryStairPos.Y, board.EntryStairPos.X);
+            gandalf.Position = new Position(board.EntryStairPos.X, board.EntryStairPos.Y);
             gandalf.Health.Current = 50;
             gandalf.Mana.Current = 70;
 
@@ -65,10 +65,10 @@ namespace RogueClone
             //items.Add(new WizardWeapon(new Position(20, 22), 2));
             //items.Add(new HealthPotion("small potion", 10, 0, new Point2D(20, 20), '♥', 100));
 
-            //foreach (var item in board.Items)
-            //{
-            //    ConsoleRenderer.RenderItem(item);
-            //}
+            foreach (var item in board.Items)
+            {
+                ConsoleRenderer.RenderItem(item);
+            }
             ConsoleRenderer.RenderStats(gandalf);
             ConsoleRenderer.RenderHero(gandalf);
             #region Experimental
@@ -85,9 +85,12 @@ namespace RogueClone
             while (true)
             {
                 RogueEngine.CheckKeyPressingAndSetMovement(board, gandalf);
-                this.steppedOnItem = ' ';
                 if (itemStepped)
                 {
+                    foreach (var item in board.Items)
+                    {
+                        ConsoleRenderer.RenderItem(item);
+                    }
                     ConsoleRenderer.RemoveItemDescription(itemNameLength, itemDescriptionLength);
                     itemStepped = false;
                 }
@@ -110,24 +113,21 @@ namespace RogueClone
                         {
                             gandalf.UseConsumable(item);
                             board.Items.Remove(item);
-                            this.steppedOnItem = ' ';
-                            this.itemColor = ConsoleColor.White;
+                            ConsoleRenderer.RenderObjectRemoval(item.Position, gandalf);
                             break;
                         }
                         if (item is Gold)
                         {
                             gandalf.TakeGold(item);
                             board.Items.Remove(item);
-                            this.steppedOnItem = ' ';
-                            this.itemColor = ConsoleColor.White;
+                            ConsoleRenderer.RenderObjectRemoval(item.Position, gandalf);
                             break;
                         }
                         if (item is Trinket && gandalf.Level.CurrentLevel >= item.NeededLvl)
                         {
                             gandalf.TakeTrinket(item);
                             board.Items.Remove(item);
-                            this.steppedOnItem = ' ';
-                            this.itemColor = ConsoleColor.White;
+                            ConsoleRenderer.RenderObjectRemoval(item.Position, gandalf);
                             break;
                         }
 						//i made gandalf rouge to try if he can pick armors
@@ -136,8 +136,7 @@ namespace RogueClone
 						{
 							gandalf.TakeRogueArmor(item);
 							board.Items.Remove(item);
-							this.steppedOnItem = ' ';
-							this.itemColor = ConsoleColor.White;
+                            ConsoleRenderer.RenderObjectRemoval(item.Position, gandalf);
 							break;
 						}
 						
@@ -147,8 +146,7 @@ namespace RogueClone
 							
 							gandalf.TakeRogueWeapon(item);
 							board.Items.Remove(item);
-							this.steppedOnItem=' ';
-							this.itemColor = ConsoleColor.White;
+                            ConsoleRenderer.RenderObjectRemoval(item.Position, gandalf);
 							break;
 						}
 						//trying if gandalf is wizard :)

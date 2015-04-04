@@ -282,8 +282,8 @@
                     {
                         for (int col = 0; col < roomCols; col++)
                         {
-                            int x = this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows;
-                            int y = this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols;
+                            int y = this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows;
+                            int x = this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols;
 
                             if ((row == 0 && col == 0) || (row == 0 && col == roomCols - 1) || (row == roomRows - 1 && col == 0) || (row == roomRows - 1 && col == roomCols - 1))
                             {
@@ -359,47 +359,10 @@
             var otherDoor = new Position();
             for (int i = 0; i < portionsWithRooms.Count; i++)
             {
-                currentDoor = doorsPositions[i].OrderByDescending(d => d.Y).First();
-                for (int j = i + 1; j < portionsWithRooms.Count; j++)
-                {
-                    if (portionsWithRooms[i].X == portionsWithRooms[j].X)
-                    {
-                        otherDoor = doorsPositions[j].OrderBy(d => d.Y).First();
-                        var distance = otherDoor.Y - currentDoor.Y;
-                        var offset = otherDoor.X - currentDoor.X;
-                        for (int k = currentDoor.Y + 1; k <= currentDoor.Y + distance / 2; k++)
-                        {
-                            board.CorridorsPos.Add(new Position(currentDoor.X, k));
-                        }
-                        for (int k = currentDoor.Y + distance / 2; k < otherDoor.Y; k++)
-                        {
-                            board.CorridorsPos.Add(new Position(otherDoor.X, k));
-                        }
-                        if (offset > 1)
-                        {
-                            for (int l = 1; l < offset; l++)
-                            {
-                                board.CorridorsPos.Add(new Position(l + currentDoor.X, currentDoor.Y + distance / 2));
-                            }
-                        }
-                        else if (offset < -1)
-                        {
-                            offset = -offset;
-                            for (int l = 1; l < offset; l++)
-                            {
-                                board.CorridorsPos.Add(new Position(l + otherDoor.X, currentDoor.Y + distance / 2));
-                            }
-                        }
-                        updatedDoorsPos.Add(currentDoor);
-                        updatedDoorsPos.Add(otherDoor);
-                        break;
-                    }
-                }
-
                 currentDoor = doorsPositions[i].OrderByDescending(d => d.X).First();
                 for (int j = i + 1; j < portionsWithRooms.Count; j++)
                 {
-                    if (portionsWithRooms[i].Y == portionsWithRooms[j].Y)
+                    if (portionsWithRooms[i].X == portionsWithRooms[j].X)
                     {
                         otherDoor = doorsPositions[j].OrderBy(d => d.X).First();
                         var distance = otherDoor.X - currentDoor.X;
@@ -432,6 +395,43 @@
                         break;
                     }
                 }
+
+                currentDoor = doorsPositions[i].OrderByDescending(d => d.Y).First();
+                for (int j = i + 1; j < portionsWithRooms.Count; j++)
+                {
+                    if (portionsWithRooms[i].Y == portionsWithRooms[j].Y)
+                    {
+                        otherDoor = doorsPositions[j].OrderBy(d => d.Y).First();
+                        var distance = otherDoor.Y - currentDoor.Y;
+                        var offset = otherDoor.X - currentDoor.X;
+                        for (int k = currentDoor.Y + 1; k <= currentDoor.Y + distance / 2; k++)
+                        {
+                            board.CorridorsPos.Add(new Position(currentDoor.X, k));
+                        }
+                        for (int k = currentDoor.Y + distance / 2; k < otherDoor.Y; k++)
+                        {
+                            board.CorridorsPos.Add(new Position(otherDoor.X, k));
+                        }
+                        if (offset > 1)
+                        {
+                            for (int l = 1; l < offset; l++)
+                            {
+                                board.CorridorsPos.Add(new Position(l + currentDoor.X, currentDoor.Y + distance / 2));
+                            }
+                        }
+                        else if (offset < -1)
+                        {
+                            offset = -offset;
+                            for (int l = 1; l < offset; l++)
+                            {
+                                board.CorridorsPos.Add(new Position(l + otherDoor.X, currentDoor.Y + distance / 2));
+                            }
+                        }
+                        updatedDoorsPos.Add(currentDoor);
+                        updatedDoorsPos.Add(otherDoor);
+                        break;
+                    }
+                }
             }
             board.DoorsPos.Clear();
             board.DoorsPos.AddRange(updatedDoorsPos);
@@ -445,7 +445,8 @@
                 if (check < this.ItemChance)
                 {
                     int randomFloor = BoardFactory.rand.Next(0, board.FloorsPos.Count);
-                    board.ItemsPos.Add(board.FloorsPos[randomFloor]);   
+                    board.ItemsPos.Add(board.FloorsPos[randomFloor]);
+                    board.Items.Add(new HealthPotion(board.FloorsPos[randomFloor]));//////////////////////////////////////////////////////////
                     board.FloorsPos.RemoveAt(randomFloor);
                 }
             }
@@ -458,7 +459,7 @@
                 {
                     int randomFloor = BoardFactory.rand.Next(0, board.FloorsPos.Count);
                     board.GoldPositionsPos.Add(board.FloorsPos[randomFloor]);
-                    board.Items.Add(new HealthPotion(board.FloorsPos[randomFloor]));//////////////////////////////////////////////////////////
+                    board.Items.Add(new Gold(board.FloorsPos[randomFloor], 100));//////////////////////////////////////////////////////////
                     board.FloorsPos.RemoveAt(randomFloor);
                 }
             }

@@ -40,6 +40,22 @@
                     return isInsideDungeon;
                 }
             }
+            foreach (var itemPos in board.ItemsPos)
+            {
+                if (newPosition == itemPos)
+                {
+                    isInsideDungeon = true;
+                    return isInsideDungeon;
+                }
+            }
+            foreach (var goldPos in board.GoldPositionsPos)
+            {
+                if (newPosition == goldPos)
+                {
+                    isInsideDungeon = true;
+                    return isInsideDungeon;
+                }
+            }
             return isInsideDungeon;
         }
     }
