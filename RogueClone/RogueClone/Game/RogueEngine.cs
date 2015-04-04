@@ -41,7 +41,7 @@ namespace RogueClone
             //Initialise charaters and items on console!
 
             var gandalf = Rogue.Instance;
-            gandalf.Position = new Position(board.EntryStairPos.Y, board.EntryStairPos.X);
+            gandalf.Position = new Position(board.EntryStairPos.X, board.EntryStairPos.Y);
             gandalf.Health.Current = 50;
             gandalf.Mana.Current = 70;
 

@@ -40,33 +40,33 @@
             }
             foreach (var wall in board.VerticalWallsPos)
             {
-                Console.CursorTop = wall.X;
-                Console.CursorLeft = wall.Y;
+                Console.CursorTop = wall.Y;
+                Console.CursorLeft = wall.X;
                 Console.Write((char)Image.Empty);
             }
             foreach (var corner in board.CornersPos)
             {
-                Console.CursorTop = corner.X;
-                Console.CursorLeft = corner.Y;
+                Console.CursorTop = corner.Y;
+                Console.CursorLeft = corner.X;
                 Console.Write((char)Image.Empty);
             }
             Console.BackgroundColor = GlobalConstants.roomColor.ToConsoleColor();
             foreach (var door in board.DoorsPos)
             {
-                Console.CursorTop = door.X;
-                Console.CursorLeft = door.Y;
+                Console.CursorTop = door.Y;
+                Console.CursorLeft = door.X;
                 Console.Write((char)Image.Empty);
             }
             foreach (var floor in board.FloorsPos)
             {
-                Console.CursorTop = floor.X;
-                Console.CursorLeft = floor.Y;
+                Console.CursorTop = floor.Y;
+                Console.CursorLeft = floor.X;
                 Console.Write((char)Image.Empty);
             }
             foreach (var corridor in board.CorridorsPos)
             {
-                Console.CursorTop = corridor.X;
-                Console.CursorLeft = corridor.Y;
+                Console.CursorTop = corridor.Y;
+                Console.CursorLeft = corridor.X;
                 Console.Write((char)Image.Empty);
             }
 

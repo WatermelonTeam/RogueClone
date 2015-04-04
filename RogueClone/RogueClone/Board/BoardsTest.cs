@@ -21,72 +21,62 @@
                 Board board = factory.GenerateBoard();
                 foreach (var wall in board.HorizontalWallsPos)
                 {
-                    Console.CursorTop = wall.X;
-                    Console.CursorLeft = wall.Y;
+                    Console.SetCursorPosition(wall.X, wall.Y);
                     Console.Write(Floor);
                     //Console.Write('─');
                 }
                 foreach (var wall in board.VerticalWallsPos)
                 {
-                    Console.CursorTop = wall.X;
-                    Console.CursorLeft = wall.Y;
+                    Console.SetCursorPosition(wall.X, wall.Y);
                     Console.Write(Floor);
                     //Console.Write('│');
                 }
                 foreach (var corner in board.CornersPos)
                 {
-                    Console.CursorTop = corner.X;
-                    Console.CursorLeft = corner.Y;
+                    Console.SetCursorPosition(corner.X, corner.Y);
                     Console.Write(Floor);
                     //Console.Write('+');
                 }
                 Console.BackgroundColor = roomColour;
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.CursorTop = board.EntryStairPos.X;
-                Console.CursorLeft = board.EntryStairPos.Y;
+                Console.SetCursorPosition(board.EntryStairPos.X, board.EntryStairPos.Y);
                 Console.Write('0');
 
-                Console.CursorTop = board.ExitStairPos.X;
-                Console.CursorLeft = board.ExitStairPos.Y;
+
+                Console.SetCursorPosition(board.ExitStairPos.X, board.ExitStairPos.Y);
                 Console.Write('1');
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.CursorTop = board.ShopKeeperPos.X;
-                Console.CursorLeft = board.ShopKeeperPos.Y;
+                Console.SetCursorPosition(board.ShopKeeperPos.X, board.ShopKeeperPos.Y);
                 Console.Write('%');
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 foreach (var item in board.ItemsPos)
-                {                
-                    Console.CursorTop = item.X;
-                    Console.CursorLeft = item.Y;
+                {
+                    Console.SetCursorPosition(item.X, item.Y);
                     Console.Write('?');
                 }
                 Console.ForegroundColor = ConsoleColor.Green;
                 foreach (var pile in board.GoldPositionsPos)
                 {
-                    Console.CursorTop = pile.X;
-                    Console.CursorLeft = pile.Y;
+                    Console.SetCursorPosition(pile.X, pile.Y);
                     Console.Write('$');
                 }
                 Console.BackgroundColor = roomColour;
                 foreach (var door in board.DoorsPos)
                 {
-                    Console.CursorTop = door.X;
-                    Console.CursorLeft = door.Y;
+                    Console.SetCursorPosition(door.X, door.Y);
                     Console.Write(Floor);
                     //Console.Write('/');
                 }
                 foreach (var floor in board.FloorsPos)
                 {
-                    Console.CursorTop = floor.X;
-                    Console.CursorLeft = floor.Y;
+                    Console.SetCursorPosition(floor.X, floor.Y);
                     Console.Write(Floor);
                     //Console.Write(':');
                 }
                 foreach (var corridor in board.CorridorsPos)
                 {
-                    Console.CursorTop = corridor.X;
-                    Console.CursorLeft = corridor.Y;
+                    Console.SetCursorPosition(corridor.X, corridor.Y);
                     Console.Write(Floor);
                 }
                 Console.ReadKey();

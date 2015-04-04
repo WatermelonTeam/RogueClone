@@ -282,8 +282,8 @@
                     {
                         for (int col = 0; col < roomCols; col++)
                         {
-                            int x = this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows;
-                            int y = this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols;
+                            int y = this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows;
+                            int x = this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols;
 
                             if ((row == 0 && col == 0) || (row == 0 && col == roomCols - 1) || (row == roomRows - 1 && col == 0) || (row == roomRows - 1 && col == roomCols - 1))
                             {
