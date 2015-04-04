@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RogueClone.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +8,9 @@ namespace RogueClone
 {
     public class WizardWeapon : Weapon
     {
-		
-		public WizardWeapon(int neededLevel,Position position)
-			:base(neededLevel,position)
+
+        public WizardWeapon(Position position, int neededLevel)
+            : base("Wizard Weapon", position, neededLevel, Image.WizardWeapon, Color.DarkYellow)
 		{
 
 		}
@@ -20,34 +21,12 @@ namespace RogueClone
 				return string.Format("Damage +{0}",this.Damage);
 			}
 		}
-		public override string Name
-		{
-			get
-			{
-				return "WizardWeapon";
-			}
-		}
-		public override char Icon
-		{
-			get
-			{
-				return '?';
-			}
-		}
-		public override ConsoleColor Color
-		{
-			get
-			{
-				return ConsoleColor.DarkYellow;
-			}
-		}
-		public void Take(Hero hero)
-		{
-			if(this.Icon=='?')
-			{
-				hero.Weapon += this.Damage;
-			}
-		}
+
+        public override void Take(Hero hero)
+        {
+            if (hero is Wizard)
+                base.Take(hero);
+        }
         public int WeaponSpell
         {
             get

@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    interface IGame
+    interface IEngine
     {
         void Start();
     }

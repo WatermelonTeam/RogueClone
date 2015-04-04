@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using RogueClone.Common;
+using RogueClone;
 namespace RogueClone
 {
     
 
-    public sealed class Game : IGame
+    public sealed class RogueEngine : IEngine
     {
-        public static readonly Game Instance = new Game(100,30);
+        public static readonly RogueEngine Instance = new RogueEngine(130,50);
         public static int ConsoleHeight { get; private set; }
         public static int ConsoleWidth { get; private set; }
         private char steppedOnItem;
         private ConsoleColor itemColor;
-        private Game(int width, int height)
+        private RogueEngine(int width, int height)
         {
+            Console.CursorVisible = false;
             ConsoleWidth = width;
             ConsoleHeight = height;
             // Set the console size and speed
@@ -28,36 +31,46 @@ namespace RogueClone
         /// </summary>
         public void Start()
         {
-            Engine.RenderPanel();
+            BoardFactory factory = new BoardFactory(new Position(0 + 10, 0 + 2), new Position(80 - 1, 25 - 1));
+            Board board = factory.GenerateBoard();
+            ConsoleRenderer.RenderDungeon(board);
+
+            ConsoleRenderer.RenderPanel();
             Console.OutputEncoding = System.Text.Encoding.Unicode;
             Console.CursorVisible = false;
             //Initialise charaters and items on console!
 
             var gandalf = Rogue.Instance;
+            gandalf.Position = new Position(board.EntryStairPos.Y, board.EntryStairPos.X);
             gandalf.Health.Current = 50;
             gandalf.Mana.Current = 70;
 
             // Just testing an array of items ...
-            var items = new List<Item>();
-            items.Add(new HealthPotion(new Position(20, 20)));
-            items.Add(new ManaPotion(new Position(25, 23)));
-            items.Add(new Gold(new Position(30, 15), 91));
-            items.Add(new Gold(new Position(33, 10), 200));
-            items.Add(new Gold(new Position(40, 11), 150));
-            items.Add(new Trinket("Ring", new Position(2,4), 200));
-            items.Add(new Trinket("Horseshoe", new Position(2, 12), 500));
-            items.Add(new Trinket("Crystal", new Position(50, 20), 200));
-            items.Add(new Trinket("Pendant", new Position(40, 5), 200));
-            items.Add(new Trinket("Charm", new Position(10, 20), 200));
-			items.Add(new RogueArmor(2, new Position(20, 21)));
-			items.Add(new WizardArmor(2, new Position(30, 13)));
-			items.Add(new RogueWeapon(2, new Position(50, 21)));
-			items.Add(new RogueWeapon(3, new Position(50, 22)));
-			items.Add(new RogueWeapon(4, new Position(50, 23)));
-			items.Add(new WizardWeapon(2, new Position(20, 22)));
+            //var items = new List<Item>();
+            //items.Add(new HealthPotion(new Position(20, 20)));
+            //items.Add(new ManaPotion(new Position(25, 23)));
+            //items.Add(new Gold(new Position(30, 15), 91));
+            //items.Add(new Gold(new Position(33, 10), 200));
+            //items.Add(new Gold(new Position(40, 11), 150));
+            //items.Add(new Trinket("Ring", new Position(2,4), 200));
+            //items.Add(new Trinket("Horseshoe", new Position(2, 12), 500));
+            //items.Add(new Trinket("Crystal", new Position(50, 20), 200));
+            //items.Add(new Trinket("Pendant", new Position(40, 5), 200));
+            //items.Add(new Trinket("Charm", new Position(10, 20), 200));
+            //items.Add(new RogueArmor(new Position(20, 21), 2));
+            //items.Add(new WizardArmor(new Position(30, 13), 2));
+            //items.Add(new RogueWeapon(new Position(50, 21), 2));
+            //items.Add(new RogueWeapon(new Position(50, 22), 3));
+            //items.Add(new RogueWeapon(new Position(50, 23), 4));
+            //items.Add(new WizardWeapon(new Position(20, 22), 2));
             //items.Add(new HealthPotion("small potion", 10, 0, new Point2D(20, 20), '♥', 100));
-            Engine.RenderStats(gandalf);
-            Engine.RenderHero(gandalf);
+
+            //foreach (var item in board.Items)
+            //{
+            //    ConsoleRenderer.RenderItem(item);
+            //}
+            ConsoleRenderer.RenderStats(gandalf);
+            ConsoleRenderer.RenderHero(gandalf);
             #region Experimental
 
             //test the potion
@@ -65,42 +78,38 @@ namespace RogueClone
 
             // var testX = potion.Position.X;
 
-            foreach (var item in items)
-            {
-                Engine.RenderItem(item);
-            }
             bool itemStepped = false;
             int itemDescriptionLength = 0;
             int itemNameLength = 0;
             #endregion
             while (true)
             {
-                Game.CheckKeyPressingAndSetMovement(gandalf, this.steppedOnItem, this.itemColor);
+                RogueEngine.CheckKeyPressingAndSetMovement(board, gandalf);
                 this.steppedOnItem = ' ';
                 if (itemStepped)
                 {
-                    Engine.RemoveItemDescription(itemNameLength, itemDescriptionLength);
+                    ConsoleRenderer.RemoveItemDescription(itemNameLength, itemDescriptionLength);
                     itemStepped = false;
                 }
 
-                // GameEngine is alias to Engine.Engine just check the usings              
-                Engine.RenderStats(gandalf);
+                // GameEngine is alias to ConsoleRenderer.Engine just check the usings              
+                ConsoleRenderer.RenderStats(gandalf);
                 //Always render the hero at the end so he can be on top on all the items and monsters !
-                Engine.RenderHero(gandalf);
-                foreach (var item in items)
+                ConsoleRenderer.RenderHero(gandalf);
+                foreach (var item in board.Items)
                 {
                     if (gandalf.Position == item.Position)
                     {
-                        Engine.RenderItemDescription(item);
+                        ConsoleRenderer.RenderItemDescription(item);
                         itemDescriptionLength = item.Description.Length;
                         itemNameLength = item.Name.Length;
                         itemStepped = true;
-                        this.steppedOnItem = item.Icon;
-                        this.itemColor = item.Color;
+                        this.steppedOnItem = (char)item.Icon;
+                        this.itemColor = item.ItemColor.ToConsoleColor();
                         if (item is IConsumable && gandalf.Level.CurrentLevel >= item.NeededLvl)
                         {
                             gandalf.UseConsumable(item);
-                            items.Remove(item);
+                            board.Items.Remove(item);
                             this.steppedOnItem = ' ';
                             this.itemColor = ConsoleColor.White;
                             break;
@@ -108,7 +117,7 @@ namespace RogueClone
                         if (item is Gold)
                         {
                             gandalf.TakeGold(item);
-                            items.Remove(item);
+                            board.Items.Remove(item);
                             this.steppedOnItem = ' ';
                             this.itemColor = ConsoleColor.White;
                             break;
@@ -116,7 +125,7 @@ namespace RogueClone
                         if (item is Trinket && gandalf.Level.CurrentLevel >= item.NeededLvl)
                         {
                             gandalf.TakeTrinket(item);
-                            items.Remove(item);
+                            board.Items.Remove(item);
                             this.steppedOnItem = ' ';
                             this.itemColor = ConsoleColor.White;
                             break;
@@ -126,7 +135,7 @@ namespace RogueClone
 						if(item is RogueArmor && gandalf is Rogue && gandalf.Level.CurrentLevel>= item.NeededLvl)
 						{
 							gandalf.TakeRogueArmor(item);
-							items.Remove(item);
+							board.Items.Remove(item);
 							this.steppedOnItem = ' ';
 							this.itemColor = ConsoleColor.White;
 							break;
@@ -137,7 +146,7 @@ namespace RogueClone
 						{
 							
 							gandalf.TakeRogueWeapon(item);
-							items.Remove(item);
+							board.Items.Remove(item);
 							this.steppedOnItem=' ';
 							this.itemColor = ConsoleColor.White;
 							break;
@@ -195,20 +204,23 @@ namespace RogueClone
 
 
 
-        // This method checks for key pressing and sets the hero X and Y positions(This should be made by the engine. Must optimize !).
-        private static void CheckKeyPressingAndSetMovement(Hero hero, char steppedOnItem, ConsoleColor itemColor)
+        // This method checks for key pressing and sets the hero X and Y positions(This should be made by the ConsoleRenderer. Must optimize !).
+        private static void CheckKeyPressingAndSetMovement(Board board, Hero hero)
         {
                 ConsoleKeyInfo pressedKey = Console.ReadKey(true);
                 switch (pressedKey.Key)
                 {
                     case ConsoleKey.RightArrow:
-                        hero.MoveTo(new Position(hero.Position.X + 1, hero.Position.Y), steppedOnItem, itemColor); 
+                        ConsoleRenderer.RenderMove(board, hero, new Position(hero.Position.X + 1, hero.Position.Y));
                         break;
-                    case ConsoleKey.LeftArrow: hero.MoveTo(new Position(hero.Position.X - 1, hero.Position.Y), steppedOnItem, itemColor); 
+                    case ConsoleKey.LeftArrow:
+                        ConsoleRenderer.RenderMove(board, hero, new Position(hero.Position.X - 1, hero.Position.Y));
                         break;
-                    case ConsoleKey.UpArrow: hero.MoveTo(new Position(hero.Position.X, hero.Position.Y - 1), steppedOnItem, itemColor); 
+                    case ConsoleKey.UpArrow:
+                        ConsoleRenderer.RenderMove(board, hero, new Position(hero.Position.X, hero.Position.Y - 1));
                         break;
-                    case ConsoleKey.DownArrow: hero.MoveTo(new Position(hero.Position.X, hero.Position.Y + 1), steppedOnItem, itemColor); 
+                    case ConsoleKey.DownArrow:
+                        ConsoleRenderer.RenderMove(board, hero, new Position(hero.Position.X, hero.Position.Y + 1));
                         break;
                     default:
                         break;

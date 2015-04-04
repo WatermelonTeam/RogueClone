@@ -19,8 +19,10 @@
             this.CorridorsPos = new List<Position>();
             this.GoldPositionsPos = new List<Position>();
             this.ItemsPos = new List<Position>();
+            this.Items = new List<Item>();
         }
 
+        public List<Item> Items { get; private set; } // return copy instead?
         public Position EntryStairPos { get; set; }
         public Position ExitStairPos { get; set; }
         public Position ShopKeeperPos { get; set; }

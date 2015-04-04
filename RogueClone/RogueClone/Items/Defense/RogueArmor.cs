@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RogueClone.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,13 +8,12 @@ namespace RogueClone
 {
     public class RogueArmor : Armor, IDurable
     {
-		public RogueArmor(int neededLevel,Position position)
-			:base(neededLevel,position)
+		public RogueArmor(Position position, int neededLevel)
+            : base("Rogue Armor", position, neededLevel, Image.RogueArmor, Color.DarkYellow)
 		{
 
 		}
 		//all items shall be one color so the player cant possibly know what item he is going to pick !
-		public override ConsoleColor Color { get { return ConsoleColor.DarkYellow; } }
 
 		public override string Description
 		{
@@ -22,29 +22,11 @@ namespace RogueClone
 				return string.Format("Armor +{0}",this.ArmorValue);
 			}
 		}
-		public override char Icon
-		{
-			
-			//Items will only be "?" so that the player doesnt know what item is it
-			get
-			{
-				return '?';
-			}
-		}
-		public override string Name
-		{
-			get
-			{
-				return "RogueArmor";
-			}
-		}
-		public void Take(Hero hero)
-		{
-			if(this.Icon =='?')
-			{
-				hero.Armor += this.ArmorValue;
-			}
-		}
+        public override void Take(Hero hero)
+        {
+            if (hero is Rogue)
+                base.Take(hero);
+        }
         public int DodgeChance
         {
             get

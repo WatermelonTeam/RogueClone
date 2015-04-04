@@ -8,7 +8,7 @@
         private int level;
 
         public Monster(string name, int level, int maxHP, int damage, int xpGain, Position position)
-            : base(name, maxHP)
+            : base(name, maxHP, Image.Monster, Color.DarkRed)
         {
             base.Damage = damage;
             base.XPGain = xpGain;

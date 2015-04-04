@@ -4,13 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-
+    using RogueClone.Movements;
     using Common;
 
     public abstract class Hero : Character, IDamageable, IPositionable, IMovable, IKillable
     {
-        private readonly char heroIcon;
-
         private Mana heroMana;
         private Level heroLevel;
         private int heroWeapon;
@@ -19,8 +17,8 @@
 
         private Position position;
 
-        public Hero(string name, int maxHealth, Mana mana, Level level, int weapon, int armor, int gold, Position position, char icon)
-            : base(name, maxHealth)
+        protected Hero(string name, int maxHealth, Mana mana, Level level, int weapon, int armor, int gold, Position position, Image icon, Color color)
+            : base(name, maxHealth, icon, color)
         {
             this.Mana = mana;
             this.Level = level;
@@ -28,7 +26,6 @@
             this.Armor = armor;
             this.Gold = gold;
             this.Position = position;
-            this.heroIcon = icon;
         }
         public Position Position
         {
@@ -40,7 +37,7 @@
             {
                 if (!IsValidPosition(value))
                 {
-                    throw new ArgumentOutOfRangeException(string.Format("The initial position was ({0},{1}). Valid range is ([{2},{3}),[{2},{4}))", value.X, value.Y, 0, Game.ConsoleWidth, (Game.ConsoleHeight - Engine.statsPanelHeight)));
+                    throw new ArgumentOutOfRangeException(string.Format("The initial position was ({0},{1}). Valid range is ([{2},{3}),[{2},{4}))", value.X, value.Y, 0, RogueEngine.ConsoleWidth, (RogueEngine.ConsoleHeight - ConsoleRenderer.StatsPanelHeight)));
                 }
                 this.position = value;
             }
@@ -48,13 +45,6 @@
 
         // event before properties !
 
-        public char Icon
-        {
-            get
-            {
-                return this.heroIcon;
-            }
-        }
         public int Gold
         {
             get
@@ -191,21 +181,19 @@
 
         public abstract void CastSkillTwo();
 
-        public void MoveTo(Position newPosition, char steppedOnItem = ' ', ConsoleColor itemColour = ConsoleColor.White)
+        public void MoveTo(Board board, Position newPosition)
         {
-            if (IsValidPosition(newPosition))
+            if (CharacterMovement.IsValidMovement(board, newPosition))
             {
-                Engine.PrintOnPosition(this.Position.X, this.Position.Y, steppedOnItem.ToString(), itemColour);
                 this.Position = newPosition;
-                Console.SetCursorPosition(this.Position.X, this.Position.Y);
             }
         }
         private bool IsValidPosition(Position position) // later add validation for walls, monsters etc.
         {
             return 0 <= position.X 
                 && 0 <= position.Y 
-                && position.X < Game.ConsoleWidth 
-                && position.Y < Game.ConsoleHeight - Engine.statsPanelHeight;
+                && position.X < RogueEngine.ConsoleWidth
+                && position.Y < RogueEngine.ConsoleHeight - ConsoleRenderer.StatsPanelHeight;
         }
     }
 }

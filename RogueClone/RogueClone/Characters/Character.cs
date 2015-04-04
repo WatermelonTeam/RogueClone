@@ -8,11 +8,15 @@
     {
         private Health health;
         private string name;
+        private readonly Image characterIcon;
+        public Color characterColor;
 
-        protected Character(string name, int maxHealth)
+        protected Character(string name, int maxHealth, Image icon, Color color)
         {
             this.Name = name;
             this.Health = new Health(maxHealth);
+            this.characterIcon = icon;
+            this.characterColor = color;
         }
 
         public event EventHandler Death;
@@ -45,6 +49,14 @@
             {
                 this.health = value;
             }
+        }
+        virtual public Image CharacterIcon
+        {
+            get { return this.characterIcon; }
+        }
+        virtual public Color CharacterColor
+        {
+            get { return this.characterColor; }
         }
 
         public void Die()

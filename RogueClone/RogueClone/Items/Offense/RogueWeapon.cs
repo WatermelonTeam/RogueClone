@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RogueClone.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,17 +9,10 @@ namespace RogueClone
     public class RogueWeapon : Weapon, IDurable
     {
 		
-		public RogueWeapon(int neededLevel, Position position)
-			:base(neededLevel,position)
+		public RogueWeapon(Position position, int neededLevel)
+            : base("Rogue Weapon", position, neededLevel, Image.RogueWeapon, Color.DarkYellow)
 		{
 
-		}
-		public override ConsoleColor Color
-		{
-			get
-			{
-				return ConsoleColor.DarkYellow;
-			}
 		}
 		public override string Description
 		{
@@ -27,27 +21,12 @@ namespace RogueClone
 				return string.Format("Damage +{0}",this.Damage);
 			}
 		}
-		public override char Icon
-		{
-			get
-			{
-				return '?';
-			}
-		}
-		public override string Name
-		{
-			get
-			{
-				return "RogueWeapon";
-			}
-		}
-		public void Take(Hero hero)
-		{
-			if (this.Icon == '?')
-			{
-				hero.Weapon += this.Damage;
-			}
-		}
+        public override void Take(Hero hero)
+        {
+            if (hero is Rogue)
+                base.Take(hero);
+        }
+		
         public int CritChance
         {
             get

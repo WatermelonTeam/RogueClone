@@ -445,7 +445,7 @@
                 if (check < this.ItemChance)
                 {
                     int randomFloor = BoardFactory.rand.Next(0, board.FloorsPos.Count);
-                    board.ItemsPos.Add(board.FloorsPos[randomFloor]);
+                    board.ItemsPos.Add(board.FloorsPos[randomFloor]);   
                     board.FloorsPos.RemoveAt(randomFloor);
                 }
             }
@@ -458,6 +458,7 @@
                 {
                     int randomFloor = BoardFactory.rand.Next(0, board.FloorsPos.Count);
                     board.GoldPositionsPos.Add(board.FloorsPos[randomFloor]);
+                    board.Items.Add(new HealthPotion(board.FloorsPos[randomFloor]));//////////////////////////////////////////////////////////
                     board.FloorsPos.RemoveAt(randomFloor);
                 }
             }

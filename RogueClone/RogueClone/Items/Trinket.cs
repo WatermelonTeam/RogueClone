@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RogueClone.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,38 +20,37 @@ namespace RogueClone
         private const int pendantLvl = 5;
         private const int horseshoeLvl = 2;
 
-        public enum trinkets { ring = 'ö', charm = '©', crystal = '♦', pendant = '§', horseshoe = 'Ω' };
         public Trinket(string name, Position position, int value)
-            : base(name, position, value)
+            : base(name, position, value, Image.GeneralItem, Color.Yellow)
         {
         }
         public override string Description
         {
             get
             {
-                switch ((trinkets)Enum.Parse(typeof(trinkets), this.Name.ToLower(), true))
+                switch ((Image)Enum.Parse(typeof(Image), this.Name.ToLower(), true))
                 {
-                    case trinkets.ring: return string.Format("Gold +{0}", ringBonus);
-                    case trinkets.charm: return string.Format("Armor +{0}", charmBonus);
-                    case trinkets.crystal: return string.Format("Max Mana +{0}", crystalBonus);
-                    case trinkets.pendant: return string.Format("XP +{0}", pendantBonus);
-                    case trinkets.horseshoe: return string.Format("Weapon +{0}", horseshoeBonus);
+                    case Image.Ring: return string.Format("Gold +{0}", ringBonus);
+                    case Image.Charm: return string.Format("Armor +{0}", charmBonus);
+                    case Image.Crystal: return string.Format("Max Mana +{0}", crystalBonus);
+                    case Image.Pendant: return string.Format("XP +{0}", pendantBonus);
+                    case Image.Horseshoe: return string.Format("Weapon +{0}", horseshoeBonus);
                     default: return "";
                 }
             }
         }
-        public override char Icon
+        public override Image Icon
         {
             get
             {
-                switch ((trinkets)Enum.Parse(typeof(trinkets), this.Name.ToLower(), true))
+                switch ((Image)Enum.Parse(typeof(Image), this.Name.ToLower(), true))
                 {
-                    case trinkets.ring: return (char)trinkets.ring;
-                    case trinkets.charm: return (char)trinkets.charm;
-                    case trinkets.crystal: return (char)trinkets.crystal;
-                    case trinkets.pendant: return (char)trinkets.pendant;
-                    case trinkets.horseshoe: return (char)trinkets.horseshoe;
-                    default: return ' ';
+                    case Image.Ring: return Image.Ring;
+                    case Image.Charm: return Image.Charm;
+                    case Image.Crystal: return Image.Crystal;
+                    case Image.Pendant: return Image.Pendant;
+                    case Image.Horseshoe: return Image.Horseshoe;
+                    default: return Image.GeneralItem;
                 }
             }
         }
@@ -58,28 +58,26 @@ namespace RogueClone
         {
             get
             {
-                switch ((trinkets)Enum.Parse(typeof(trinkets), this.Name.ToLower(), true))
+                switch ((Image)Enum.Parse(typeof(Image), this.Name.ToLower(), true))
                 {
-                    case trinkets.ring: return ringLvl;
-                    case trinkets.charm: return charmLvl;
-                    case trinkets.crystal: return crystalLvl;
-                    case trinkets.pendant: return pendantLvl;
-                    case trinkets.horseshoe: return horseshoeLvl;
+                    case Image.Ring: return ringLvl;
+                    case Image.Charm: return charmLvl;
+                    case Image.Crystal: return crystalLvl;
+                    case Image.Pendant: return pendantLvl;
+                    case Image.Horseshoe: return horseshoeLvl;
                     default: return 0;
                 }
             }
         }
-        public override ConsoleColor Color { get { return ConsoleColor.Magenta; } }
-
         public void Take(Hero hero)
         {
             switch (this.Icon)
             {
-                case (char)trinkets.ring: hero.Gold += ringBonus; break;
-                case (char)trinkets.charm: hero.Armor += charmBonus; break;
-                case (char)trinkets.crystal: hero.Mana.Max += crystalBonus; break;
-                case (char)trinkets.pendant: hero.Level.CurrentXP += pendantBonus; break;
-                case (char)trinkets.horseshoe: hero.Weapon += horseshoeBonus; break;
+                case Image.Ring: hero.Gold += ringBonus; break;
+                case Image.Charm: hero.Armor += charmBonus; break;
+                case Image.Crystal: hero.Mana.Max += crystalBonus; break;
+                case Image.Pendant: hero.Level.CurrentXP += pendantBonus; break;
+                case Image.Horseshoe: hero.Weapon += horseshoeBonus; break;
                 default: break;
             }
         }

@@ -1,5 +1,4 @@
-﻿using RogueClone.Movement;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -65,6 +64,11 @@ namespace RogueClone
         public static bool operator !=(Position p1, Position p2)
         {
             return !(p1 == p2);
+        }
+
+        public override string ToString()
+        {
+            return string.Format("({0}, {1})", this.X, this.Y);
         }
     }
 }

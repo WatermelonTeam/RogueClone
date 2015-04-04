@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RogueClone.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace RogueClone
 
 		private int damage;
 
-		public Weapon(int neededLevel, Position position)
-			: base(neededLevel, position)
+        public Weapon(string name, Position position, int neededLevel, Image icon, Color color)
+            : base(name, position, neededLevel, icon, color)
 		{
 			//random damage for every level of the weapon,just like the armorValue
 			switch (neededLevel)
@@ -44,5 +45,9 @@ namespace RogueClone
 				this.damage = value;
 			}
 		}
+        public virtual void Take(Hero hero)
+        {
+            hero.Weapon += this.Damage;
+        }
 	}
 }

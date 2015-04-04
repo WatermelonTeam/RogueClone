@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using RogueClone.Common;
 
 namespace RogueClone
 {
@@ -13,8 +14,8 @@ namespace RogueClone
         private readonly string itemName;
         private readonly int itemValue;
         private readonly int itemNeededLevel;
-        private readonly char itemIcon;
-        private readonly ConsoleColor itemColor;
+        private readonly Image itemIcon;
+        public Color itemColor;
         private readonly string itemDescription;
         private Position position;
 
@@ -37,20 +38,19 @@ namespace RogueClone
         {
             this.itemValue = value;
         }
-        public Item(string name, Position position, int value)
+        public Item(string name, Position position, int value, Image icon, Color color)
             : this(position, value)
         {
-
+            this.itemIcon = icon;
+            this.itemColor = color;
             this.itemName = name; // assign it only once because it is readonly
         }
 
-        public Item(string name, string description, int value, int neededLevel, Position position, char icon, ConsoleColor color)
-            : this(name, position, value)
+        public Item(string name, string description, int value, int neededLevel, Position position, Image icon, Color color)
+            : this(name, position, value, icon, color)
         {
             this.itemDescription = description;
             this.itemNeededLevel = neededLevel;
-            this.itemIcon = icon;
-            this.itemColor = color;
         }
         public Position Position
         {
@@ -83,11 +83,11 @@ namespace RogueClone
             }
         }
 
-        virtual public char Icon 
+        virtual public Image Icon 
         {
             get { return this.itemIcon; } 
         }
-        virtual public ConsoleColor Color
+        virtual public Color ItemColor
         {
             get { return this.itemColor; }
         }

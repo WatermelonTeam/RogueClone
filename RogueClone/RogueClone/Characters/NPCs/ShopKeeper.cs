@@ -10,8 +10,8 @@
     {
         private ICollection<Item> items;
 
-        public ShopKeeper(string name, int maxHP, ICollection<Item> items)
-            : base(name, maxHP)
+        public ShopKeeper(string name, int maxHealth, ICollection<Item> items) // maxHealth can be set as a constant for the shopkeeper class
+            : base(name, maxHealth, Image.ShopKeeper, Color.Magenta)
         {
             this.Items = items;
         }

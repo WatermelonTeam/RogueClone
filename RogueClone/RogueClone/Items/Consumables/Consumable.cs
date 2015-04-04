@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RogueClone.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace RogueClone
     public abstract class Consumable : Item, IConsumable
     {
         private int amountStatsRestored;
-        public Consumable(string name, string description, int price, int neededLevel, Position position, char icon, ConsoleColor color, int amountRestored)
+        public Consumable(string name, string description, int price, int neededLevel, Position position, Image icon, Color color, int amountRestored)
             : base(name, description, price, neededLevel, position, icon, color)
         {
             this.amountStatsRestored = amountRestored;

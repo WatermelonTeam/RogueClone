@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RogueClone.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace RogueClone
 
 		private int armorValue;
 
-		public Armor(int neededLevel, Position position)
-			: base(neededLevel, position)
+        public Armor(string name, Position position, int neededLevel, Image icon, Color color)
+            : base(name, position, neededLevel, icon, color)
 		{
 			//random armorValue for every level
 			switch (neededLevel)
@@ -33,7 +34,6 @@ namespace RogueClone
 					break;
 			}
 		}
-
         virtual public int ArmorValue
         {
             get
@@ -44,6 +44,10 @@ namespace RogueClone
 			{
 				this.armorValue = value;
 			}
+        }
+        public virtual void Take(Hero hero)
+        {
+            hero.Armor += this.ArmorValue;
         }
     }
 }
