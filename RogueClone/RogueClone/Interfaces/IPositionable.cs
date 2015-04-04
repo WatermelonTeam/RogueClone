@@ -5,11 +5,8 @@ using System.Text;
 
 namespace RogueClone
 {
-    public sealed class Health : Stat
+    public interface IPositionable
     {
-        public Health(int max) 
-            : base(max)
-        {
-        }
+        Position Position { get; set; }
     }
 }

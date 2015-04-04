@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RogueClone.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,20 +7,23 @@ using System.Threading.Tasks;
 
 namespace RogueClone
 {
-    public class Potion : Consumable, IPotion
+    public abstract class Potion : Consumable
     {
-        public Potion(string name, int price, int neededLevel, Point2D position, string icon, int amountRestored)
-            : base(name, price, neededLevel, position, icon, amountRestored)
+        public Potion(string name, string description, int price, int neededLevel, Position position, Image icon, Color color, int amountRestored)
+            : base(name, description, price, neededLevel, position, icon, color, amountRestored)
+        { 
+        }
+        public Potion(Position position)
+            : base(position)
         {
         }
-
 
         // add IConsumer to the hero so he can consume potions OO ?
-        public int UsePotion()
-        {
-            var restored = this.AmountStatsRestored;
-            this.AmountStatsRestored = 0;
-            return restored;
-        }
+        //public int UsePotion()
+        //{
+        //    var restored = this.AmountStatsRestored;
+        //    this.AmountStatsRestored = 0;
+        //    return restored;
+        //}
     }
 }
