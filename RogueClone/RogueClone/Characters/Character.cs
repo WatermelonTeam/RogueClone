@@ -6,7 +6,7 @@
 
     public abstract class Character : IDamageable, IKillable
     {
-        private Health healthValue;
+        private Health health;
         private string name;
 
         protected Character(string name, int maxHealth)
@@ -15,12 +15,12 @@
             this.Health = new Health(maxHealth);
         }
 
-        public event EventHandler Dead;
-        protected void OnDead(EventArgs args)
+        public event EventHandler Death;
+        protected void OnDeath(EventArgs args)
         {
-            if (this.Dead != null)
+            if (this.Death != null)
             {
-                this.Dead(this, args);
+                this.Death(this, args);
             }
         }
 
@@ -39,14 +39,19 @@
         {
             get
             {
-                return this.healthValue;
+                return this.health;
             }
             private set
             {
-                this.healthValue = value;
+                this.health = value;
             }
         }
 
-        public abstract void TakeDamage();
+        public void Die()
+        {
+            this.Health.Current = 0;
+            this.OnDeath(EventArgs.Empty);
+        }
+        public abstract void TakeDamage(int amount);
     }
 }

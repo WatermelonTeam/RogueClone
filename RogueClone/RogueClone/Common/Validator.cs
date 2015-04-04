@@ -20,7 +20,6 @@
                 throw new ArgumentOutOfRangeException(string.Format("{0} = {1} was out of bounds {2} - {3}.", name, value, start, max));
             }
         }
-
         public static string ValidateName(string value)
         {
             value = value.Trim();
@@ -31,6 +30,13 @@
             }
 
             return value;
+        }
+        public static void IsNotNull(object value, string name = Validator.UnknownName)
+        {
+            if (value == null)
+            {
+                throw new NullReferenceException(string.Format("{0} can't be null.", name));
+            }
         }
     }
 }

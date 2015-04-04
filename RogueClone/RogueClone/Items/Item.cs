@@ -40,13 +40,13 @@ namespace RogueClone
         public Item(string name, Position position, int value)
             : this(position, value)
         {
-            this.itemName = name;
+
+            this.itemName = name; // assign it only once because it is readonly
         }
 
         public Item(string name, string description, int value, int neededLevel, Position position, char icon, ConsoleColor color)
-            : this(position, value)
+            : this(name, position, value)
         {
-            this.itemName = name; // assign it only once because it is readonly
             this.itemDescription = description;
             this.itemNeededLevel = neededLevel;
             this.itemIcon = icon;
@@ -90,6 +90,18 @@ namespace RogueClone
         virtual public ConsoleColor Color
         {
             get { return this.itemColor; }
+        }
+
+        Position IPositionable.Position
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

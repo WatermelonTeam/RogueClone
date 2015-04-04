@@ -27,7 +27,7 @@
             }
             set
             {
-                Validator.IsPositive(value);
+                Validator.IsPositive(value, "XPGain");
 
                 this.xpGain = value;
             }
@@ -40,9 +40,23 @@
             }
             set
             {
-                Validator.IsPositive(value);
+                Validator.IsPositive(value, "NPC - Damage");
 
                 this.damage = value;
+            }
+        }
+
+        public override void TakeDamage(int damage)
+        {
+            int loweredHealth = base.Health.Current - damage;
+
+            if (loweredHealth <= 0)
+            {
+                base.Die();
+            }
+            else
+            {
+                base.Health.Current = loweredHealth;
             }
         }
     }

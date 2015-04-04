@@ -7,33 +7,16 @@ namespace RogueClone
 {
     public class ManaPotion : Potion
     {
-        //public ManaPotion(string name, int price, int neededLevel, Point2D position, char icon, int amountRestored)
-        //    : base(name, price, neededLevel, position, icon, amountRestored)
-        //{
-        //}
+        private const int AmountRestored = 50;
+        public ManaPotion(int price, int neededLevel, Position position, char icon, int amountRestored)
+            : base("Mana Potion", string.Format("Mana +{0}", AmountRestored), price, neededLevel, position, '¤', ConsoleColor.Cyan, amountRestored)
+        {
+        }
 
         public ManaPotion(Position position)
-            : base(position)
+            : base("Mana Potion", string.Format("Mana +{0}", AmountRestored), 150, 2, position, '¤', ConsoleColor.Cyan, AmountRestored) //≈ ☼ ⌂ 
         {
         }
-
-        public override string Name { get { return "Mana Potion"; } }
-        public override string Description
-        {
-            get
-            {
-                return string.Format("Mana +{0}", this.AmountStatsRestored);
-            }
-        }
-
-        public override int Value { get { return 100; } }
-
-        public override int NeededLvl { get { return 3; } }
-
-        public override char Icon { get { return '¤'; } } //≈ ☼ ⌂ 
-        public override ConsoleColor Color { get { return ConsoleColor.Cyan; } }
-        public override int AmountStatsRestored { get { return 50; } }
-
         public override void Consumed(Hero hero)
         {
             hero.Mana.Increase(this.AmountStatsRestored);

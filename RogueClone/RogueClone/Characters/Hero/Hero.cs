@@ -125,7 +125,7 @@
             }
         }
 
-        public override void TakeDamage()
+        public override void TakeDamage(int damage)
         {
             throw new NotImplementedException();
         }
