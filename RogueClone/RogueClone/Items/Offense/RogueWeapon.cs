@@ -8,7 +8,7 @@ namespace RogueClone
     public class RogueWeapon : Weapon, IDurable
     {
 		
-		public RogueWeapon(int neededLevel, Point2D position)
+		public RogueWeapon(int neededLevel, Position position)
 			:base(neededLevel,position)
 		{
 

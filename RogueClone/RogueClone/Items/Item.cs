@@ -16,34 +16,34 @@ namespace RogueClone
         private readonly char itemIcon;
         private readonly ConsoleColor itemColor;
         private readonly string itemDescription;
-        private Point2D position;
+        private Position position;
 
         public Item()
         {
             // remember to remove this constructor !
         }
-        public Item(Point2D position)
+        public Item(Position position)
         {
             this.position = position;
         }
 		//added new constructor so i can randomize the armorvalue and the damage :)
-		public Item(int neededLevel, Point2D position)
+		public Item(int neededLevel, Position position)
 			:this(position)
 		{
 			this.itemNeededLevel = neededLevel;
 		}
-        public Item(Point2D position, int value)
+        public Item(Position position, int value)
             : this(position)
         {
             this.itemValue = value;
         }
-        public Item(string name, Point2D position, int value)
+        public Item(string name, Position position, int value)
             : this(position, value)
         {
             this.itemName = name;
         }
 
-        public Item(string name, string description, int value, int neededLevel, Point2D position, char icon, ConsoleColor color)
+        public Item(string name, string description, int value, int neededLevel, Position position, char icon, ConsoleColor color)
             : this(position, value)
         {
             this.itemName = name; // assign it only once because it is readonly
@@ -52,7 +52,7 @@ namespace RogueClone
             this.itemIcon = icon;
             this.itemColor = color;
         }
-        public Point2D Position
+        public Position Position
         {
             get { return this.position; }
         }

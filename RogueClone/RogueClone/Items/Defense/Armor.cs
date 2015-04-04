@@ -10,7 +10,7 @@ namespace RogueClone
 
 		private int armorValue;
 
-		public Armor(int neededLevel, Point2D position)
+		public Armor(int neededLevel, Position position)
 			: base(neededLevel, position)
 		{
 			//random armorValue for every level

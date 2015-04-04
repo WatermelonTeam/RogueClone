@@ -10,7 +10,7 @@ namespace RogueClone
 
 		private int damage;
 
-		public Weapon(int neededLevel, Point2D position)
+		public Weapon(int neededLevel, Position position)
 			: base(neededLevel, position)
 		{
 			//random damage for every level of the weapon,just like the armorValue

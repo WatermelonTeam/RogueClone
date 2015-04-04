@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Monster : NPC, IPositionable
+    public class Monster : NPC, IPositionable, IMovable
     {
         protected Monster(string name, int maxHP)
             : base(name, maxHP)
@@ -26,9 +26,14 @@
             throw new NotImplementedException();
         }
 
-        public Point2D Position
+        public Position Position
         {
             get { throw new NotImplementedException(); }
+        }
+
+        public void MoveTo(Position newPosition, char steppedOnItem, ConsoleColor color)
+        {
+            throw new NotImplementedException();
         }
     }
 }

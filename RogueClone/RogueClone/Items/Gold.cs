@@ -7,7 +7,7 @@ namespace RogueClone
 {
     public class Gold : Item
     {
-        public Gold(Point2D position, int value)
+        public Gold(Position position, int value)
             : base(position, value)
         {
         }

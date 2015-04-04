@@ -8,7 +8,7 @@ namespace RogueClone
     public class WizardWeapon : Weapon
     {
 		
-		public WizardWeapon(int neededLevel,Point2D position)
+		public WizardWeapon(int neededLevel,Position position)
 			:base(neededLevel,position)
 		{
 

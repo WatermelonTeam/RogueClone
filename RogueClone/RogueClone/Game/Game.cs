@@ -39,22 +39,22 @@ namespace RogueClone
 
             // Just testing an array of items ...
             var items = new List<Item>();
-            items.Add(new HealthPotion(new Point2D(20, 20)));
-            items.Add(new ManaPotion(new Point2D(25, 23)));
-            items.Add(new Gold(new Point2D(30, 15), 91));
-            items.Add(new Gold(new Point2D(33, 10), 200));
-            items.Add(new Gold(new Point2D(40, 11), 150));
-            items.Add(new Trinket("Ring", new Point2D(2,4), 200));
-            items.Add(new Trinket("Horseshoe", new Point2D(2, 12), 500));
-            items.Add(new Trinket("Crystal", new Point2D(50, 20), 200));
-            items.Add(new Trinket("Pendant", new Point2D(40, 5), 200));
-            items.Add(new Trinket("Charm", new Point2D(10, 20), 200));
-			items.Add(new RogueArmor(2, new Point2D(20, 21)));
-			items.Add(new WizardArmor(2, new Point2D(30, 13)));
-			items.Add(new RogueWeapon(2, new Point2D(50, 21)));
-			items.Add(new RogueWeapon(3, new Point2D(50, 22)));
-			items.Add(new RogueWeapon(4, new Point2D(50, 23)));
-			items.Add(new WizardWeapon(2, new Point2D(20, 22)));
+            items.Add(new HealthPotion(new Position(20, 20)));
+            items.Add(new ManaPotion(new Position(25, 23)));
+            items.Add(new Gold(new Position(30, 15), 91));
+            items.Add(new Gold(new Position(33, 10), 200));
+            items.Add(new Gold(new Position(40, 11), 150));
+            items.Add(new Trinket("Ring", new Position(2,4), 200));
+            items.Add(new Trinket("Horseshoe", new Position(2, 12), 500));
+            items.Add(new Trinket("Crystal", new Position(50, 20), 200));
+            items.Add(new Trinket("Pendant", new Position(40, 5), 200));
+            items.Add(new Trinket("Charm", new Position(10, 20), 200));
+			items.Add(new RogueArmor(2, new Position(20, 21)));
+			items.Add(new WizardArmor(2, new Position(30, 13)));
+			items.Add(new RogueWeapon(2, new Position(50, 21)));
+			items.Add(new RogueWeapon(3, new Position(50, 22)));
+			items.Add(new RogueWeapon(4, new Position(50, 23)));
+			items.Add(new WizardWeapon(2, new Position(20, 22)));
             //items.Add(new HealthPotion("small potion", 10, 0, new Point2D(20, 20), '♥', 100));
             Engine.RenderStats(gandalf);
             Engine.RenderHero(gandalf);
@@ -202,13 +202,13 @@ namespace RogueClone
                 switch (pressedKey.Key)
                 {
                     case ConsoleKey.RightArrow:
-                        hero.MoveTo(new Point2D(hero.Position.X + 1, hero.Position.Y), steppedOnItem, itemColor); 
+                        hero.MoveTo(new Position(hero.Position.X + 1, hero.Position.Y), steppedOnItem, itemColor); 
                         break;
-                    case ConsoleKey.LeftArrow: hero.MoveTo(new Point2D(hero.Position.X - 1, hero.Position.Y), steppedOnItem, itemColor); 
+                    case ConsoleKey.LeftArrow: hero.MoveTo(new Position(hero.Position.X - 1, hero.Position.Y), steppedOnItem, itemColor); 
                         break;
-                    case ConsoleKey.UpArrow: hero.MoveTo(new Point2D(hero.Position.X, hero.Position.Y - 1), steppedOnItem, itemColor); 
+                    case ConsoleKey.UpArrow: hero.MoveTo(new Position(hero.Position.X, hero.Position.Y - 1), steppedOnItem, itemColor); 
                         break;
-                    case ConsoleKey.DownArrow: hero.MoveTo(new Point2D(hero.Position.X, hero.Position.Y + 1), steppedOnItem, itemColor); 
+                    case ConsoleKey.DownArrow: hero.MoveTo(new Position(hero.Position.X, hero.Position.Y + 1), steppedOnItem, itemColor); 
                         break;
                     default:
                         break;

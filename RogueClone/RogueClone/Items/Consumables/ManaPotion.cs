@@ -12,7 +12,7 @@ namespace RogueClone
         //{
         //}
 
-        public ManaPotion(Point2D position)
+        public ManaPotion(Position position)
             : base(position)
         {
         }

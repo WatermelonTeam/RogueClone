@@ -18,14 +18,14 @@
         private int maxGoldCount;
         private int shopKeeperChance;
 
-        public BoardFactory(Point2D topLeftCorner, Point2D bottomRightCorner)
+        public BoardFactory(Position topLeftCorner, Position bottomRightCorner)
         {
             this.TopLeftCorner = topLeftCorner;
             this.BottomRightCorner = bottomRightCorner;
             this.TotalCols = this.BottomRightCorner.X - this.TopLeftCorner.X + 1;
             this.TotalRows = this.BottomRightCorner.Y - this.TopLeftCorner.Y + 1;
-            this.PortionRows = this.TotalRows / 3;
-            this.PortionCols = this.TotalCols / 3;
+            this.PortionRows = this.TotalRows / 3 + 5;
+            this.PortionCols = this.TotalCols / 3 + 10;
 
             this.ItemChance = 35;
             this.MaxItemCount = 7;
@@ -114,8 +114,8 @@
                 this.shopKeeperChance = value;
             }
         }
-        private Point2D TopLeftCorner { get; set; }
-        private Point2D BottomRightCorner { get; set; }
+        private Position TopLeftCorner { get; set; }
+        private Position BottomRightCorner { get; set; }
         private int TotalRows
         {
             get
@@ -166,8 +166,8 @@
         }
         private void SetRooms(Board board)
         {
-            Point2D entryPortion = new Point2D();
-            Point2D exitPortion = new Point2D();
+            Position entryPortion = new Position();
+            Position exitPortion = new Position();
             int stairsRoom = BoardFactory.rand.Next(0, 4);
             switch (stairsRoom)
             {
@@ -199,17 +199,47 @@
                     throw new Exception("Something went horribly wrong in switch at BoardFactory.");
             }
 
-            int removedCount = BoardFactory.rand.Next(0, 5);
-            List<Point2D> removedPortions = new List<Point2D>(new Point2D[]{
-                                            new Point2D(0, 0), new Point2D(0, 1), new Point2D(0, 2),
-                                            new Point2D(1, 0), new Point2D(1, 1), new Point2D(1, 2),
-                                            new Point2D(2, 0), new Point2D(2, 1), new Point2D(2, 2)
+            int removedCount = BoardFactory.rand.Next(0, 5); 
+            List<Position> removedPortions = new List<Position>(new Position[]{
+                                            new Position(0, 0), new Position(0, 1), new Position(0, 2),
+                                            new Position(1, 0), new Position(1, 1), new Position(1, 2),
+                                            new Position(2, 0), new Position(2, 1), new Position(2, 2)
                                                                              });
+            var allPortions = new List<Position>(removedPortions);
+            
+            var portionsWithRooms = new List<Position>();
+            var doorsPositions = new List<List<Position>>();
             removedPortions.Remove(entryPortion);
             removedPortions.Remove(exitPortion);
             while (removedPortions.Count != removedCount)
             {
                 removedPortions.RemoveAt(BoardFactory.rand.Next(0, removedPortions.Count));
+            }
+
+            if (removedCount >= 4)
+            {
+                // there should not be any lonely room in its row and column for corridors to work 
+                var leftPortions = allPortions.Except(removedPortions);
+                bool lonelyRoom = true;
+                while (lonelyRoom)
+                {
+                    foreach (var portion in leftPortions)
+                    {
+                        if (portion.X == portion.Y || portion.X - portion.Y == 2)
+                        {
+                            if (leftPortions.Count(p => p.X == portion.X) == 1 && leftPortions.Count(p => p.Y == portion.Y) == 1)
+                            {
+                                lonelyRoom = true;
+                                removedPortions.RemoveAt(0);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            lonelyRoom = false;
+                        }
+                    }
+                }
             }
 
             for (int portionRow = 0; portionRow < 3; portionRow++)
@@ -220,25 +250,28 @@
                     {
                         continue;
                     }
+                    portionsWithRooms.Add(new Position(portionRow, portionCol));
+                    doorsPositions.Add(new List<Position>());
+
 
                     int roomRows = BoardFactory.rand.Next(0, this.PortionRows - BoardFactory.MinRoomRows) + BoardFactory.MinRoomRows;
                     int roomCols = BoardFactory.rand.Next(0, this.PortionCols - BoardFactory.MinRoomCols) + BoardFactory.MinRoomCols;
-                    Point2D doorPos = new Point2D(roomRows / 2, roomCols / 2);
-                    Point2D start = new Point2D();
+                    Position doorPos = new Position(roomRows / 2, roomCols / 2);
+                    Position start = new Position();
                     start.X = BoardFactory.rand.Next(0, this.PortionRows - roomRows);
                     start.Y = BoardFactory.rand.Next(0, this.PortionCols - roomCols);
 
                     bool atEntryPortion = entryPortion.X == portionRow && entryPortion.Y == portionCol;
                     bool atExitPortion = exitPortion.X == portionRow && exitPortion.Y == portionCol;
 
-                    Point2D entry = new Point2D();
+                    Position entry = new Position();
                     if (atEntryPortion)
                     {
                         entry.X = BoardFactory.rand.Next(1, roomRows - 2);
                         entry.Y = BoardFactory.rand.Next(1, roomCols - 2);
                     }
 
-                    Point2D exit = new Point2D();
+                    Position exit = new Position();
                     if (atExitPortion)
                     {
                         exit.X = BoardFactory.rand.Next(1, roomRows - 2);
@@ -249,71 +282,159 @@
                     {
                         for (int col = 0; col < roomCols; col++)
                         {
+                            int x = this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows;
+                            int y = this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols;
+
                             if ((row == 0 && col == 0) || (row == 0 && col == roomCols - 1) || (row == roomRows - 1 && col == 0) || (row == roomRows - 1 && col == roomCols - 1))
                             {
-                                board.Corners.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));
+                                board.CornersPos.Add(new Position(x, y));
                             }
                             else if (row == 0)
                             {
                                 if (portionRow != 0 && col == doorPos.Y)
                                 {
-                                    board.Doors.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));                                    
+                                    board.DoorsPos.Add(new Position(x, y));
+                                    doorsPositions[doorsPositions.Count - 1].Add(board.DoorsPos[board.DoorsPos.Count - 1]);
                                 }
                                 else
                                 {
-                                    board.HorizontalWalls.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));
+                                    board.HorizontalWallsPos.Add(new Position(x, y));
                                 }
                             }
                             else if (row == roomRows - 1)
                             {
                                 if (portionRow != 2 && col == doorPos.Y)
                                 {
-                                    board.Doors.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));                                                                    
+                                    board.DoorsPos.Add(new Position(x, y)); 
+                                    doorsPositions[doorsPositions.Count - 1].Add(board.DoorsPos[board.DoorsPos.Count - 1]);  
                                 }
                                 else
                                 {
-                                    board.HorizontalWalls.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));                                
+                                    board.HorizontalWallsPos.Add(new Position(x, y));                                
                                 }
                             }
                             else if (col == 0)
                             {
                                 if (portionCol != 0 && row == doorPos.X)
                                 {
-                                    board.Doors.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));                                    
+                                    board.DoorsPos.Add(new Position(x, y));
+                                    doorsPositions[doorsPositions.Count - 1].Add(board.DoorsPos[board.DoorsPos.Count - 1]);
                                 }
                                 else
                                 {
-                                    board.VerticalWalls.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));
+                                    board.VerticalWallsPos.Add(new Position(x, y));
                                 }
                             }
                             else if (col == roomCols - 1)                            
                             {
                                 if (portionCol != 2 && row == doorPos.X)
                                 {
-                                    board.Doors.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));
+                                    board.DoorsPos.Add(new Position(x, y));
+                                    doorsPositions[doorsPositions.Count - 1].Add(board.DoorsPos[board.DoorsPos.Count - 1]);
                                 }
                                 else
                                 {
-                                    board.VerticalWalls.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));
+                                    board.VerticalWallsPos.Add(new Position(x, y));
                                 }
                             }
                             else if (atEntryPortion && row == entry.X && col == entry.Y)
                             {
-                                board.EntryStair = new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols);
+                                board.EntryStairPos = new Position(x, y);
                             }
                             else if (atExitPortion && row == exit.X && col == exit.Y)
                             {
-                                board.ExitStair = new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols);
+                                board.ExitStairPos = new Position(x, y);
                             }
                             else
                             {
-                                board.Floors.Add(new Point2D(this.TopLeftCorner.Y + start.X + row + portionRow * this.PortionRows, this.TopLeftCorner.X + start.Y + col + portionCol * this.PortionCols));
+                                board.FloorsPos.Add(new Position(x, y));
                             }
                         }
                     }
                 }
             }
 
+            var updatedDoorsPos = new List<Position>();
+            var currentDoor = new Position();
+            var otherDoor = new Position();
+            for (int i = 0; i < portionsWithRooms.Count; i++)
+            {
+                currentDoor = doorsPositions[i].OrderByDescending(d => d.Y).First();
+                for (int j = i + 1; j < portionsWithRooms.Count; j++)
+                {
+                    if (portionsWithRooms[i].X == portionsWithRooms[j].X)
+                    {
+                        otherDoor = doorsPositions[j].OrderBy(d => d.Y).First();
+                        var distance = otherDoor.Y - currentDoor.Y;
+                        var offset = otherDoor.X - currentDoor.X;
+                        for (int k = currentDoor.Y + 1; k <= currentDoor.Y + distance / 2; k++)
+                        {
+                            board.CorridorsPos.Add(new Position(currentDoor.X, k));
+                        }
+                        for (int k = currentDoor.Y + distance / 2; k < otherDoor.Y; k++)
+                        {
+                            board.CorridorsPos.Add(new Position(otherDoor.X, k));
+                        }
+                        if (offset > 1)
+                        {
+                            for (int l = 1; l < offset; l++)
+                            {
+                                board.CorridorsPos.Add(new Position(l + currentDoor.X, currentDoor.Y + distance / 2));
+                            }
+                        }
+                        else if (offset < -1)
+                        {
+                            offset = -offset;
+                            for (int l = 1; l < offset; l++)
+                            {
+                                board.CorridorsPos.Add(new Position(l + otherDoor.X, currentDoor.Y + distance / 2));
+                            }
+                        }
+                        updatedDoorsPos.Add(currentDoor);
+                        updatedDoorsPos.Add(otherDoor);
+                        break;
+                    }
+                }
+
+                currentDoor = doorsPositions[i].OrderByDescending(d => d.X).First();
+                for (int j = i + 1; j < portionsWithRooms.Count; j++)
+                {
+                    if (portionsWithRooms[i].Y == portionsWithRooms[j].Y)
+                    {
+                        otherDoor = doorsPositions[j].OrderBy(d => d.X).First();
+                        var distance = otherDoor.X - currentDoor.X;
+                        var offset = otherDoor.Y - currentDoor.Y;
+                        for (int k = currentDoor.X + 1; k <= currentDoor.X + distance / 2; k++)
+                        {
+                            board.CorridorsPos.Add(new Position(k, currentDoor.Y));
+                        }
+                        for (int k = currentDoor.X + distance / 2; k < otherDoor.X; k++)
+                        {
+                            board.CorridorsPos.Add(new Position(k, otherDoor.Y));
+                        }
+                        if (offset > 1)
+                        {
+                            for (int l = 1; l < offset; l++)
+                            {
+                                board.CorridorsPos.Add(new Position(currentDoor.X + distance / 2, l + currentDoor.Y));
+                            }
+                        }
+                        else if (offset < -1)
+                        {
+                            offset = -offset;
+                            for (int l = 1; l < offset; l++)
+                            {
+                                board.CorridorsPos.Add(new Position(currentDoor.X + distance / 2, l + otherDoor.Y));
+                            }
+                        }
+                        updatedDoorsPos.Add(currentDoor);
+                        updatedDoorsPos.Add(otherDoor);
+                        break;
+                    }
+                }
+            }
+            board.DoorsPos.Clear();
+            board.DoorsPos.AddRange(updatedDoorsPos);
         }
         private void SetGoldAndItems(Board board)
         {
@@ -323,9 +444,9 @@
 
                 if (check < this.ItemChance)
                 {
-                    int randomFloor = BoardFactory.rand.Next(0, board.Floors.Count);
-                    board.Items.Add(board.Floors[randomFloor]);
-                    board.Floors.RemoveAt(randomFloor);
+                    int randomFloor = BoardFactory.rand.Next(0, board.FloorsPos.Count);
+                    board.ItemsPos.Add(board.FloorsPos[randomFloor]);
+                    board.FloorsPos.RemoveAt(randomFloor);
                 }
             }
 
@@ -335,9 +456,9 @@
 
                 if (check < this.GoldChance)
                 {
-                    int randomFloor = BoardFactory.rand.Next(0, board.Floors.Count);
-                    board.GoldPostions.Add(board.Floors[randomFloor]);
-                    board.Floors.RemoveAt(randomFloor);
+                    int randomFloor = BoardFactory.rand.Next(0, board.FloorsPos.Count);
+                    board.GoldPositionsPos.Add(board.FloorsPos[randomFloor]);
+                    board.FloorsPos.RemoveAt(randomFloor);
                 }
             }
         }
@@ -346,10 +467,12 @@
             int check = BoardFactory.rand.Next(0, 100);
             if (check < this.ShopKeeperChance)
             {
-                int randomFloor = BoardFactory.rand.Next(0, board.Floors.Count);
-                board.ShopKeeper = board.Floors[randomFloor];
-                board.Floors.RemoveAt(randomFloor);
+                int randomFloor = BoardFactory.rand.Next(0, board.FloorsPos.Count);
+                board.ShopKeeperPos = board.FloorsPos[randomFloor];
+                board.FloorsPos.RemoveAt(randomFloor);
             }
         }
     }
 }
+
+// TODO: OOP board with no magic numbers

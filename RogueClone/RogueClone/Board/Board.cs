@@ -7,30 +7,30 @@
     {
         public Board()  
         {
-            this.EntryStair = new Point2D();
-            this.ExitStair = new Point2D();
-            this.ShopKeeper = new Point2D();
+            this.EntryStairPos = new Position();
+            this.ExitStairPos = new Position();
+            this.ShopKeeperPos = new Position();
 
-            this.Floors = new List<Point2D>();
-            this.Doors = new List<Point2D>();
-            this.Corners = new List<Point2D>();
-            this.HorizontalWalls = new List<Point2D>();
-            this.VerticalWalls = new List<Point2D>();
-            //this.Paths = new List<Point2D>();
-            this.GoldPostions = new List<Point2D>();
-            this.Items = new List<Point2D>();
+            this.FloorsPos = new List<Position>();
+            this.DoorsPos = new List<Position>();
+            this.CornersPos = new List<Position>();
+            this.HorizontalWallsPos = new List<Position>();
+            this.VerticalWallsPos = new List<Position>();
+            this.CorridorsPos = new List<Position>();
+            this.GoldPositionsPos = new List<Position>();
+            this.ItemsPos = new List<Position>();
         }
 
-        public Point2D EntryStair { get; set; }
-        public Point2D ExitStair { get; set; }
-        public Point2D ShopKeeper { get; set; }
-        public List<Point2D> Floors { get; private set; }
-        public List<Point2D> Doors { get; private set; }
-        public List<Point2D> Corners { get; private set; }
-        public List<Point2D> HorizontalWalls { get; private set; }
-        public List<Point2D> VerticalWalls { get; private set; }
-        //public List<Point2D> Paths { get; private set; }
-        public List<Point2D> GoldPostions { get; private set; }
-        public List<Point2D> Items { get; private set; }
+        public Position EntryStairPos { get; set; }
+        public Position ExitStairPos { get; set; }
+        public Position ShopKeeperPos { get; set; }
+        public List<Position> FloorsPos { get; private set; }
+        public List<Position> DoorsPos { get; private set; }
+        public List<Position> CornersPos { get; private set; }
+        public List<Position> HorizontalWallsPos { get; private set; }
+        public List<Position> VerticalWallsPos { get; private set; }
+        public List<Position> CorridorsPos { get; private set; }
+        public List<Position> GoldPositionsPos { get; private set; }
+        public List<Position> ItemsPos { get; private set; }
     }
 }

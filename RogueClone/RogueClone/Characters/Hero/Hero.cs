@@ -17,9 +17,9 @@
         private int heroArmor;
         private int gold;
 
-        private Point2D position;
+        private Position position;
 
-        public Hero(string name, int maxHealth, Mana mana, Level level, int weapon, int armor, int gold, Point2D position, char icon)
+        public Hero(string name, int maxHealth, Mana mana, Level level, int weapon, int armor, int gold, Position position, char icon)
             : base(name, maxHealth)
         {
             this.Mana = mana;
@@ -30,7 +30,7 @@
             this.Position = position;
             this.heroIcon = icon;
         }
-        public Point2D Position
+        public Position Position
         {
             get
             {
@@ -191,7 +191,7 @@
 
         public abstract void CastSkillTwo();
 
-        public void MoveTo(Point2D newPosition, char steppedOnItem = ' ', ConsoleColor itemColour = ConsoleColor.White)
+        public void MoveTo(Position newPosition, char steppedOnItem = ' ', ConsoleColor itemColour = ConsoleColor.White)
         {
             if (IsValidPosition(newPosition))
             {
@@ -200,7 +200,7 @@
                 Console.SetCursorPosition(this.Position.X, this.Position.Y);
             }
         }
-        private bool IsValidPosition(Point2D position) // later add validation for walls, monsters etc.
+        private bool IsValidPosition(Position position) // later add validation for walls, monsters etc.
         {
             return 0 <= position.X 
                 && 0 <= position.Y 

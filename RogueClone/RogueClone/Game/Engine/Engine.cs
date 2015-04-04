@@ -126,7 +126,7 @@
         }
         public static void PrintOnPosition(int x, int y, string text, ConsoleColor foregroundColor = fScreenColor, ConsoleColor backgroundColor = bScreenColor)
         {
-            if (IsValidPosition(new Point2D(x, y)))
+            if (IsValidPosition(new Position(x, y)))
             {
                 var oldForegroundColor = Console.ForegroundColor;
                 var oldBackgroundColor = Console.BackgroundColor;
@@ -143,7 +143,7 @@
             }
             
         }
-        private static bool IsValidPosition(Point2D position)
+        private static bool IsValidPosition(Position position)
         {
             return 0 <= position.X
                 && 0 <= position.Y

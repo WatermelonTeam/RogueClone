@@ -121,7 +121,7 @@
   <Class Name="RogueClone.Monster">
     <Position X="7.25" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAABAAAAgAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAIAAABAAAAgAAAAAA=</HashCode>
       <FileName>Characters\NPCs\Monster.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -187,7 +187,7 @@
   <Class Name="RogueClone.HealthPotion" Collapsed="true">
     <Position X="1" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAABAAAgAIAABAAAAAQAAAAAAAAAAAAggAEAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Consumables\HealthPotion.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -213,11 +213,11 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Struct Name="RogueClone.Point2D" Collapsed="true">
+  <Struct Name="RogueClone.Position" Collapsed="true">
     <Position X="19.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAABgAAAAYiA=</HashCode>
-      <FileName>Point2D.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAABAAABgAAAAYiA=</HashCode>
+      <FileName>Common\Position.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Interface Name="RogueClone.IEngine" Collapsed="true">

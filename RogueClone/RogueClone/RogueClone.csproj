@@ -60,13 +60,17 @@
     <Compile Include="Board\BoardFactory.cs" />
     <Compile Include="Board\BoardsTest.cs" />
     <Compile Include="Characters\Character.cs" />
+    <Compile Include="Common\Move.cs" />
     <Compile Include="Common\Validator.cs" />
+    <Compile Include="InputProviders\IInputProvider.cs" />
     <Compile Include="Items\Gold.cs" />
     <Compile Include="Interfaces\IConsumable.cs" />
     <Compile Include="Items\Consumables\HealthPotion.cs" />
     <Compile Include="Interfaces\IPositionable.cs" />
     <Compile Include="Items\Consumables\ManaPotion.cs" />
-    <Compile Include="Point2D.cs" />
+    <Compile Include="Movements\CharacterMovement.cs" />
+    <Compile Include="Movements\Interfaces\IMovement.cs" />
+    <Compile Include="Common\Position.cs" />
     <Compile Include="Items\Consumables\Consumable.cs" />
     <Compile Include="Game\Engine\IEngine.cs" />
     <Compile Include="Game\Engine\Engine.cs" />
@@ -124,6 +128,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

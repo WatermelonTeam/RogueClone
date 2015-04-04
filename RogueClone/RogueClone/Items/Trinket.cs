@@ -20,7 +20,7 @@ namespace RogueClone
         private const int horseshoeLvl = 2;
 
         public enum trinkets { ring = 'ö', charm = '©', crystal = '♦', pendant = '§', horseshoe = 'Ω' };
-        public Trinket(string name, Point2D position, int value)
+        public Trinket(string name, Position position, int value)
             : base(name, position, value)
         {
         }

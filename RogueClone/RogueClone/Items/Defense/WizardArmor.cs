@@ -7,7 +7,7 @@ namespace RogueClone
 {
 	public class WizardArmor : Armor
 	{
-		public WizardArmor(int neededLevel, Point2D position)
+		public WizardArmor(int neededLevel, Position position)
 			: base(neededLevel, position)
 		{
 
