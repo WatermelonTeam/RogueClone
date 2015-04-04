@@ -33,6 +33,7 @@
         {
             Console.BackgroundColor = GlobalConstants.outsideColor.ToConsoleColor();
             Console.Clear();
+            Console.Title = "░░░░ ROGUECLONE ░░░░";
             foreach (var wall in board.HorizontalWallsPos)
             {
                 Console.SetCursorPosition(wall.X, wall.Y);

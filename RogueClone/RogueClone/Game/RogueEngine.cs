@@ -41,7 +41,7 @@ namespace RogueClone
             //Initialise charaters and items on console!
 
             var gandalf = Rogue.Instance;
-            gandalf.Position = new Position(board.EntryStairPos.X, board.EntryStairPos.Y);
+            gandalf.Position = new Position(board.EntryStairPos.X, board.EntryStairPos.Y + 1);
             gandalf.Health.Current = 50;
             gandalf.Mana.Current = 70;
 
@@ -78,7 +78,7 @@ namespace RogueClone
 
             // var testX = potion.Position.X;
 
-            bool itemStepped = false;
+            bool itemStepped = true;
             int itemDescriptionLength = 0;
             int itemNameLength = 0;
             #endregion
@@ -91,6 +91,7 @@ namespace RogueClone
                     {
                         ConsoleRenderer.RenderItem(item);
                     }
+
                     ConsoleRenderer.RemoveItemDescription(itemNameLength, itemDescriptionLength);
                     itemStepped = false;
                 }

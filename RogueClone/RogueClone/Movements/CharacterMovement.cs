@@ -16,6 +16,11 @@
             {
                 return isInsideBoard;
             }
+            if (newPosition == board.EntryStairPos || newPosition == board.ExitStairPos)
+            {
+                isInsideDungeon = true;
+                return isInsideDungeon;
+            }
             foreach (var doorPos in board.DoorsPos)
             {
                 if (newPosition == doorPos)

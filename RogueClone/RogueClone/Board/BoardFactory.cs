@@ -25,7 +25,7 @@
             this.TotalCols = this.BottomRightCorner.X - this.TopLeftCorner.X + 1;
             this.TotalRows = this.BottomRightCorner.Y - this.TopLeftCorner.Y + 1;
             this.PortionRows = this.TotalRows / 3 + 5;
-            this.PortionCols = this.TotalCols / 3 + 10;
+            this.PortionCols = this.TotalCols / 3 + 12;
 
             this.ItemChance = 35;
             this.MaxItemCount = 7;
@@ -340,10 +340,12 @@
                             else if (atEntryPortion && row == entry.X && col == entry.Y)
                             {
                                 board.EntryStairPos = new Position(x, y);
+                                board.ItemsPos.Add(board.EntryStairPos);
                             }
                             else if (atExitPortion && row == exit.X && col == exit.Y)
                             {
                                 board.ExitStairPos = new Position(x, y);
+                                board.ItemsPos.Add(board.EntryStairPos);
                             }
                             else
                             {
