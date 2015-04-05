@@ -22,7 +22,7 @@
             this.Items = new List<Item>();
         }
 
-        public List<Item> Items { get; private set; } // return copy instead?
+        public ICollection<Item> Items { get; private set; } // return copy instead?
         public Position EntryStairPos { get; set; }
         public Position ExitStairPos { get; set; }
         public Position ShopKeeperPos { get; set; }

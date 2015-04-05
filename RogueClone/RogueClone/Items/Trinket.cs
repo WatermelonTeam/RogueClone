@@ -1,13 +1,13 @@
-﻿using RogueClone.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace RogueClone
+﻿namespace RogueClone
 {
-    
-    public class Trinket : Item
+    using RogueClone.Common;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+
+    public class Trinket : Item, IPositionable
     {
         private const int ringBonus = 10000;
         private const int charmBonus = 500;

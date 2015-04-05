@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class ManaPotion : Potion
+    public class ManaPotion : Potion, IConsumable, IPositionable
     {
         private const int AmountRestored = 50;
         public ManaPotion(int price, int neededLevel, Position position, char icon, int amountRestored)

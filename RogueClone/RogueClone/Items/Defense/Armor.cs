@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RogueClone
 {
-    public abstract class Armor : Item
+    public abstract class Armor : Item, IPositionable
     {
 
 		private int armorValue;

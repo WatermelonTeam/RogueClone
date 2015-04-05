@@ -340,12 +340,10 @@
                             else if (atEntryPortion && row == entry.X && col == entry.Y)
                             {
                                 board.EntryStairPos = new Position(x, y);
-                                board.ItemsPos.Add(board.EntryStairPos);
                             }
                             else if (atExitPortion && row == exit.X && col == exit.Y)
                             {
                                 board.ExitStairPos = new Position(x, y);
-                                board.ItemsPos.Add(board.EntryStairPos);
                             }
                             else
                             {
@@ -369,11 +367,11 @@
                         otherDoor = doorsPositions[j].OrderBy(d => d.X).First();
                         var distance = otherDoor.X - currentDoor.X;
                         var offset = otherDoor.Y - currentDoor.Y;
-                        for (int k = currentDoor.X + 1; k <= currentDoor.X + distance / 2; k++)
+                        for (int k = currentDoor.X - 1; k <= currentDoor.X + distance / 2; k++)
                         {
                             board.CorridorsPos.Add(new Position(k, currentDoor.Y));
                         }
-                        for (int k = currentDoor.X + distance / 2; k < otherDoor.X; k++)
+                        for (int k = currentDoor.X + distance / 2; k <= otherDoor.X + 1; k++)
                         {
                             board.CorridorsPos.Add(new Position(k, otherDoor.Y));
                         }
@@ -392,6 +390,12 @@
                                 board.CorridorsPos.Add(new Position(currentDoor.X + distance / 2, l + otherDoor.Y));
                             }
                         }
+                        //board.DoorsPos.Add(new Position(currentDoor.X - 1, currentDoor.Y));
+                        //board.DoorsPos.Add(new Position(otherDoor.X + 1, otherDoor.Y));
+                        board.FloorsPos.Remove(new Position(currentDoor.X - 1, currentDoor.Y));
+                        board.FloorsPos.Remove(new Position(otherDoor.X + 1, otherDoor.Y));
+                        //board.DoorsPos.Remove(currentDoor);
+                        //board.DoorsPos.Remove(otherDoor);
                         updatedDoorsPos.Add(currentDoor);
                         updatedDoorsPos.Add(otherDoor);
                         break;
@@ -406,11 +410,11 @@
                         otherDoor = doorsPositions[j].OrderBy(d => d.Y).First();
                         var distance = otherDoor.Y - currentDoor.Y;
                         var offset = otherDoor.X - currentDoor.X;
-                        for (int k = currentDoor.Y + 1; k <= currentDoor.Y + distance / 2; k++)
+                        for (int k = currentDoor.Y - 1; k <= currentDoor.Y + distance / 2; k++)
                         {
                             board.CorridorsPos.Add(new Position(currentDoor.X, k));
                         }
-                        for (int k = currentDoor.Y + distance / 2; k < otherDoor.Y; k++)
+                        for (int k = currentDoor.Y + distance / 2; k <= otherDoor.Y + 1; k++)
                         {
                             board.CorridorsPos.Add(new Position(otherDoor.X, k));
                         }
@@ -429,6 +433,12 @@
                                 board.CorridorsPos.Add(new Position(l + otherDoor.X, currentDoor.Y + distance / 2));
                             }
                         }
+                        //board.DoorsPos.Add(new Position(currentDoor.Y - 1, currentDoor.Y));
+                        //board.DoorsPos.Add(new Position(otherDoor.Y + 1, otherDoor.Y));
+                        board.FloorsPos.Remove(new Position(currentDoor.X, currentDoor.Y - 1));
+                        board.FloorsPos.Remove(new Position(otherDoor.X, otherDoor.Y + 1));
+                        //board.DoorsPos.Remove(currentDoor);
+                        //board.DoorsPos.Remove(otherDoor);
                         updatedDoorsPos.Add(currentDoor);
                         updatedDoorsPos.Add(otherDoor);
                         break;

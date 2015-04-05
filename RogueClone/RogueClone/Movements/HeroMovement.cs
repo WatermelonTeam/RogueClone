@@ -2,7 +2,7 @@
 {
     using RogueClone.Common;
     using System;
-    public class CharacterMovement
+    public class HeroMovement
     {
         public static bool IsValidMovement(Board board, Position newPosition)
         {
@@ -63,5 +63,6 @@
             }
             return isInsideDungeon;
         }
+
     }
 }

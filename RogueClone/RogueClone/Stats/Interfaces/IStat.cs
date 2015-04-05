@@ -1,7 +1,5 @@
 ﻿namespace RogueClone.PCs.Interfaces
 {
-    using System;
-
     interface IStat
     {
         int Max { get; }

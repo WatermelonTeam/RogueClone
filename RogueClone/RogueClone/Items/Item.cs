@@ -1,8 +1,8 @@
-﻿using System;
+﻿using RogueClone.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RogueClone.Common;
 
 namespace RogueClone
 {
@@ -90,18 +90,6 @@ namespace RogueClone
         virtual public Color ItemColor
         {
             get { return this.itemColor; }
-        }
-
-        Position IPositionable.Position
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
         }
     }
 }

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace RogueClone
+﻿namespace RogueClone
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
     public struct Position 
     {
         private int x;
@@ -47,9 +46,9 @@ namespace RogueClone
             }
         }
 
-        public double Distance(Position p1, Position p2)
+        public double Distance(Position p)
         {
-            return Math.Sqrt((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y)); 
+            return Math.Sqrt((p.X - this.X) * (p.X - this.X) + (p.Y - this.Y) * (p.Y - this.Y)); 
         }
 
         public override bool Equals(object obj)

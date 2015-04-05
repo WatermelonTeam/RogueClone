@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class RogueArmor : Armor, IDurable
+    public class RogueArmor : Armor, IDurable, IPositionable
     {
 		public RogueArmor(Position position, int neededLevel)
             : base("Rogue Armor", position, neededLevel, Image.RogueArmor, Color.DarkYellow)

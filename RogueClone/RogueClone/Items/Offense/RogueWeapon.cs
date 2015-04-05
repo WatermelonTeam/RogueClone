@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class RogueWeapon : Weapon, IDurable
+    public class RogueWeapon : Weapon, IDurable, IPositionable
     {
 		
 		public RogueWeapon(Position position, int neededLevel)

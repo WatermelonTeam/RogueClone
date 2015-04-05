@@ -1,46 +1,29 @@
 ﻿namespace RogueClone
 {
+    using Common;
+    using RogueClone.Movements;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using RogueClone.Movements;
-    using Common;
 
     public abstract class Hero : Character, IDamageable, IPositionable, IMovable, IKillable
     {
+        
         private Mana heroMana;
         private Level heroLevel;
         private int heroWeapon;
         private int heroArmor;
         private int gold;
 
-        private Position position;
-
-        protected Hero(string name, int maxHealth, Mana mana, Level level, int weapon, int armor, int gold, Position position, Image icon, Color color)
-            : base(name, maxHealth, icon, color)
+        protected Hero(string name, Position position, int maxHealth, Mana mana, Level level, int weapon, int armor, int gold, Image icon, Color color)
+            : base(name, position, maxHealth, icon, color)
         {
             this.Mana = mana;
             this.Level = level;
             this.Weapon = weapon;
             this.Armor = armor;
             this.Gold = gold;
-            this.Position = position;
-        }
-        public Position Position
-        {
-            get
-            {
-                return this.position;
-            }
-            set // validate
-            {
-                if (!IsValidPosition(value))
-                {
-                    throw new ArgumentOutOfRangeException(string.Format("The initial position was ({0},{1}). Valid range is ([{2},{3}),[{2},{4}))", value.X, value.Y, 0, RogueEngine.ConsoleWidth, (RogueEngine.ConsoleHeight - ConsoleRenderer.StatsPanelHeight)));
-                }
-                this.position = value;
-            }
         }
 
         // event before properties !
@@ -183,17 +166,11 @@
 
         public void MoveTo(Board board, Position newPosition)
         {
-            if (CharacterMovement.IsValidMovement(board, newPosition))
+            if (HeroMovement.IsValidMovement(board, newPosition))
             {
                 this.Position = newPosition;
             }
         }
-        private bool IsValidPosition(Position position) // later add validation for walls, monsters etc.
-        {
-            return 0 <= position.X 
-                && 0 <= position.Y 
-                && position.X < RogueEngine.ConsoleWidth
-                && position.Y < RogueEngine.ConsoleHeight - ConsoleRenderer.StatsPanelHeight;
-        }
+        
     }
 }

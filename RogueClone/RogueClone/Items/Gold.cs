@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Gold : Item
+    public class Gold : Item, IPositionable
     {
         public Gold(Position position, int value)
             : base("Gold", string.Format("Gold +{0}", value), value, 1, position, Image.Gold, Color.Green)
