@@ -6,20 +6,36 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Gold : Item
+    public class Gold : Item, IPositionable
     {
-        public Gold(Position position, int value)
-            : base("Gold", string.Format("Gold +{0}", value), value, 1, position, Image.Gold, Color.Green)
+        private static Random rand = new Random();
+        private static int random = rand.Next(1, 10);
+        public Gold(Position position)
+            : base("Gold", "", 0, 1, position, Image.Gold, Color.Green)
         {
         }
-        public override string Name { get { return "Gold"; } }
-        //public override string Description
-        //{
-        //    get
-        //    {
-        //        return string.Format("Gold +{0}", this.Value);
-        //    }
-        //}
+        public override string Description
+        {
+            get
+            {
+                return string.Format("Gold +{0}", this.Value);
+            }
+        }
+        public override int Value
+        {
+            get
+            {
+                switch (random)
+                {
+                    case 1: return 100;
+                    case 2: return 200;
+                    case 3: return 300;
+                    case 4: return 400;
+                    case 5: return 500;
+                    default: return 50;
+                }
+            }
+        }
         //public override Image Icon 
         //{ 
         //    get 

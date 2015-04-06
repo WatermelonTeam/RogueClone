@@ -1,14 +1,14 @@
 ﻿namespace RogueClone
 {
-    using System;
     using Common;
+    using System;
 
-    public class Monster : NPC, IDamageable, IKillable, IPositionable
+    public class Monster : NPC, IDamageable, IKillable, IPositionable, IMovable
     {
         private int level;
 
-        public Monster(string name, int level, int maxHP, int damage, int xpGain, Position position)
-            : base(name, maxHP, Image.Monster, Color.DarkRed)
+        public Monster(string name, Position position, int level, int maxHP, int damage, int xpGain)
+            : base(name, position, maxHP, Image.Monster, Color.DarkRed)
         {
             base.Damage = damage;
             base.XPGain = xpGain;
@@ -30,6 +30,10 @@
                 this.level = value;
             }
         }
-        public Position Position { get; set; }
+
+        public void MoveTo(Board board, Position newPosition)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

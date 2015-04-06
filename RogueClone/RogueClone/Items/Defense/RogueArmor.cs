@@ -6,12 +6,11 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class RogueArmor : Armor, IDurable
+    public class RogueArmor : Armor, IDurable, IPositionable
     {
-		public RogueArmor(Position position, int neededLevel)
-            : base("Rogue Armor", position, neededLevel, Image.RogueArmor, Color.DarkYellow)
+		public RogueArmor(Position position, int value, int neededLevel)
+            : base("Rogue Armor", position, value, neededLevel, Image.RogueArmor, Color.DarkRed)
 		{
-
 		}
 		//all items shall be one color so the player cant possibly know what item he is going to pick !
 

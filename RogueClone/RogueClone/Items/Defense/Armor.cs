@@ -6,13 +6,13 @@ using System.Text;
 
 namespace RogueClone
 {
-    public abstract class Armor : Item
+    public abstract class Armor : Item, IPositionable
     {
 
 		private int armorValue;
 
-        public Armor(string name, Position position, int neededLevel, Image icon, Color color)
-            : base(name, position, neededLevel, icon, color)
+        public Armor(string name, Position position, int value, int neededLevel, Image icon, Color color)
+            : base(name, position, value, neededLevel, icon, color)
 		{
 			//random armorValue for every level
 			switch (neededLevel)
@@ -32,6 +32,9 @@ namespace RogueClone
 				case 5:
 					armorValue = rnd.Next(28, 37);
 					break;
+                default:
+                    armorValue = rnd.Next(37, 100);
+                    break;
 			}
 		}
         virtual public int ArmorValue

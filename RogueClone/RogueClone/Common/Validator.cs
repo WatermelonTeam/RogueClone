@@ -28,6 +28,10 @@
             {
                 throw new ArgumentException("Name can't be empty, null or whitespace.");
             }
+            if (value.Length > GlobalConstants.MaxNameLength)
+            {
+                throw new ArgumentOutOfRangeException(string.Format("Name is too long. Max length {0}", GlobalConstants.MaxNameLength));
+            }
 
             return value;
         }

@@ -6,11 +6,11 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class RogueWeapon : Weapon, IDurable
+    public class RogueWeapon : Weapon, IDurable, IPositionable
     {
 		
-		public RogueWeapon(Position position, int neededLevel)
-            : base("Rogue Weapon", position, neededLevel, Image.RogueWeapon, Color.DarkYellow)
+		public RogueWeapon(Position position, int value, int neededLevel)
+            : base("Rogue Weapon", position, value, neededLevel, Image.RogueWeapon, Color.DarkRed)
 		{
 
 		}

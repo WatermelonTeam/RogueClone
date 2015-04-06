@@ -1,5 +1,7 @@
 ﻿namespace RogueClone
 {
+    using RogueClone.Common;
+    using System.Linq;
     using System;
 
     public static class BoardsTest
@@ -19,66 +21,79 @@
                 Console.BackgroundColor = outsideColour;
                 Console.Clear();          
                 Board board = factory.GenerateBoard();
-                foreach (var wall in board.HorizontalWallsPos)
-                {
-                    Console.SetCursorPosition(wall.X, wall.Y);
-                    Console.Write(Floor);
-                    //Console.Write('─');
-                }
-                foreach (var wall in board.VerticalWallsPos)
-                {
-                    Console.SetCursorPosition(wall.X, wall.Y);
-                    Console.Write(Floor);
-                    //Console.Write('│');
-                }
-                foreach (var corner in board.CornersPos)
-                {
-                    Console.SetCursorPosition(corner.X, corner.Y);
-                    Console.Write(Floor);
-                    //Console.Write('+');
-                }
-                Console.BackgroundColor = roomColour;
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.SetCursorPosition(board.EntryStairPos.X, board.EntryStairPos.Y);
-                Console.Write('0');
+                Console.CursorVisible = false;
+                Console.OutputEncoding = System.Text.Encoding.Unicode;
 
+                Console.Title = "░░░░ ROGUECLONE ░░░░";
 
-                Console.SetCursorPosition(board.ExitStairPos.X, board.ExitStairPos.Y);
-                Console.Write('1');
-
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.SetCursorPosition(board.ShopKeeperPos.X, board.ShopKeeperPos.Y);
-                Console.Write('%');
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                foreach (var item in board.ItemsPos)
+                //foreach (var wall in board.HorizontalWallsPos)
+                //{
+                //    Console.SetCursorPosition(wall.X, wall.Y);
+                //    Console.Write(' ');
+                //}
+                //foreach (var wall in board.VerticalWallsPos)
+                //{
+                //    Console.CursorTop = wall.Y;
+                //    Console.CursorLeft = wall.X;
+                //    Console.Write(' ');
+                //}
+                //foreach (var corner in board.CornersPos)
+                //{
+                //    Console.CursorTop = corner.Y;
+                //    Console.CursorLeft = corner.X;
+                //    Console.Write(' ');
+                //}
+                Console.BackgroundColor = GlobalConstants.RoomColor.ToConsoleColor();
+                var commonWalkableDungeon = board.FloorsPos.Concat(board.CorridorsPos).ToArray();
+                for (int i = 0; i < commonWalkableDungeon.Length; i++)
                 {
-                    Console.SetCursorPosition(item.X, item.Y);
+                    Console.SetCursorPosition(commonWalkableDungeon[i].X, commonWalkableDungeon[i].Y);
+                    Console.Write(' ');
+                }
+                //foreach (var door in board.DoorsPos)
+                //{
+                //    Console.CursorTop = door.Y;
+                //    Console.CursorLeft = door.X;
+                //    Console.Write(' ');
+                //}
+                //foreach (var floor in board.FloorsPos)
+                //{
+                //    Console.CursorTop = floor.Y;
+                //    Console.CursorLeft = floor.X;
+                //    Console.Write(' ');
+                //}
+                //foreach (var corridor in board.CorridorsPos)
+                //{
+                //    Console.CursorTop = corridor.Y;
+                //    Console.CursorLeft = corridor.X;
+                //    Console.Write(' ');
+                //}
+
+                Console.ForegroundColor = Color.Magenta.ToConsoleColor(); // constant?
+                foreach (var item in board.PositionableObjects) ///////////////////////// fix remnant of an item at (0,0)
+                {
+                    Console.CursorTop = item.Position.Y;
+                    Console.CursorLeft = item.Position.X;
                     Console.Write('?');
                 }
-                Console.ForegroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = Color.Green.ToConsoleColor(); // constant?
                 foreach (var pile in board.GoldPositionsPos)
                 {
-                    Console.SetCursorPosition(pile.X, pile.Y);
+                    Console.CursorTop = pile.Y;
+                    Console.CursorLeft = pile.X;
                     Console.Write('$');
                 }
-                Console.BackgroundColor = roomColour;
-                foreach (var door in board.DoorsPos)
-                {
-                    Console.SetCursorPosition(door.X, door.Y);
-                    Console.Write(Floor);
-                    //Console.Write('/');
-                }
-                foreach (var floor in board.FloorsPos)
-                {
-                    Console.SetCursorPosition(floor.X, floor.Y);
-                    Console.Write(Floor);
-                    //Console.Write(':');
-                }
-                foreach (var corridor in board.CorridorsPos)
-                {
-                    Console.SetCursorPosition(corridor.X, corridor.Y);
-                    Console.Write(Floor);
-                }
+                Console.BackgroundColor = Color.Black.ToConsoleColor();
+                Console.ForegroundColor = Color.Red.ToConsoleColor(); // constant?
+                Console.SetCursorPosition(board.EntryStairPos.X, board.EntryStairPos.Y);
+                Console.Write('≡');
+                Console.ForegroundColor = Color.Green.ToConsoleColor();
+                Console.SetCursorPosition(board.ExitStairPos.X, board.ExitStairPos.Y);
+                Console.Write('≡');
+                Console.BackgroundColor = GlobalConstants.RoomColor.ToConsoleColor();
+                Console.ForegroundColor = Color.Yellow.ToConsoleColor(); // constant?
+                Console.SetCursorPosition(board.ShopKeeperPos.X, board.ShopKeeperPos.Y);
+                Console.Write('%');
                 Console.ReadKey();
             }
         }

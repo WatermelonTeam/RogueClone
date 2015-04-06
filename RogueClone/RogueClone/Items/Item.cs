@@ -1,8 +1,8 @@
-﻿using System;
+﻿using RogueClone.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RogueClone.Common;
 
 namespace RogueClone
 {
@@ -23,31 +23,36 @@ namespace RogueClone
         {
             // remember to remove this constructor !
         }
-        public Item(Position position)
+        public Item(string name, Position position)
         {
+            this.itemName = name;
             this.position = position;
         }
 		//added new constructor so i can randomize the armorvalue and the damage :)
-		public Item(int neededLevel, Position position)
-			:this(position)
+		public Item(string name, int neededLevel, Position position)
+			:this(name, position)
 		{
 			this.itemNeededLevel = neededLevel;
 		}
-        public Item(Position position, int value)
-            : this(position)
+        public Item(string name, Position position, int value)
+            : this(name, position)
         {
             this.itemValue = value;
         }
         public Item(string name, Position position, int value, Image icon, Color color)
-            : this(position, value)
+            : this(name, position, value)
         {
             this.itemIcon = icon;
             this.itemColor = color;
-            this.itemName = name; // assign it only once because it is readonly
+        }
+        public Item(string name, Position position, int value, int neededLevel, Image icon, Color color)
+            : this(name, position, value, icon, color)
+        {
+            this.itemNeededLevel = neededLevel;
         }
 
         public Item(string name, string description, int value, int neededLevel, Position position, Image icon, Color color)
-            : this(name, position, value, icon, color)
+            : this(name, position, value, neededLevel, icon, color)
         {
             this.itemDescription = description;
             this.itemNeededLevel = neededLevel;
@@ -59,7 +64,7 @@ namespace RogueClone
 
         virtual public string Name
         { 
-            get { return this.itemName; } 
+            get { return this.itemName; }
         }
         virtual public string Description
         {
@@ -90,18 +95,6 @@ namespace RogueClone
         virtual public Color ItemColor
         {
             get { return this.itemColor; }
-        }
-
-        Position IPositionable.Position
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
         }
     }
 }

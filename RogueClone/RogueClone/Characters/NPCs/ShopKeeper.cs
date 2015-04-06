@@ -1,17 +1,16 @@
 ﻿namespace RogueClone
 {
-    using System;
-    using System.Linq;
-    using System.Collections.Generic;
-
     using Common;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
-    public class ShopKeeper : NPC, IDamageable, IKillable
+    public class ShopKeeper : NPC, IDamageable, IKillable, IPositionable
     {
         private ICollection<Item> items;
 
-        public ShopKeeper(string name, int maxHealth, ICollection<Item> items) // maxHealth can be set as a constant for the shopkeeper class
-            : base(name, maxHealth, Image.ShopKeeper, Color.Magenta)
+        public ShopKeeper(string name, Position position, int maxHealth, ICollection<Item> items) // maxHealth can be set as a constant for the shopkeeper class
+            : base(name, position, maxHealth, Image.ShopKeeper, Color.Yellow)
         {
             this.Items = items;
         }

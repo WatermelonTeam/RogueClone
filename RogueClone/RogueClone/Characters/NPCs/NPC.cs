@@ -1,10 +1,9 @@
 ﻿namespace RogueClone
 {
+    using Common;
     using System;
 
-    using Common;
-
-    public abstract class NPC : Character, IDamageable, IKillable
+    public abstract class NPC : Character, IDamageable, IKillable, IPositionable
     {
         private const int DefaultXPGain = 0;
         private const int DefaultDamage = 0;
@@ -12,8 +11,8 @@
         private int xpGain;
         private int damage;
 
-        protected NPC(string name, int maxHealth, Image icon, Color color)
-            : base(name, maxHealth, icon, color)
+        protected NPC(string name, Position position, int maxHealth, Image icon, Color color)
+            : base(name, position, maxHealth, icon, color)
         {
             this.XPGain = NPC.DefaultXPGain;
             this.Damage = NPC.DefaultDamage;

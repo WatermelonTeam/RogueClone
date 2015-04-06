@@ -3,9 +3,8 @@
     using RogueClone.Common;
     using System;
 
-    public interface IInputProvider
+    public interface IConsoleIInputProvider
     {
-
-        Move GetNextPlayerMove(Hero hero);
+        void SetMovement(Board board, IMovable hero);
     }
 }

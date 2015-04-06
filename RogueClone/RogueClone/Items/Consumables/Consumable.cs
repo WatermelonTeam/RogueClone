@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RogueClone
 {
-    public abstract class Consumable : Item, IConsumable
+    public abstract class Consumable : Item, IConsumable, IPositionable
     {
         private int amountStatsRestored;
         public Consumable(string name, string description, int price, int neededLevel, Position position, Image icon, Color color, int amountRestored)
@@ -15,8 +15,8 @@ namespace RogueClone
             this.amountStatsRestored = amountRestored;
         }
 
-        public Consumable(Position position)
-            : base(position)
+        public Consumable(string name, Position position)
+            : base(name, position)
         {
         }
 
