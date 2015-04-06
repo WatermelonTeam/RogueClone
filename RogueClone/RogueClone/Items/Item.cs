@@ -23,35 +23,35 @@ namespace RogueClone
         {
             // remember to remove this constructor !
         }
-        public Item(string name, Position position)
+        protected Item(string name, Position position)
         {
             this.itemName = name;
             this.position = position;
         }
 		//added new constructor so i can randomize the armorvalue and the damage :)
-		public Item(string name, int neededLevel, Position position)
+        protected Item(string name, int neededLevel, Position position)
 			:this(name, position)
 		{
 			this.itemNeededLevel = neededLevel;
 		}
-        public Item(string name, Position position, int value)
+        protected Item(string name, Position position, int value)
             : this(name, position)
         {
             this.itemValue = value;
         }
-        public Item(string name, Position position, int value, Image icon, Color color)
+        protected Item(string name, Position position, int value, Image icon, Color color)
             : this(name, position, value)
         {
             this.itemIcon = icon;
             this.itemColor = color;
         }
-        public Item(string name, Position position, int value, int neededLevel, Image icon, Color color)
+        protected Item(string name, Position position, int value, int neededLevel, Image icon, Color color)
             : this(name, position, value, icon, color)
         {
             this.itemNeededLevel = neededLevel;
         }
 
-        public Item(string name, string description, int value, int neededLevel, Position position, Image icon, Color color)
+        protected Item(string name, string description, int value, int neededLevel, Position position, Image icon, Color color)
             : this(name, position, value, neededLevel, icon, color)
         {
             this.itemDescription = description;

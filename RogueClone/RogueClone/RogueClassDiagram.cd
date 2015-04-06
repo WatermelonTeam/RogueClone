@@ -3,14 +3,14 @@
   <Class Name="RogueClone.Board" Collapsed="true">
     <Position X="19.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAAAAACAAgASAAEAEAAAAAAAAAAgFAAAAEBAA=</HashCode>
+      <HashCode>AAAEAAAAAgAAAAAggSAAEAEAAAAAAAAAAgFAAAAEBAA=</HashCode>
       <FileName>Board\Board.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RogueClone.BoardFactory" Collapsed="true">
     <Position X="21" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>JABQCJAAQAAQBACAEAAIAAAIAABAgAIUBIACAGAAEAA=</HashCode>
+      <HashCode>BABQCKAIBAEQBAAAAAAMAAAIAAAAgIAEDIAAAEAAEBA=</HashCode>
       <FileName>Board\BoardFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -32,7 +32,7 @@
   <Class Name="RogueClone.Hero" Collapsed="true">
     <Position X="6" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEAAAQARIAAAAgGoAABgAAAAAAAIAEgBEAAAoAAgAAE=</HashCode>
+      <HashCode>AAAAAQABIAAAAgOgAAAgAAEAAAAIAAgBEAAAoAAAAAE=</HashCode>
       <FileName>Characters\Hero\Hero.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -80,7 +80,7 @@
   <Class Name="RogueClone.ConsoleRenderer" Collapsed="true">
     <Position X="21" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>UCBEAIdBAAwABAwAAAgAgAAAEEAAgBBAhEACAAiAAAE=</HashCode>
+      <HashCode>UCBEAIdFAAwABAwAAAgAgAAAEEAAgBBAhEACAAiAAEE=</HashCode>
       <FileName>Game\Renderers\ConsoleRenderer.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -93,7 +93,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="RogueClone.GameMain" Collapsed="true">
-    <Position X="22.75" Y="1.5" Width="1.5" />
+    <Position X="22.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>GameMain.cs</FileName>
@@ -158,7 +158,7 @@
   <Class Name="RogueClone.Gold" Collapsed="true">
     <Position X="5.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <HashCode>AAAAAIAAAAAgAAAAAAAAAAAAAAAAAAAAAAUgAAAAAAA=</HashCode>
       <FileName>Items\Gold.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -166,7 +166,7 @@
   <Class Name="RogueClone.Item" Collapsed="true">
     <Position X="8.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEQAEABEAgAAEiBAAAIAQAABAAAAAAAgAgAAEAAAA=</HashCode>
+      <HashCode>AAAEQAAABEAgAAEiBAAAIAQAABAAAAAAAgAgAAEAAAA=</HashCode>
       <FileName>Items\Item.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -198,7 +198,7 @@
   <Class Name="RogueClone.Trinket" Collapsed="true">
     <Position X="16.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAEAAAxAAAABAAACAAABAAAAAAKAAEAAQEAAAA=</HashCode>
+      <HashCode>AAQAAJEAqQEkEAAIhCAAAAQAAAoAAIQAAAMgAAEAAAA=</HashCode>
       <FileName>Items\Trinket.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -214,7 +214,7 @@
   <Class Name="RogueClone.Level" Collapsed="true">
     <Position X="19.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAFAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAFAACAAAAAACCAAAA=</HashCode>
       <FileName>Stats\Level.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -244,12 +244,12 @@
   <Class Name="RogueClone.Common.GlobalConstants" Collapsed="true">
     <Position X="24.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAAAAAQAAAAAAAAAACAAgAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <HashCode>ABAABAAAAAAAAAACAAAAAAAAgAAAAAAAAAAAAAgAIAA=</HashCode>
       <FileName>Common\GlobalConstants.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RogueClone.Common.Validator" Collapsed="true">
-    <Position X="22.75" Y="2.5" Width="1.5" />
+    <Position X="22.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAEEAAAAAAAAAQgAAAAAAEAAAAAA=</HashCode>
       <FileName>Common\Validator.cs</FileName>
@@ -260,6 +260,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Movements\HeroMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RogueClone.BoardPositionable" Collapsed="true">
+    <Position X="24.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAQAAAAAAEAAAAAAQAAAAAAAIAAAACAAAAAAA=</HashCode>
+      <FileName>Board\BoardPositionable.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="RogueClone.Position" Collapsed="true">
@@ -342,7 +349,7 @@
   <Interface Name="RogueClone.InputProviders.IConsoleIInputProvider" Collapsed="true">
     <Position X="24.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>InputProviders\IConsoleIInputProvider.cs</FileName>
     </TypeIdentifier>
   </Interface>

@@ -9,7 +9,7 @@ namespace RogueClone
 {
     public abstract class Potion : Consumable, IConsumable, IPositionable
     {
-        public Potion(string name, string description, int price, int neededLevel, Position position, Image icon, Color color, int amountRestored)
+        protected Potion(string name, string description, int price, int neededLevel, Position position, Image icon, Color color, int amountRestored)
             : base(name, description, price, neededLevel, position, icon, color, amountRestored)
         { 
         }

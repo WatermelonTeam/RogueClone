@@ -11,7 +11,7 @@ namespace RogueClone
 
 		private int armorValue;
 
-        public Armor(string name, Position position, int value, int neededLevel, Image icon, Color color)
+        protected Armor(string name, Position position, int value, int neededLevel, Image icon, Color color)
             : base(name, position, value, neededLevel, icon, color)
 		{
 			//random armorValue for every level

@@ -6,12 +6,12 @@ using System.Text;
 
 namespace RogueClone
 {
-    public class Weapon : Item, IPositionable
+    public abstract class Weapon : Item, IPositionable
 	{
 
 		private int damage;
 
-        public Weapon(string name, Position position, int value, int neededLevel, Image icon, Color color)
+        protected Weapon(string name, Position position, int value, int neededLevel, Image icon, Color color)
             : base(name, position, value, neededLevel, icon, color)
 		{
 			//random damage for every level of the weapon,just like the armorValue
