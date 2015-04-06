@@ -8,8 +8,8 @@ namespace RogueClone
 {
     public class WizardArmor : Armor, IPositionable
 	{
-		public WizardArmor(Position position, int neededLevel)
-            : base("Wizard Armor", position, neededLevel, Image.WizardArmor, Color.DarkYellow)
+		public WizardArmor(Position position, int value, int neededLevel)
+            : base("Wizard Armor", position, value, neededLevel, Image.WizardArmor, Color.DarkRed)
 		{
 
 		}

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using RogueClone.Common;
-using RogueClone;
-using RogueClone.InputProviders;
-namespace RogueClone
+﻿namespace RogueClone
 {
-    
-
+    using RogueClone;
+    using RogueClone.Common;
+    using RogueClone.InputProviders;
+    using System;
+    using System.Collections.Generic;
     public sealed class RogueEngine : IEngine
     {
         private readonly ConsoleInputProvider input;
@@ -33,9 +28,10 @@ namespace RogueClone
         {
             bool itemStepped = true;
             bool stairsSteppedOn = true;
-            bool isNExtToCharacter = false;
+            bool isNextToCharacter = false;
             int itemDescriptionLength = 0;
             int itemNameLength = 0;
+            ConsoleRenderer.RenderAllItems(board.PositionableObjects);
             while (true)
             {
                 input.SetMovement(board, hero);
@@ -74,13 +70,13 @@ namespace RogueClone
                 }
                 if (itemStepped)
                 {
-                    ConsoleRenderer.RenderAllItems(board.Items);
+                    ConsoleRenderer.RenderAllItems(board.PositionableObjects);
                     ConsoleRenderer.RemoveDescription(itemNameLength, itemDescriptionLength);
                     itemStepped = false;
                 }
-                if (isNExtToCharacter)
+                if (isNextToCharacter)
                 {
-                    ConsoleRenderer.RenderAllItems(board.Items);
+                    ConsoleRenderer.RenderAllItems(board.PositionableObjects);
                     ConsoleRenderer.RemoveDescription(itemNameLength, itemDescriptionLength);
                     itemStepped = false;
                 }
@@ -88,62 +84,31 @@ namespace RogueClone
                 ConsoleRenderer.RenderStats(hero, boardLevel);
                 //Always render the hero at the end so he can be on top on all the items and monsters !
                 ConsoleRenderer.RenderCharacter(hero);
-                foreach (var item in board.Items)
+
+                foreach (var positionable in board.PositionableObjects)
                 {
-                    if (hero.Position == item.Position)
+                    if (positionable is Character)
                     {
-                        ConsoleRenderer.RenderItemDescription(item);
-                        itemDescriptionLength = item.Description.Length;
-                        itemNameLength = item.Name.Length;
-                        itemStepped = true;
-                        this.steppedOnItem = (char)item.Icon;
-                        this.itemColor = item.ItemColor.ToConsoleColor();
-                        if (item is IConsumable && hero.Level.CurrentLevel >= item.NeededLvl)
+                        if (hero.Position.Distance(positionable.Position) < 1.5)
                         {
-                            hero.UseConsumable(item);
-                            RemoveItemFromBoard(item, board);
+                            ConsoleRenderer.RenderCharacterDescription(positionable as Character);
+                            isNextToCharacter = true;
+                        }
+                    }
+                    
+                    if (hero.Position == positionable.Position)
+                    {
+                        if (positionable is Item)
+                        {
+                            ConsoleRenderer.RenderItemDescription(positionable as Item);
+                            itemDescriptionLength = (positionable as Item).Description.Length;
+                            itemNameLength = (positionable as Item).Name.Length;
+                            itemStepped = true;
+                            this.steppedOnItem = (char)(positionable as Item).Icon;
+                            this.itemColor = (positionable as Item).ItemColor.ToConsoleColor();
+                            hero.TakeItem(positionable, board);
                             break;
                         }
-                        if (item is Gold)
-                        {
-                            hero.TakeGold(item);
-                            RemoveItemFromBoard(item, board);
-                            break;
-                        }
-                        if (item is Trinket && hero.Level.CurrentLevel >= item.NeededLvl)
-                        {
-                            hero.TakeTrinket(item);
-                            RemoveItemFromBoard(item, board);
-                            break;
-                        }
-						//i made gandalf rouge to try if he can pick armors
-						//TODO: have to implement how to do the dodge and durability stuff
-                        if (item is RogueArmor && hero is Rogue && hero.Level.CurrentLevel >= item.NeededLvl)
-						{
-                            hero.TakeRogueArmor(item);
-                            RemoveItemFromBoard(item, board);
-							break;
-						}
-						
-						//trying to pick rogue weapons(working) :D
-                        if (item is RogueWeapon && hero is Rogue && hero.Level.CurrentLevel >= item.NeededLvl)
-						{
-
-                            hero.TakeRogueWeapon(item);
-                            RemoveItemFromBoard(item, board);
-							break;
-						}
-						//trying if gandalf is wizard :)
-
-						//if (item is WizardWeapon && gandalf is Wizard && gandalf.Level.CurrentLevel >= item.NeededLvl)
-						//{
-						//
-						//	gandalf.TakeWizardWeapon(item);
-						//	items.Remove(item);
-						//	this.steppedOnItem = ' ';
-						//	this.itemColor = ConsoleColor.White;
-						//	break;
-						//}
 
 						//tell me what shall i implement for the wizard armor ...please "ArmorSpell" WTF ?! :D
 						//if(item is WizardArmor && gandalf is Wizard && gandalf.Level.CurrentLevel>=item.NeededLvl)
@@ -155,18 +120,13 @@ namespace RogueClone
 						//	break;
 						//}
                     }
-                    if (hero.Position.Distance(board.ShopKeeperPos) < 1.5)
-                    {
-                        ConsoleRenderer.RenderCharacterDescription(new ShopKeeper("Eeldo Tayn", board.ShopKeeperPos, 100, board.Items));
-                        isNExtToCharacter = true;
-                    }
+                    
                     
 
                     /*
                     Implement later :   
                     
                     if weapon
-                    if trinket
                     if armor
                       
                     */
@@ -175,11 +135,11 @@ namespace RogueClone
             }
         }
 
-        private static void RemoveItemFromBoard(IPositionable item, Board board)
-        {
-            board.FloorsPos.Add(item.Position);
-            board.Items.Remove((Item)item);
-        }
+        //public static void RemoveItemFromBoard(IPositionable item, Board board)
+        //{
+        //    board.FloorsPos.Add(item.Position);
+        //    board.PositionableObjects.Remove((Item)item);
+        //}
 
         /// <summary>
         /// Main game logic goes here ? Am I doing this right ? :D WE NEED AN ENGINE !
@@ -192,22 +152,23 @@ namespace RogueClone
             int boardLevel = 0;
             int boardLevelChange = 0;
             var playedBoards = new List<Board>();
-            var gandalf = Rogue.Instance;
-            gandalf.Health.Current = 50;
-            gandalf.Mana.Current = 70;
+            var hero = Wizard.Instance;
+            hero.Name = "Nathan Rahl";
+            hero.Health.Current = 50;
+            hero.Mana.Current = 70;
 
             while (!isDead)
             {
                 if (boardLevelChange >= 0)
                 {
-                    gandalf.Position = new Position(board.EntryStairPos.X, board.EntryStairPos.Y);
+                    hero.Position = new Position(board.EntryStairPos.X, board.EntryStairPos.Y);
                 }
                 else
                 {
-                    gandalf.Position = new Position(board.ExitStairPos.X, board.ExitStairPos.Y);
+                    hero.Position = new Position(board.ExitStairPos.X, board.ExitStairPos.Y);
                 }
-                ConsoleRenderer.RenderPlayingScreen(gandalf, board, boardLevel);
-                boardLevelChange = PlayBoard(board, playedBoards, gandalf, boardLevel);
+                ConsoleRenderer.RenderPlayingScreen(hero, board, boardLevel);
+                boardLevelChange = PlayBoard(board, playedBoards, hero, boardLevel);
                 boardLevel += boardLevelChange;
                 if (boardLevel == playedBoards.Count)
                 {

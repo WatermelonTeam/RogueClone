@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Board\Board.cs" />
     <Compile Include="Board\BoardFactory.cs" />
+    <Compile Include="Board\BoardPositionable.cs" />
     <Compile Include="Board\BoardsTest.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Common\Colour.cs" />

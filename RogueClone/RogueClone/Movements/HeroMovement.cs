@@ -21,12 +21,11 @@
                 isInsideDungeon = true;
                 return isInsideDungeon;
             }
-            foreach (var doorPos in board.DoorsPos)
+            foreach (var item in board.PositionableObjects)
             {
-                if (newPosition == doorPos)
+                if (item is Character && newPosition == item.Position)
                 {
-                    isInsideDungeon = true;
-                    return isInsideDungeon;
+                    return false;
                 }
             }
             foreach (var corridorPos in board.CorridorsPos)
@@ -40,22 +39,6 @@
             foreach (var floorPos in board.FloorsPos)
             {
                 if (newPosition == floorPos)
-                {
-                    isInsideDungeon = true;
-                    return isInsideDungeon;
-                }
-            }
-            foreach (var itemPos in board.ItemsPos)
-            {
-                if (newPosition == itemPos)
-                {
-                    isInsideDungeon = true;
-                    return isInsideDungeon;
-                }
-            }
-            foreach (var goldPos in board.GoldPositionsPos)
-            {
-                if (newPosition == goldPos)
                 {
                     isInsideDungeon = true;
                     return isInsideDungeon;

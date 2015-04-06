@@ -6,17 +6,21 @@
 
     public class BoardFactory
     {
+        private readonly ICollection<BoardPositionable> BoardPositionables;
+
+        private const int MaxItemCount = 5;
+        private const int MaxShopkeeperCount = 1;
+        private const int MaxGoldCount = 10;
+        private const int ItemLargeProbability = 10;
+        private const int ItemSmallProbability = 5;
+        private const int ShopkeeperProbability = 10;
+        private const int GoldProbability = 25;
         private const int MinRoomRows = 5;
         private const int MinRoomCols = 10;
 
         private static Random rand = new Random();
         private int totalRows;
         private int totalCols;
-        private int itemChance;
-        private int maxItemCount;
-        private int goldChance;
-        private int maxGoldCount;
-        private int shopKeeperChance;
 
         public BoardFactory(Position topLeftCorner, Position bottomRightCorner)
         {
@@ -27,92 +31,23 @@
             this.PortionRows = this.TotalRows / 3 + 5;
             this.PortionCols = this.TotalCols / 3 + 12;
 
-            this.ItemChance = 35;
-            this.MaxItemCount = 7;
-            this.GoldChance = 35;
-            this.MaxGoldCount = 10;
-            this.ShopKeeperChance = 100; //Change this to 10;
-        }
-
-        public int ItemChance
-        {
-            get
+            BoardPositionables = new List<BoardPositionable>()
             {
-                return this.itemChance;
-            }
-            set
-            {
-                if (value < 0 || value > 100)
-                {
-                    throw new ArgumentException("Chance must be between 0 and 100.");
-                }
-
-                this.itemChance = value;
-            }
-        }
-        public int MaxItemCount
-        {
-            get
-            {
-                return this.maxItemCount;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("MaxItemCount can't be less than zero.");
-                }
-
-                this.maxItemCount = value;
-            }
-        }
-        public int GoldChance
-        {
-            get
-            {
-                return this.goldChance;
-            }
-            set
-            {
-                if (value < 0 || value > 100)
-                {
-                    throw new ArgumentException("Chance must be between 0 and 100.");
-                }
-
-                this.goldChance = value;
-            }
-        }
-        public int MaxGoldCount
-        {
-            get
-            {
-                return this.maxGoldCount;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("MaxGoldCount can't be less than zero.");
-                }
-
-                this.maxGoldCount = value;
-            }
-        }
-        public int ShopKeeperChance
-        {
-            get
-            {
-                return this.shopKeeperChance;
-            }
-            set
-            {
-                if (value < 0 || value > 100)
-                {
-                    throw new ArgumentException("Chance must be between 0 and 100.");
-                }
-
-                this.shopKeeperChance = value;
-            }
+                new BoardPositionable("Gold", GoldProbability, MaxGoldCount),
+                new BoardPositionable("HealthPotion", ItemLargeProbability, MaxItemCount),
+                new BoardPositionable("ManaPotion", ItemLargeProbability, MaxItemCount),
+                new BoardPositionable("RogueArmorStrong", ItemSmallProbability, MaxItemCount),
+                new BoardPositionable("RogueArmorWeak", ItemSmallProbability, MaxItemCount),
+                new BoardPositionable("WizardArmorStrong", ItemSmallProbability, MaxItemCount),
+                new BoardPositionable("WizardArmorWeak", ItemSmallProbability, MaxItemCount),
+                new BoardPositionable("RogueWeaponStrong", ItemSmallProbability, MaxItemCount),
+                new BoardPositionable("RogueWeaponWeak", ItemSmallProbability, MaxItemCount),
+                new BoardPositionable("WizardWeaponStrong", ItemSmallProbability, MaxItemCount), 
+                new BoardPositionable("WizardWeaponWeak", ItemSmallProbability, MaxItemCount),
+                new BoardPositionable("Trinket", ItemLargeProbability, MaxItemCount),
+                new BoardPositionable("ShopKeeper", ShopkeeperProbability, MaxShopkeeperCount),
+            };
+            
         }
         private Position TopLeftCorner { get; set; }
         private Position BottomRightCorner { get; set; }
@@ -159,8 +94,7 @@
             int roomCols = BoardFactory.rand.Next(0, this.PortionCols - BoardFactory.MinRoomCols + 1) + BoardFactory.MinRoomCols;
 
             SetRooms(result);
-            SetGoldAndItems(result);
-            SetShopKeeper(result);
+            SetPositionables(result);
             
             return result;
         }
@@ -448,43 +382,48 @@
             board.DoorsPos.Clear();
             board.DoorsPos.AddRange(updatedDoorsPos);
         }
-        private void SetGoldAndItems(Board board)
+        private void SetPositionables(Board board)
         {
-            for (int i = 0; i < this.MaxItemCount; i++)
+            board.FreeFloorsPos = new List<Position>(board.FloorsPos);
+
+            foreach (var boardPositionable in this.BoardPositionables)
             {
-                int check = BoardFactory.rand.Next(0, 100);
-
-                if (check < this.ItemChance)
+                for (int i = 0; i < boardPositionable.MaxItemCount; i++)
                 {
-                    int randomFloor = BoardFactory.rand.Next(0, board.FloorsPos.Count);
-                    board.ItemsPos.Add(board.FloorsPos[randomFloor]);
-                    board.Items.Add(new HealthPotion(board.FloorsPos[randomFloor]));//////////////////////////////////////////////////////////
-                    board.FloorsPos.RemoveAt(randomFloor);
-                }
-            }
+                    int check = BoardFactory.rand.Next(0, 100);
 
-            for (int i = 0; i < this.MaxGoldCount; i++)
-            {
-                int check = BoardFactory.rand.Next(0, 100);
-
-                if (check < this.GoldChance)
-                {
-                    int randomFloor = BoardFactory.rand.Next(0, board.FloorsPos.Count);
-                    board.GoldPositionsPos.Add(board.FloorsPos[randomFloor]);
-                    board.Items.Add(new Gold(board.FloorsPos[randomFloor], 100));//////////////////////////////////////////////////////////
-                    board.FloorsPos.RemoveAt(randomFloor);
+                    if (check < boardPositionable.ItemChance)
+                    {
+                        int randomFloor = BoardFactory.rand.Next(0, board.FreeFloorsPos.Count);
+                        switch (boardPositionable.Name)
+                        {
+                            case "Gold": AddPositionableToBoard(new Gold(board.FloorsPos[randomFloor]), board, randomFloor); break;
+                            case "HealthPotion": AddPositionableToBoard(new HealthPotion(board.FloorsPos[randomFloor]), board, randomFloor); break;
+                            case "ManaPotion": AddPositionableToBoard(new ManaPotion(board.FloorsPos[randomFloor]), board, randomFloor); break;
+                            case "RogueArmorStrong": AddPositionableToBoard(new RogueArmor(board.FloorsPos[randomFloor], 150, 5), board, randomFloor); break;
+                            case "RogueArmorWeak": AddPositionableToBoard(new RogueArmor(board.FloorsPos[randomFloor], 70, 2), board, randomFloor); break;
+                            case "WizardArmorStrong": AddPositionableToBoard(new WizardArmor(board.FloorsPos[randomFloor], 150, 5), board, randomFloor); break;
+                            case "WizardArmorWeak": AddPositionableToBoard(new WizardArmor(board.FloorsPos[randomFloor], 70, 2), board, randomFloor); break;
+                            case "RogueWeaponStrong": AddPositionableToBoard(new RogueWeapon(board.FloorsPos[randomFloor], 100, 5), board, randomFloor); break;
+                            case "RogueWeaponWeak": AddPositionableToBoard(new RogueWeapon(board.FloorsPos[randomFloor], 50, 2), board, randomFloor); break;
+                            case "WizardWeaponStrong": AddPositionableToBoard(new WizardWeapon(board.FloorsPos[randomFloor], 100, 5), board, randomFloor); break;
+                            case "WizardWeaponWeak": AddPositionableToBoard(new WizardWeapon(board.FloorsPos[randomFloor], 50, 2), board, randomFloor); break;
+                            case "Trinket": AddPositionableToBoard(new Trinket(board.FloorsPos[randomFloor]) , board, randomFloor); 
+                                break;
+                            case "ShopKeeper": AddPositionableToBoard(new ShopKeeper("Tayn Eeon", board.FloorsPos[randomFloor - 1], 150, new List<Item> { new Trinket(board.FloorsPos[randomFloor]) } ), board, randomFloor);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                 }
             }
         }
-        private void SetShopKeeper(Board board)
+        private void AddPositionableToBoard(IPositionable item, Board board, int randomFloor)
         {
-            int check = BoardFactory.rand.Next(0, 100);
-            if (check < this.ShopKeeperChance)
-            {
-                int randomFloor = BoardFactory.rand.Next(0, board.FloorsPos.Count);
-                board.ShopKeeperPos = board.FloorsPos[randomFloor];
-                board.FloorsPos.RemoveAt(randomFloor);
-            }
+            //board.GoldPositionsPos.Add(board.FloorsPos[randomFloor]);
+            board.PositionableObjects.Add(item);//////////////////////////////////////////////////////////
+            board.FreeFloorsPos.RemoveAt(randomFloor);
         }
     }
 }

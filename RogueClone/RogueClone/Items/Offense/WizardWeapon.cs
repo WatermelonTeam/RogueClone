@@ -9,8 +9,8 @@ namespace RogueClone
     public class WizardWeapon : Weapon, IPositionable
     {
 
-        public WizardWeapon(Position position, int neededLevel)
-            : base("Wizard Weapon", position, neededLevel, Image.WizardWeapon, Color.DarkYellow)
+        public WizardWeapon(Position position, int value, int neededLevel)
+            : base("Wizard Weapon", position, value, neededLevel, Image.WizardWeapon, Color.DarkRed)
 		{
 
 		}

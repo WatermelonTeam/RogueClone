@@ -43,7 +43,7 @@
                 //    Console.CursorLeft = corner.X;
                 //    Console.Write(' ');
                 //}
-                Console.BackgroundColor = GlobalConstants.roomColor.ToConsoleColor();
+                Console.BackgroundColor = GlobalConstants.RoomColor.ToConsoleColor();
                 var commonWalkableDungeon = board.FloorsPos.Concat(board.CorridorsPos).ToArray();
                 for (int i = 0; i < commonWalkableDungeon.Length; i++)
                 {
@@ -70,10 +70,10 @@
                 //}
 
                 Console.ForegroundColor = Color.Magenta.ToConsoleColor(); // constant?
-                foreach (var item in board.ItemsPos) ///////////////////////// fix remnant of an item at (0,0)
+                foreach (var item in board.PositionableObjects) ///////////////////////// fix remnant of an item at (0,0)
                 {
-                    Console.CursorTop = item.Y;
-                    Console.CursorLeft = item.X;
+                    Console.CursorTop = item.Position.Y;
+                    Console.CursorLeft = item.Position.X;
                     Console.Write('?');
                 }
                 Console.ForegroundColor = Color.Green.ToConsoleColor(); // constant?
@@ -90,7 +90,7 @@
                 Console.ForegroundColor = Color.Green.ToConsoleColor();
                 Console.SetCursorPosition(board.ExitStairPos.X, board.ExitStairPos.Y);
                 Console.Write('≡');
-                Console.BackgroundColor = GlobalConstants.roomColor.ToConsoleColor();
+                Console.BackgroundColor = GlobalConstants.RoomColor.ToConsoleColor();
                 Console.ForegroundColor = Color.Yellow.ToConsoleColor(); // constant?
                 Console.SetCursorPosition(board.ShopKeeperPos.X, board.ShopKeeperPos.Y);
                 Console.Write('%');

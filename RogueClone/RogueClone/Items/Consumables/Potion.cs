@@ -13,8 +13,8 @@ namespace RogueClone
             : base(name, description, price, neededLevel, position, icon, color, amountRestored)
         { 
         }
-        public Potion(Position position)
-            : base(position)
+        public Potion(string name, Position position)
+            : base(name, position)
         {
         }
 

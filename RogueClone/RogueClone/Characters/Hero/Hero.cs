@@ -102,50 +102,55 @@
         {
             throw new NotImplementedException();
         }
-        
-        public void UseConsumable(object consumable)
+        public void TakeItem(IPositionable item, Board board)
         {
-            if (consumable is IConsumable)
+            if (item is IConsumable)
             {
-                (consumable as Consumable).Consumed(this);
-                consumable = null;
+                (item as Consumable).Consumed(this);
+                RemoveItemFromBoard(item, board);
             }
-            else
+            else if (item is Gold)
             {
-                throw new Exception("Invalid consumable object in UseConsumable method !");
-            }
-        }
-        public void TakeGold(object item)
-        {
                 (item as Gold).Take(this);
-                item = null;
+                RemoveItemFromBoard(item, board);
+            }
+            else if (item is Trinket && this.Level.CurrentLevel >= (item as Trinket).NeededLvl)
+            {
+                (item as Trinket).Take(this);
+                RemoveItemFromBoard(item, board);
+            }
+            else if (item is Weapon && this.Level.CurrentLevel >= (item as Weapon).NeededLvl)
+            {
+                if (item is RogueWeapon && this is Rogue)
+                {
+                    (item as RogueWeapon).Take(this);
+                    RemoveItemFromBoard(item, board);
+                }
+                if (item is WizardWeapon && this is Wizard)
+                {
+                    (item as WizardWeapon).Take(this);
+                    RemoveItemFromBoard(item, board);
+                }
+            }
+            else if (item is Armor && this.Level.CurrentLevel >= (item as Armor).NeededLvl)
+            {
+                if (item is RogueArmor && this is Rogue)
+                {
+                    (item as RogueArmor).Take(this);
+                    RemoveItemFromBoard(item, board);
+                }
+                if (item is WizardArmor && this is Wizard)
+                {
+                    (item as WizardArmor).Take(this);
+                    RemoveItemFromBoard(item, board);
+                }
+            }
         }
-        public void TakeTrinket(object item)
+        private void RemoveItemFromBoard(IPositionable item, Board board)
         {
-            (item as Trinket).Take(this);
-            item = null;
+            board.FloorsPos.Add(item.Position);
+            board.PositionableObjects.Remove((Item)item);
         }
-		public void TakeRogueWeapon(object item)
-		{
-			(item as RogueWeapon).Take(this);
-			item = null;
-		}
-		public void TakeWizardWeapon(object item)
-		{
-			(item as WizardWeapon).Take(this);
-			item = null;
-		}
-		public void TakeRogueArmor(object item)
-		{
-			(item as RogueArmor).Take(this);
-			item = null;
-
-		}
-		public void TakeWizardArmor(object item)
-		{
-			(item as WizardArmor).Take(this);
-			item = null;
-		}
         public void Pay(int amount)
         {
             if (amount <= this.Gold)

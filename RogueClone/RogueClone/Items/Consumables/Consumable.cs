@@ -15,8 +15,8 @@ namespace RogueClone
             this.amountStatsRestored = amountRestored;
         }
 
-        public Consumable(Position position)
-            : base(position)
+        public Consumable(string name, Position position)
+            : base(name, position)
         {
         }
 

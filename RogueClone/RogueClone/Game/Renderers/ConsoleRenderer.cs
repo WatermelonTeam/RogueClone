@@ -9,7 +9,7 @@
 
     public static class ConsoleRenderer
     {
-        public const int StatsPanelHeight = 4;
+        public const int StatsPanelHeight = 5;
         public const ConsoleColor BScreenColor = ConsoleColor.DarkBlue;
         public const ConsoleColor FScreenColor = ConsoleColor.White;
         public const ConsoleColor BPanelColor = ConsoleColor.Blue;
@@ -19,12 +19,13 @@
         private static int StatsSecondRow = StatsFirstRow + 1;
         private static int StatsThirdRow = StatsSecondRow + 1;
         private static int StatsFourthRow = StatsThirdRow + 1;
+        private static int StatsFifthRow = StatsFourthRow + 1;
         private static int StatsFirstCol = 3;
         private static int StatsSecondCol = 22;
-        private static int StatsThirdCol = 36;
+        private static int StatsThirdCol = 40;
         private static int StatsFourthCol = 55;
         private static int StatsFifthCol = 75;
-        private static int StatsSixthCol = RogueEngine.ConsoleWidth - 18;
+        private static int StatsSixthCol = RogueEngine.ConsoleWidth - 31;
 
 
         // Todo todo todotodotodo .... Just render the heroes,monsters,non player chars and the dungeon ! Much easy much game !
@@ -33,10 +34,11 @@
 
         public static void RenderPlayingScreen(Hero hero, Board board, int boardLevel)
         {
-            RenderPanelAndBackground();
+            RenderPanelAndBackground(hero);
+            RenderStaticPanelStats(hero);
             RenderStats(hero, boardLevel);
             RenderDungeon(board);
-            RenderAllItems(board.Items);
+            RenderAllItems(board.PositionableObjects);
             RenderCharacter(hero);
         }
         public static void RenderDungeon(Board board)
@@ -46,69 +48,14 @@
             
             Console.Title = "░░░░ ROGUECLONE ░░░░";
 
-            //foreach (var wall in board.HorizontalWallsPos)
-            //{
-            //    Console.SetCursorPosition(wall.X, wall.Y);
-            //    Console.Write(' ');
-            //}
-            //foreach (var wall in board.VerticalWallsPos)
-            //{
-            //    Console.CursorTop = wall.Y;
-            //    Console.CursorLeft = wall.X;
-            //    Console.Write(' ');
-            //}
-            //foreach (var corner in board.CornersPos)
-            //{
-            //    Console.CursorTop = corner.Y;
-            //    Console.CursorLeft = corner.X;
-            //    Console.Write(' ');
-            //}
-            Console.BackgroundColor = GlobalConstants.roomColor.ToConsoleColor();
+            Console.BackgroundColor = GlobalConstants.RoomColor.ToConsoleColor();
             var commonWalkableDungeon = board.FloorsPos.Concat(board.CorridorsPos).ToArray();
             for (int i = 0; i < commonWalkableDungeon.Length; i++)
             {
                 Console.SetCursorPosition(commonWalkableDungeon[i].X, commonWalkableDungeon[i].Y);
                 Console.Write(' ');
             }
-            //foreach (var door in board.DoorsPos)
-            //{
-            //    Console.CursorTop = door.Y;
-            //    Console.CursorLeft = door.X;
-            //    Console.Write(' ');
-            //}
-            //foreach (var floor in board.FloorsPos)
-            //{
-            //    Console.CursorTop = floor.Y;
-            //    Console.CursorLeft = floor.X;
-            //    Console.Write(' ');
-            //}
-            //foreach (var corridor in board.CorridorsPos)
-            //{
-            //    Console.CursorTop = corridor.Y;
-            //    Console.CursorLeft = corridor.X;
-            //    Console.Write(' ');
-            //}
-
-            //Console.ForegroundColor = Color.Magenta.ToConsoleColor(); // constant?
-            //foreach (var item in board.ItemsPos) ///////////////////////// fix remnant of an item at (0,0)
-            //{
-            //    Console.CursorTop = item.Y;
-            //    Console.CursorLeft = item.X;
-            //    Console.Write('?');
-            //}
-            //Console.ForegroundColor = Color.Green.ToConsoleColor(); // constant?
-            //foreach (var pile in board.GoldPositionsPos)
-            //{
-            //    Console.CursorTop = pile.Y;
-            //    Console.CursorLeft = pile.X;
-            //    Console.Write('$');
-            //}
             RenderStairs(board);
-            Console.BackgroundColor = GlobalConstants.roomColor.ToConsoleColor();
-            Console.ForegroundColor = Color.Yellow.ToConsoleColor(); // constant?
-            Console.SetCursorPosition(board.ShopKeeperPos.X, board.ShopKeeperPos.Y);
-            Console.Write('%');
-            
         }
 
         public static void RenderStairs(Board board)
@@ -121,22 +68,29 @@
             Console.SetCursorPosition(board.ExitStairPos.X, board.ExitStairPos.Y);
             Console.Write('≡');
         }
-
-        // Just print the hero on the map
         public static void RenderCharacter(Character character)
         {
-            PrintOnPosition(character.Position, ((char)character.CharacterIcon).ToString(), character.CharacterColor.ToConsoleColor());
+                PrintOnPosition(character.Position, ((char)character.CharacterIcon).ToString(), character.CharacterColor.ToConsoleColor());
         }
 
-        public static void RenderItem(Item item)
+        public static void RenderItem(IPositionable item)
         {
-            PrintOnPosition(item.Position, ((char)item.Icon).ToString(), item.ItemColor.ToConsoleColor());
+            PrintOnPosition(item.Position, ((char)(item as Item).Icon).ToString(), (item as Item).ItemColor.ToConsoleColor());
+            
         }
-        public static void RenderAllItems(ICollection<Item> items)
+        public static void RenderAllItems(ICollection<IPositionable> items)
         {
             foreach (var item in items)
             {
-                RenderItem(item);
+                if (item is Item)
+                {
+                    RenderItem(item);
+                }
+                else if (item is Character)
+                {
+                    RenderCharacter(item as Character);
+                }
+                
             }
         }
         public static void RenderCharacterDescription(Character character)
@@ -180,26 +134,23 @@
         {
             PrintOnPosition(
                 new Position(StatsFourthCol + "Gold: 123456789".Length, StatsFirstRow),
-                "".PadRight(RogueEngine.ConsoleWidth - StatsFourthCol + "Gold: 123456789".Length, ' '), 
+                "".PadRight(StatsSixthCol - (StatsFourthCol + "Gold: 123456789".Length), ' '), 
                 FPanelColor, 
                 BPanelColor);
             PrintOnPosition(
                 new Position(StatsFourthCol + "Gold: 123456789".Length, StatsSecondRow),
-                "".PadRight(RogueEngine.ConsoleWidth - StatsFourthCol + "Gold: 123456789".Length, ' '), 
+                "".PadRight(StatsSixthCol - (StatsFourthCol + "Gold: 123456789".Length), ' '), 
                 FPanelColor, 
                 BPanelColor);
             PrintOnPosition(
                 new Position(StatsFourthCol + "Gold: 123456789".Length, StatsThirdRow),
-                "".PadRight(RogueEngine.ConsoleWidth - StatsFourthCol + "Gold: 123456789".Length, ' '), 
+                "".PadRight(StatsSixthCol - (StatsFourthCol + "Gold: 123456789".Length), ' '), 
                 FPanelColor, 
                 BPanelColor);
         }
-
-        // Render the stats at the bottom of the console
-
-        public static void RenderPanelAndBackground()
+        public static void RenderPanelAndBackground(Hero hero)
         {
-            Console.BackgroundColor = GlobalConstants.outsideColor.ToConsoleColor();
+            Console.BackgroundColor = GlobalConstants.OutsideColor.ToConsoleColor();
             Console.Clear();
             Console.BackgroundColor = BPanelColor;
             Console.ForegroundColor = FPanelColor;
@@ -211,23 +162,51 @@
                 Console.SetCursorPosition(1, RogueEngine.ConsoleHeight - i);
                 Console.Write("".PadRight(RogueEngine.ConsoleWidth - 1, ' '));
             }
-            Console.BackgroundColor = BScreenColor;
-            Console.ForegroundColor = FScreenColor;
-
+        }
+        public static void RenderStaticPanelStats(Hero hero)
+        {
+            PrintOnPosition(new Position(StatsFirstCol, StatsSecondRow), "HP: ", FPanelColor, BPanelColor);
+            PrintOnPosition(new Position(StatsFirstCol, StatsThirdRow), "MP: ", FPanelColor, BPanelColor);
+            PrintOnPosition(new Position(StatsFirstCol, StatsFourthRow), "XP: ", FPanelColor, BPanelColor);
+            PrintOnPosition(new Position(StatsSecondCol, StatsSecondRow), "Armor: ", FPanelColor, BPanelColor);
+            PrintOnPosition(new Position(StatsSecondCol, StatsThirdRow), "Damage: ", FPanelColor, BPanelColor);
+            PrintOnPosition(new Position(StatsThirdCol, StatsSecondRow), "Gold: ", FPanelColor, BPanelColor);
+            PrintOnPosition(new Position(RogueEngine.ConsoleWidth - hero.Name.Length - 3, StatsSecondRow), hero.Name, FPanelColor, BPanelColor);
+            PrintOnPosition(new Position(RogueEngine.ConsoleWidth - hero.Name.Length - 3 + (hero.Name.Length - (hero.ToString().Length + "Lvl   ".Length)) / 2, StatsThirdRow), string.Format("{0} LvL {1}", hero.ToString(), hero.Level.CurrentLevel), FPanelColor, BPanelColor);
+            PrintOnPosition(new Position(StatsSixthCol + "Dungeon Level ".Length, StatsFifthRow), "Dungeon Level ", FPanelColor, BPanelColor);
         }
         public static void RenderStats(Hero hero, int boardLevel)
         {
             //PrintOnPosition(0, StatsFirstRow, new string('─', Game.ConsoleWidth), fPanelColor, bPanelColor);
-            PrintOnPosition(new Position(StatsFirstCol, StatsSecondRow), string.Format("HP: {0} \\ {1}", hero.Health.Current.ToString().PadLeft(hero.Health.Max.ToString().Length, ' '), hero.Health.Max), FPanelColor, BPanelColor);
-            PrintOnPosition(new Position(StatsFirstCol, StatsThirdRow), string.Format("MP: {0} \\ {1}", hero.Mana.Current.ToString().PadLeft(hero.Mana.Max.ToString().Length, ' '), hero.Mana.Max), FPanelColor, BPanelColor);
-            PrintOnPosition(new Position(StatsSecondCol, StatsSecondRow), string.Format("Level: {0}", hero.Level.CurrentLevel.ToString().PadRight(3, ' ')), FPanelColor, BPanelColor);
-            PrintOnPosition(new Position(StatsSecondCol, StatsThirdRow), string.Format("XP: {0}", hero.Level.CurrentXP.ToString().PadRight(7, ' ')), FPanelColor, BPanelColor);
-            PrintOnPosition(new Position(StatsThirdCol, StatsSecondRow), string.Format("Armor: {0}", hero.Armor.ToString().PadRight(4, ' ')), FPanelColor, BPanelColor);
-            PrintOnPosition(new Position(StatsThirdCol, StatsThirdRow), string.Format("Damage: {0}", hero.Weapon.ToString().PadRight(4, ' ')), FPanelColor, BPanelColor);
-            PrintOnPosition(new Position(StatsFourthCol, StatsSecondRow), string.Format("Gold: {0}", hero.Gold.ToString().PadRight(9, ' ')), FPanelColor, BPanelColor);
-            PrintOnPosition(new Position(RogueEngine.ConsoleWidth - string.Format("{0} {1}", hero, hero.Name).Length - 3, StatsSecondRow), string.Format("{0} {1}", hero, hero.Name), FPanelColor, BPanelColor);
-            PrintOnPosition(new Position(StatsSixthCol, StatsFourthRow), string.Format("Dungeon Level {0}", boardLevel), FPanelColor, BPanelColor);
-            PrintOnPosition(new Position(83, StatsFourthRow), string.Format("X : {0}, Y : {1}", hero.Position.X.ToString().PadRight(3, ' '), hero.Position.Y.ToString().PadRight(3, ' ')), FPanelColor, BPanelColor);
+            PrintOnPosition(
+                new Position(StatsFirstCol + "HP: ".Length, StatsSecondRow), string.Format("{0} \\ {1}", hero.Health.Current.ToString().PadLeft(hero.Health.Max.ToString().Length, ' '), hero.Health.Max), 
+                FPanelColor, 
+                BPanelColor);
+            PrintOnPosition(
+                new Position(StatsFirstCol + "MP: ".Length, StatsThirdRow), string.Format("{0} \\ {1}", hero.Mana.Current.ToString().PadLeft(hero.Mana.Max.ToString().Length, ' '), hero.Mana.Max), 
+                FPanelColor, 
+                BPanelColor);
+            PrintOnPosition(
+                new Position(StatsFirstCol + "XP: ".Length, StatsFourthRow), string.Format("{0} \\ {1}", hero.Level.CurrentXP.ToString().PadLeft(hero.Level.NeededXP.ToString().Length, ' '), hero.Level.NeededXP), 
+                FPanelColor, 
+                BPanelColor);
+            PrintOnPosition(
+                new Position(StatsSecondCol + "Armor: ".Length, StatsSecondRow), string.Format("{0}", hero.Armor.ToString().PadRight(4, ' ')), 
+                FPanelColor, 
+                BPanelColor);
+            PrintOnPosition(
+                new Position(StatsSecondCol + "Damage: ".Length, StatsThirdRow), string.Format("{0}", hero.Weapon.ToString().PadRight(4, ' ')), 
+                FPanelColor, 
+                BPanelColor);
+            PrintOnPosition(
+                new Position(StatsThirdCol + "Gold: ".Length, StatsSecondRow), string.Format("{0}", hero.Gold.ToString().PadRight(9, ' ')), 
+                FPanelColor, 
+                BPanelColor);
+            PrintOnPosition(
+                new Position(StatsSixthCol + "Dungeon Level ".Length * 2, StatsFifthRow), string.Format("{0}", boardLevel), 
+                FPanelColor, 
+                BPanelColor);
+            //PrintOnPosition(new Position(83, StatsFourthRow), string.Format("X : {0}, Y : {1}", hero.Position.X.ToString().PadRight(3, ' '), hero.Position.Y.ToString().PadRight(3, ' ')), FPanelColor, BPanelColor);
         }
 
         public static void RenderMove(Board board, IMovable character, Position newPosition)
@@ -240,22 +219,17 @@
         }
         public static void RenderObjectRemoval(Position position)
         {
-            PrintOnPosition(position, ' '.ToString(), GlobalConstants.roomColor.ToConsoleColor(), GlobalConstants.roomColor.ToConsoleColor());
-            //RenderCharacter(positionable);
+            PrintOnPosition(position, ' '.ToString(), GlobalConstants.RoomColor.ToConsoleColor(), GlobalConstants.RoomColor.ToConsoleColor());
         }
 
         public static void PrintOnPosition(Position position, string text, ConsoleColor foregroundColor = FScreenColor, ConsoleColor backgroundColor = BScreenColor)
         {
             if (IsValidPosition(position))
             {
-                var oldForegroundColor = Console.ForegroundColor;
-                var oldBackgroundColor = Console.BackgroundColor;
                 Console.BackgroundColor = backgroundColor;
                 Console.ForegroundColor = foregroundColor;
                 Console.SetCursorPosition(position.X, position.Y);
                 Console.Write(text);
-                Console.BackgroundColor = oldForegroundColor;
-                Console.ForegroundColor = oldBackgroundColor;
             }
             else
             {

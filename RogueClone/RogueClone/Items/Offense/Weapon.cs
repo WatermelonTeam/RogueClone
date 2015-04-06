@@ -11,8 +11,8 @@ namespace RogueClone
 
 		private int damage;
 
-        public Weapon(string name, Position position, int neededLevel, Image icon, Color color)
-            : base(name, position, neededLevel, icon, color)
+        public Weapon(string name, Position position, int value, int neededLevel, Image icon, Color color)
+            : base(name, position, value, neededLevel, icon, color)
 		{
 			//random damage for every level of the weapon,just like the armorValue
 			switch (neededLevel)
