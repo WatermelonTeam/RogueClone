@@ -72,7 +72,39 @@
         {
                 PrintOnPosition(character.Position, ((char)character.CharacterIcon).ToString(), character.CharacterColor.ToConsoleColor());
         }
+        public static void RenderShopKeeperMenu(ShopKeeper shopKeeper, Hero hero)
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            ConsoleRenderer.Clear();
+            int startingTop = (Console.BufferHeight / 2) - 2;
+            int startingLeft = 47;
+            Console.SetCursorPosition(startingLeft, startingTop);
 
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("The ShopKeeper {0} offers these items:", shopKeeper.Name);
+            Console.CursorLeft = startingLeft;
+
+            for (int i = 0; i < shopKeeper.Items.Length; i++)
+            {
+                if (shopKeeper.Items[i] != null)
+                {
+                    if (hero.Gold >= shopKeeper.Items[i].Value)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+
+                    }
+                    Console.WriteLine("{0}. {1} - {2} Price: {3}", i + 1, shopKeeper.Items[i].Name, shopKeeper.Items[i].Description, shopKeeper.Items[i].Value);
+                    Console.CursorLeft = startingLeft;
+                }
+            }
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Esc: Exit.");
+        }
         public static void RenderItem(IPositionable item)
         {
             PrintOnPosition(item.Position, ((char)(item as Item).Icon).ToString(), (item as Item).ItemColor.ToConsoleColor());
@@ -92,6 +124,10 @@
                 }
                 
             }
+        }
+        public static void Clear()
+        {
+            Console.Clear();
         }
        
         public static void RenderCharacterDescription(Character character)

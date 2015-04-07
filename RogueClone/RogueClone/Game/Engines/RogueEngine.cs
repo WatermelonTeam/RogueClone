@@ -37,7 +37,8 @@
             ConsoleRenderer.RenderAllItems(board.PositionableObjects);
             while (true)
             {
-                ConsoleRenderer.RenderMove(board, hero, input.SetMovement(board, hero.Position));
+                Position desiredPos = input.SetMovement(board, hero.Position);
+                ConsoleRenderer.RenderMove(board, hero, desiredPos);
                 if (hero.Position == board.EntryStairPos && boardLevel > 0)
                 {
                     if (boardLevel == boards.Count)
@@ -112,19 +113,54 @@
                             ConsoleRenderer.RenderCharacterDescription(positionable as Character);
                             isNextToCharacter = true;
                         }
+
+                        if (positionable is ShopKeeper && desiredPos == positionable.Position)
+                        {
+                            ShopKeeper shopKeeper = positionable as ShopKeeper;
+
+                            do
+                            {
+                                ConsoleRenderer.RenderShopKeeperMenu(shopKeeper, hero);
+                                ShopKeeperOptions option = input.ShopKeeperInteraction();
+                                if (option == ShopKeeperOptions.Escape)
+                                {
+                                    break;
+                                }
+                                else if (option == ShopKeeperOptions.InvalidOption)
+                                {
+                                    ConsoleRenderer.Clear();
+                                }
+                                else
+                                {
+                                    int index = (int)option;
+
+                                    if (shopKeeper.Items[index] != null && hero.Gold >= shopKeeper.Items[index].Value)
+                                    {
+                                        hero.Buy(shopKeeper.Items[index]);
+                                        shopKeeper.Items[index] = null;
+                                        break;
+                                    }
+                                }
+                            } while (true);
+                            ConsoleRenderer.Clear();
+                            ConsoleRenderer.RenderPlayingScreen(hero, board, boardLevel);
+                            ConsoleRenderer.RenderAllItems(board.PositionableObjects);
+                        }
                     }
+
 
                     if (hero.Position == positionable.Position)
                     {
                         if (positionable is Item)
                         {
-                            ConsoleRenderer.RenderItemDescription(positionable as Item);
-                            itemDescriptionLength = (positionable as Item).Description.Length;
-                            itemNameLength = (positionable as Item).Name.Length;
+                            Item item = positionable as Item;
+                            ConsoleRenderer.RenderItemDescription(item);
+                            itemDescriptionLength = item.Description.Length;
+                            itemNameLength = item.Name.Length;
                             itemStepped = true;
-                            this.steppedOnItem = (char)(positionable as Item).Icon;
-                            this.itemColor = (positionable as Item).ItemColor.ToConsoleColor();
-                            hero.TakeItem(positionable, board);
+                            this.steppedOnItem = (char)item.Icon;
+                            this.itemColor = item.ItemColor.ToConsoleColor();
+                            hero.TakeItem(item, board);
                             break;
                         }
 

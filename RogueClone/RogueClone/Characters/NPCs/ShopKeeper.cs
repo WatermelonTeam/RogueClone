@@ -7,19 +7,22 @@
 
     public class ShopKeeper : NPC, IDamageable, IKillable, IPositionable
     {
-        private ICollection<Item> items;
+        private const int ShopKeeperItemsCount = 5;
+        private static readonly Random rand = new Random();
 
-        public ShopKeeper(string name, Position position, int maxHealth, ICollection<Item> items) // maxHealth can be set as a constant for the shopkeeper class
+        private Item[] items;
+
+        public ShopKeeper(string name, Position position, int maxHealth) // maxHealth can be set as a constant for the shopkeeper class
             : base(name, position, maxHealth, Image.ShopKeeper, Color.Yellow)
         {
-            this.Items = items;
+            this.Items = new Item[ShopKeeper.ShopKeeperItemsCount];
         }
 
-        public ICollection<Item> Items
+        public Item[] Items
         {
             get
             {
-                return this.items.ToArray();
+                return this.items;
             }
             private set
             {
@@ -29,9 +32,47 @@
             }
         }
 
-        public void SellItem(Item item)
+        public static ShopKeeper GetShopKeeper(Position position)
         {
-            this.items.Remove(item);
+            const string ShopKeeperName = "Tayn Eeon";
+            const int ShopKeeperHealth = 1024;
+            const int ShopKeeperDamage = 1024;
+            const int ShopKeeperXP = 1024;
+
+            ShopKeeper shopKeeper = new ShopKeeper(ShopKeeperName, position, ShopKeeperHealth)
+            {
+                Damage = ShopKeeperDamage, XPGain = ShopKeeperXP
+            };
+
+            for (int i = 0; i < shopKeeper.items.Length; i++)
+            {
+                int randomItem = ShopKeeper.rand.Next(0, 5);
+                int randomItemLevel = ShopKeeper.rand.Next(1, 6);
+                int itemValue = randomItemLevel * 1000;
+
+                switch (randomItem)
+                {
+                    case 0:
+                        shopKeeper.items[i] = new RogueArmor(new Position(), itemValue, randomItemLevel);
+                        break;
+                    case 1:
+                        shopKeeper.items[i] = new WizardArmor(new Position(), itemValue, randomItemLevel);
+                        break;
+                    case 2:
+                        shopKeeper.items[i] = new RogueWeapon(new Position(), itemValue, randomItemLevel);
+                        break;
+                    case 3:
+                        shopKeeper.items[i] = new WizardWeapon(new Position(), itemValue, randomItemLevel);
+                        break;
+                    case 4:
+                        shopKeeper.items[i] = new Trinket(new Position());
+                        break;
+                    default:
+                        throw new ArgumentException("Invalid random item.");
+                }
+            }
+
+            return shopKeeper;
         }
     }
 }

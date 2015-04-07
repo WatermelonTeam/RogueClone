@@ -102,34 +102,29 @@
         {
            
         }
-        public void TakeItem(IPositionable item, Board board)
+        private void IteractWithItem(Item item)
         {
-            if (item is IConsumable)
+            if (item is Consumable)
             {
                 (item as Consumable).Consumed(this);
-                RemoveItemFromBoard(item, board);
             }
             else if (item is Gold)
             {
                 (item as Gold).Take(this);
-                RemoveItemFromBoard(item, board);
             }
             else if (item is Trinket && this.Level.CurrentLevel >= (item as Trinket).NeededLvl)
             {
                 (item as Trinket).Take(this);
-                RemoveItemFromBoard(item, board);
             }
             else if (item is Weapon && this.Level.CurrentLevel >= (item as Weapon).NeededLvl)
             {
                 if (item is RogueWeapon && this is Rogue)
                 {
                     (item as RogueWeapon).Take(this);
-                    RemoveItemFromBoard(item, board);
                 }
                 if (item is WizardWeapon && this is Wizard)
                 {
                     (item as WizardWeapon).Take(this);
-                    RemoveItemFromBoard(item, board);
                 }
             }
             else if (item is Armor && this.Level.CurrentLevel >= (item as Armor).NeededLvl)
@@ -137,14 +132,30 @@
                 if (item is RogueArmor && this is Rogue)
                 {
                     (item as RogueArmor).Take(this);
-                    RemoveItemFromBoard(item, board);
                 }
                 if (item is WizardArmor && this is Wizard)
                 {
                     (item as WizardArmor).Take(this);
-                    RemoveItemFromBoard(item, board);
                 }
             }
+        }
+        public void TakeItem(Item item, Board board)
+        {
+            this.IteractWithItem(item);
+            RemoveItemFromBoard(item, board);
+        }
+        public void Buy(Item item)
+        {
+            if (item.Value <= this.Gold)
+            {
+                this.Gold -= item.Value;
+            }
+            else
+            {
+                throw new ArgumentException("Hero doesn't have enough money to buy the item.");
+            }
+
+            this.IteractWithItem(item);
         }
         private void RemoveItemFromBoard(IPositionable item, Board board)
         {

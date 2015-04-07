@@ -62,6 +62,7 @@
     <Compile Include="Board\BoardsTest.cs" />
     <Compile Include="Board\MonsterFactory.cs" />
     <Compile Include="Characters\Character.cs" />
+    <Compile Include="Characters\NPCs\ShopKeeperOptions.cs" />
     <Compile Include="Common\Colour.cs" />
     <Compile Include="Common\ConsoleHelpers.cs" />
     <Compile Include="Common\GlobalConstants.cs" />
