@@ -36,7 +36,7 @@
             ConsoleRenderer.RenderAllItems(board.PositionableObjects);
             while (true)
             {
-                input.SetMovement(board, hero);
+                ConsoleRenderer.RenderMove(board, hero, input.SetMovement(board, hero.Position));
                 if (hero.Position == board.EntryStairPos && boardLevel > 0)
                 {
                     if (boardLevel == boards.Count)

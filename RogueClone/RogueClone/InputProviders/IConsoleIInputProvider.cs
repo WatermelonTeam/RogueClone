@@ -5,6 +5,6 @@
 
     public interface IConsoleIInputProvider
     {
-        void SetMovement(Board board, IMovable hero);
+        Position SetMovement(Board board, Position position);
     }
 }

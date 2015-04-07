@@ -8,25 +8,16 @@ namespace RogueClone.InputProviders
 {
     public class ConsoleInputProvider : IConsoleIInputProvider
     {
-        public void SetMovement(Board board, IMovable hero)
+        public Position SetMovement(Board board, Position position)
         {
             ConsoleKeyInfo pressedKey = Console.ReadKey(true);
             switch (pressedKey.Key)
             {
-                case ConsoleKey.RightArrow:
-                    ConsoleRenderer.RenderMove(board, hero, new Position(hero.Position.X + 1, hero.Position.Y));
-                    break;
-                case ConsoleKey.LeftArrow:
-                    ConsoleRenderer.RenderMove(board, hero, new Position(hero.Position.X - 1, hero.Position.Y));
-                    break;
-                case ConsoleKey.UpArrow:
-                    ConsoleRenderer.RenderMove(board, hero, new Position(hero.Position.X, hero.Position.Y - 1));
-                    break;
-                case ConsoleKey.DownArrow:
-                    ConsoleRenderer.RenderMove(board, hero, new Position(hero.Position.X, hero.Position.Y + 1));
-                    break;
-                default:
-                    break;
+                case ConsoleKey.RightArrow: return new Position(position.X + 1, position.Y);
+                case ConsoleKey.LeftArrow: return new Position(position.X - 1, position.Y);
+                case ConsoleKey.UpArrow: return new Position(position.X, position.Y - 1);
+                case ConsoleKey.DownArrow: return new Position(position.X, position.Y + 1);
+                default: return position;
             }
         }
     }
