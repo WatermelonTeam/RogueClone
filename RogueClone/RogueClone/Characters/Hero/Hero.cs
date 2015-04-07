@@ -100,7 +100,7 @@
 
         public override void TakeDamage(int damage)
         {
-            throw new NotImplementedException();
+           
         }
         public void TakeItem(IPositionable item, Board board)
         {

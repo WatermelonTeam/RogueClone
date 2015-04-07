@@ -26,7 +26,7 @@
             }
             foreach (var item in board.PositionableObjects)
             {
-                if (item is Character && newPosition == item.Position)
+                if (newPosition == item.Position)
                 {
                     return false;
                 }

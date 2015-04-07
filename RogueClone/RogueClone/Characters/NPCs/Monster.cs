@@ -57,15 +57,34 @@
         }
         public Position NextMovingPosition(Board board, Position heroPosition)
         {
-            //should implement find next point in a closest path algorithm
+            int xDist = Position.X - heroPosition.X;
+            int yDist = Position.Y - heroPosition.Y;
+            if (xDist > 0 && Math.Abs(xDist) > Math.Abs(yDist))
+            {
+                return new Position(Position.X - 1, Position.Y);
+            }
+            if (xDist < 0 && Math.Abs(xDist) > Math.Abs(yDist))
+            {
+                return new Position(Position.X + 1, Position.Y);
+            }
+            if (yDist > 0 && Math.Abs(yDist) > Math.Abs(xDist))
+            {
+                return new Position(Position.X, Position.Y - 1);
+            }
+            if (yDist < 0 && Math.Abs(yDist) > Math.Abs(xDist))
+            {
+                return new Position(Position.X, Position.Y + 1);
+            }
+
             return heroPosition;
         }
         public void MoveTo(Board board, Position newPosition)
         {
             if (MonsterMovement.IsValidMovement(board, newPosition))
             {
-               
+                
                 this.Position = newPosition;
+                
             }
         }
     }

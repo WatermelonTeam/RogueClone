@@ -5,6 +5,8 @@
     using RogueClone.InputProviders;
     using System;
     using System.Collections.Generic;
+    using RogueClone.Movements;
+
     public sealed class RogueEngine : IEngine
     {
         private readonly ConsoleInputProvider input;
@@ -24,15 +26,14 @@
             Console.SetWindowSize(ConsoleWidth, ConsoleHeight);
             Console.SetBufferSize(ConsoleWidth, ConsoleHeight);
         }
-        private int PlayBoard(Board board, List<Board> boards, Hero hero, int boardLevel)
+        private int PlayBoard(Board board, List<Board> boards, Hero hero, int boardLevel, List<Monster> monsters)
         {
             bool itemStepped = true;
             bool stairsSteppedOn = true;
             bool isNextToCharacter = false;
             int itemDescriptionLength = 0;
             int itemNameLength = 0;
-            MonsterFactory mFactory = new MonsterFactory(boardLevel);
-            mFactory.SpawnMonstersOnBoard(board);
+            
             ConsoleRenderer.RenderAllItems(board.PositionableObjects);
             while (true)
             {
@@ -86,7 +87,7 @@
                 ConsoleRenderer.RenderStats(hero, boardLevel);
                 //Always render the hero at the end so he can be on top on all the items and monsters !
                 ConsoleRenderer.RenderCharacter(hero);
-                foreach (var monster in mFactory.MonsterList)
+                foreach (var monster in monsters)
                 {
 
                     if (hero.Position.Distance(monster.Position) < 1.5)
@@ -95,7 +96,11 @@
                     }
                     else if (hero.Position.Distance(monster.Position) < 5.5)
                     {
-                        //monster.MoveTo(board,monster.NextMovingPosition(board, hero.Position));
+                        Position newPos = monster.NextMovingPosition(board, hero.Position);
+                        if (MonsterMovement.IsValidMovement(board, newPos))
+                            ConsoleRenderer.RenderMove(board, monster, newPos);
+                        monster.MoveTo(board,newPos);
+
                     }
                 }
                 foreach (var positionable in board.PositionableObjects)
@@ -144,11 +149,9 @@
                       
                     */
                 }
-                foreach (var mon in mFactory.MonsterList)
-                {
-                    board.PositionableObjects.Remove(mon);
-                }
+                
             }
+            
         }
 
         //public static void RemoveItemFromBoard(IPositionable item, Board board)
@@ -175,6 +178,8 @@
 
             while (!isDead)
             {
+                MonsterFactory mFactory = new MonsterFactory(boardLevel);
+                mFactory.SpawnMonstersOnBoard(board);
                 if (boardLevelChange >= 0)
                 {
                     hero.Position = new Position(board.EntryStairPos.X, board.EntryStairPos.Y);
@@ -184,7 +189,8 @@
                     hero.Position = new Position(board.ExitStairPos.X, board.ExitStairPos.Y);
                 }
                 ConsoleRenderer.RenderPlayingScreen(hero, board, boardLevel);
-                boardLevelChange = PlayBoard(board, playedBoards, hero, boardLevel);
+                
+                boardLevelChange = PlayBoard(board, playedBoards, hero, boardLevel,mFactory.MonsterList);
                 boardLevel += boardLevelChange;
                 if (boardLevel == playedBoards.Count)
                 {
