@@ -24,12 +24,9 @@
                 isInsideDungeon = true;
                 return isInsideDungeon;
             }
-            foreach (var item in board.PositionableObjects)
+            if (newPosition == board.ShopKeeperPos)
             {
-                if (newPosition == item.Position)
-                {
-                    return false;
-                }
+                return false;
             }
             //Making sure monsters dont follow in corridors
             foreach (var corridorPos in board.CorridorsPos)
