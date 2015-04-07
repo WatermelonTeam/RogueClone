@@ -60,6 +60,7 @@
     <Compile Include="Board\BoardFactory.cs" />
     <Compile Include="Board\BoardPositionable.cs" />
     <Compile Include="Board\BoardsTest.cs" />
+    <Compile Include="Board\MonsterFactory.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Common\Colour.cs" />
     <Compile Include="Common\ConsoleHelpers.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Characters\Hero\Rogue.cs" />
     <Compile Include="Characters\Hero\Wizard.cs" />
     <Compile Include="Characters\Interfaces\ILvL.cs" />
+    <Compile Include="Movements\MonsterMovement.cs" />
     <Compile Include="Stats\Interfaces\IStat.cs" />
     <Compile Include="Characters\NPCs\Monster.cs" />
     <Compile Include="Characters\NPCs\ShopKeeper.cs" />

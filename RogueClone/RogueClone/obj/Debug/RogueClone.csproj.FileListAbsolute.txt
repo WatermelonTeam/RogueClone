@@ -58,3 +58,9 @@ C:\Users\Pariador\Desktop\WatermelonApp\Experimental\RogueClone\RogueClone\obj\D
 C:\Users\Pariador\Desktop\WatermelonApp\Experimental\RogueClone\RogueClone\bin\Debug\RogueClone.exe
 C:\Users\Pariador\Desktop\WatermelonApp\Experimental\RogueClone\RogueClone\bin\Debug\RogueClone.pdb
 C:\Users\Pariador\Desktop\WatermelonApp\Experimental\RogueClone\RogueClone\obj\Debug\RogueClone.csprojResolveAssemblyReference.cache
+C:\Users\Havoc\Desktop\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.exe.config
+C:\Users\Havoc\Desktop\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.exe
+C:\Users\Havoc\Desktop\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.pdb
+C:\Users\Havoc\Desktop\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.exe
+C:\Users\Havoc\Desktop\RogueClone\RogueClone\RogueClone\bin\Debug\RogueClone.pdb
+C:\Users\Havoc\Desktop\RogueClone\RogueClone\RogueClone\obj\Debug\RogueClone.csprojResolveAssemblyReference.cache

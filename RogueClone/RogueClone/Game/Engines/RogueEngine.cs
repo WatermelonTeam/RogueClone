@@ -9,7 +9,7 @@
     {
         private readonly ConsoleInputProvider input;
 
-        public static readonly RogueEngine Instance = new RogueEngine(130,50, new ConsoleInputProvider());
+        public static readonly RogueEngine Instance = new RogueEngine(130, 50, new ConsoleInputProvider());
         public static int ConsoleHeight { get; private set; }
         public static int ConsoleWidth { get; private set; }
         private char steppedOnItem;
@@ -31,6 +31,8 @@
             bool isNextToCharacter = false;
             int itemDescriptionLength = 0;
             int itemNameLength = 0;
+            MonsterFactory mFactory = new MonsterFactory(boardLevel);
+            mFactory.SpawnMonstersOnBoard(board);
             ConsoleRenderer.RenderAllItems(board.PositionableObjects);
             while (true)
             {
@@ -84,7 +86,18 @@
                 ConsoleRenderer.RenderStats(hero, boardLevel);
                 //Always render the hero at the end so he can be on top on all the items and monsters !
                 ConsoleRenderer.RenderCharacter(hero);
+                foreach (var monster in mFactory.MonsterList)
+                {
 
+                    if (hero.Position.Distance(monster.Position) < 1.5)
+                    {
+                        hero.TakeDamage(monster.Damage);
+                    }
+                    else if (hero.Position.Distance(monster.Position) < 5.5)
+                    {
+                        //monster.MoveTo(board,monster.NextMovingPosition(board, hero.Position));
+                    }
+                }
                 foreach (var positionable in board.PositionableObjects)
                 {
                     if (positionable is Character)
@@ -95,7 +108,7 @@
                             isNextToCharacter = true;
                         }
                     }
-                    
+
                     if (hero.Position == positionable.Position)
                     {
                         if (positionable is Item)
@@ -110,18 +123,18 @@
                             break;
                         }
 
-						//tell me what shall i implement for the wizard armor ...please "ArmorSpell" WTF ?! :D
-						//if(item is WizardArmor && gandalf is Wizard && gandalf.Level.CurrentLevel>=item.NeededLvl)
-						//{
-						//	gandalf.TakeWizardArmor(item);
-						//	items.Remove(item);
-						//	this.steppedOnItem = ' ';
-						//	this.itemColor = ConsoleColor.White;
-						//	break;
-						//}
+                        //tell me what shall i implement for the wizard armor ...please "ArmorSpell" WTF ?! :D
+                        //if(item is WizardArmor && gandalf is Wizard && gandalf.Level.CurrentLevel>=item.NeededLvl)
+                        //{
+                        //	gandalf.TakeWizardArmor(item);
+                        //	items.Remove(item);
+                        //	this.steppedOnItem = ' ';
+                        //	this.itemColor = ConsoleColor.White;
+                        //	break;
+                        //}
                     }
-                    
-                    
+
+
 
                     /*
                     Implement later :   
@@ -131,7 +144,10 @@
                       
                     */
                 }
-
+                foreach (var mon in mFactory.MonsterList)
+                {
+                    board.PositionableObjects.Remove(mon);
+                }
             }
         }
 
@@ -209,8 +225,8 @@
 
 
             // var testX = potion.Position.X;
-            
-            
+
+
         }
 
 

@@ -17,7 +17,7 @@
             RogueWeapon = '■',
             WizardWeapon = '■',
             ShopKeeper = '▓',
-            Monster = '■',
+            Monster = 'M',
             GeneralItem = '■',
             Empty = ' ',
             Floor = ' '
