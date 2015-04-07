@@ -57,7 +57,7 @@
             }
             RenderStairs(board);
         }
-
+        
         public static void RenderStairs(Board board)
         {
             Console.BackgroundColor = Color.Black.ToConsoleColor();
@@ -93,6 +93,7 @@
                 
             }
         }
+       
         public static void RenderCharacterDescription(Character character)
         {
             PrintOnPosition(
