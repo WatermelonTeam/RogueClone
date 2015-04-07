@@ -133,7 +133,7 @@
                     throw new Exception("Something went horribly wrong in switch at BoardFactory.");
             }
 
-            int removedCount = BoardFactory.rand.Next(0, 5); 
+            int removedCount = BoardFactory.rand.Next(0, 7); 
             List<Position> removedPortions = new List<Position>(new Position[]{
                                             new Position(0, 0), new Position(0, 1), new Position(0, 2),
                                             new Position(1, 0), new Position(1, 1), new Position(1, 2),
@@ -150,27 +150,24 @@
                 removedPortions.RemoveAt(BoardFactory.rand.Next(0, removedPortions.Count));
             }
 
-            if (removedCount >= 4)
+            if (removedCount >= 4) //there may be disconnected rooms
             {
                 // there should not be any lonely room in its row and column for corridors to work 
                 var leftPortions = allPortions.Except(removedPortions);
                 bool lonelyRoom = true;
                 while (lonelyRoom)
                 {
+                    lonelyRoom = false;
                     foreach (var portion in leftPortions)
                     {
-                        if (portion.X == portion.Y || portion.X - portion.Y == 2)
+                        if (portion.X == portion.Y || Math.Abs(portion.X - portion.Y) == 2)
                         {
-                            if (leftPortions.Count(p => p.X == portion.X) == 1 && leftPortions.Count(p => p.Y == portion.Y) == 1)
+                            if (leftPortions.Count(p => p.X == portion.X) < 2 && leftPortions.Count(p => p.Y == portion.Y) < 2)
                             {
                                 lonelyRoom = true;
-                                removedPortions.RemoveAt(0);
+                                removedPortions.RemoveAt(BoardFactory.rand.Next(0, removedPortions.Count));
                                 break;
                             }
-                        }
-                        else
-                        {
-                            lonelyRoom = false;
                         }
                     }
                 }
