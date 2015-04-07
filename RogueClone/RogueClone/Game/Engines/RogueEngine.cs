@@ -94,7 +94,7 @@
                     {
                         hero.TakeDamage(monster.Damage);
                     }
-                    else if (hero.Position.Distance(monster.Position) < 5.5)
+                    else if (hero.Position.Distance(monster.Position) < 5.5 && hero.Position.Distance(monster.Position)>2)
                     {
                         Position newPos = monster.NextMovingPosition(board, hero.Position);
                         if (MonsterMovement.IsValidMovement(board, newPos))
@@ -191,6 +191,8 @@
                 ConsoleRenderer.RenderPlayingScreen(hero, board, boardLevel);
                 
                 boardLevelChange = PlayBoard(board, playedBoards, hero, boardLevel,mFactory.MonsterList);
+                foreach (var monster in mFactory.MonsterList)
+                    board.PositionableObjects.Remove(monster);
                 boardLevel += boardLevelChange;
                 if (boardLevel == playedBoards.Count)
                 {
