@@ -94,6 +94,7 @@
             {
                 nextPostition = new Position(Position.X, Position.Y + 1);
             }
+
             if (MonsterMovement.IsValidMovement(board, nextPostition))
             {
                 return nextPostition;

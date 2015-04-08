@@ -50,10 +50,20 @@
 
             Console.BackgroundColor = GlobalConstants.RoomColor.ToConsoleColor();
             var commonWalkableDungeon = board.FloorsPos.Concat(board.CorridorsPos).ToArray();
+            // exception test
+            // commonWalkableDungeon[commonWalkableDungeon.Length - 1] = new Position(-1, 1);
             for (int i = 0; i < commonWalkableDungeon.Length; i++)
             {
-                Console.SetCursorPosition(commonWalkableDungeon[i].X, commonWalkableDungeon[i].Y);
-                Console.Write(' ');
+                if (IsValidPosition(commonWalkableDungeon[i]))
+                {
+                    Console.SetCursorPosition(commonWalkableDungeon[i].X, commonWalkableDungeon[i].Y);
+                    Console.Write(' ');
+                }
+                else
+                {
+                    throw new InvalidPositionRangeException(string.Format("Tried to print on {0}.", commonWalkableDungeon[i]), 0, RogueEngine.ConsoleWidth, 0, RogueEngine.ConsoleHeight);
+                }
+                
             }
             RenderStairs(board);
         }

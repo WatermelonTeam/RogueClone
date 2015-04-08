@@ -151,7 +151,7 @@
             }
             if (removedCount >= 4) //there may be disconnected rooms
             {
-                // there should not be any lonely room in its row and column for corridors to work 
+                // there should not be any lonely rooms in their own row and column for corridors to work 
                 var leftPortions = allPortions.Except(removedPortions).ToList();
                 bool lonelyRoom = true;
                 while (lonelyRoom)
