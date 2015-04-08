@@ -1,5 +1,7 @@
 ﻿namespace RogueClone.UI.StartMenu
 {
+    using System;
+
     public class GlobalMenuOptions
     {
         //Main menu options
@@ -15,7 +17,7 @@
         public const string ChangeAnOption = "ChangeAnOption";
         //Credits
         public const string ReasonForCreation = "Telerik Academy OOP Teamwork 2015";
-        public const string TeamMembers = "..";
+        public const string TeamName = "TEAM WATERMELON";
         //Back to main menu
         public const string BackToMainMenu = "Back to Main Menu";
     }
