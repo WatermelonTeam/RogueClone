@@ -16,9 +16,9 @@
         {
         }
 
-        protected override void PrintGameLogo()
+        protected override void Print()
         {
-            using (StreamReader reader = new StreamReader("../../UI/Art/RogueCloneArt.txt"))
+            using (StreamReader reader = new StreamReader("../../UI/ArtAndText/RogueCloneArt.txt"))
             {
                 Console.ForegroundColor = Menu.LogoColor;
                 int i = 0;

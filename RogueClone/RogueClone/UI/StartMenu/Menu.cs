@@ -46,7 +46,7 @@
 
         public void PrintOnScreen()
         {
-            this.PrintGameLogo();
+            this.Print();
             for (int i = 0; i < this.choiceList.Count; i++ )
             {
                 Console.SetCursorPosition(
@@ -106,6 +106,9 @@
                 case GlobalMenuOptions.Credits:
                     return new Credits();
 
+                case GlobalMenuOptions.TeamName:
+                    return new Team();
+
                 case GlobalMenuOptions.Quit:
                     Environment.Exit(1);
                     break;
@@ -115,7 +118,7 @@
             return null;
         }
 
-        protected virtual void PrintGameLogo()
+        protected virtual void Print()
         {
         }
     }

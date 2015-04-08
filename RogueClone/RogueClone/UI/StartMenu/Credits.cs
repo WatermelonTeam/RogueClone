@@ -1,5 +1,6 @@
 ﻿namespace RogueClone.UI.StartMenu
 {
+    using RogueClone.Common;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -14,10 +15,9 @@
         {
             this.CurrentSelectionIndex = 2;
         }
-
-        protected override void PrintGameLogo()
+        protected override void Print()
         {
-            using (StreamReader reader = new StreamReader("../../UI/Art/RogueCloneArt.txt"))
+            using (StreamReader reader = new StreamReader("../../UI/ArtAndText/RogueCloneArt.txt"))
             {
                 Console.ForegroundColor = Menu.LogoColor;
                 int i = 0;
