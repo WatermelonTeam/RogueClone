@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using RogueClone.UI.StartMenu;
+using RogueClone.InputProviders;
 
 namespace RogueClone
 {
     class GameMain
     {
+        private static ConsoleInputProvider inputProvider = new ConsoleInputProvider();
         static void Main(string[] args)
         {
             #region MENU
@@ -19,7 +21,7 @@ namespace RogueClone
             while (true)
             {
                 mainMenu.PrintOnScreen();
-                var menu = mainMenu.HandleMenuInput();
+                var menu = inputProvider.HandleMenuInput(mainMenu);
                 if (menu != null)
                 {
                     if (menu is StartGame)
@@ -30,7 +32,6 @@ namespace RogueClone
                     }
                     mainMenu = menu;
                 }
-                Thread.Sleep(50);
             }
             #endregion
 

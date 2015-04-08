@@ -1,6 +1,7 @@
 ﻿namespace RogueClone.Movements
 {
     using System;
+    using System.Linq;
 
 
 
@@ -35,6 +36,14 @@
                     return isInsideDungeon;
                 }
             }
+            var allWalls = board.HorizontalWallsPos.Concat(board.VerticalWallsPos).ToArray();
+            foreach (var wall in allWalls)
+            {
+                if (newPosition == wall)
+                {
+                    return false;
+                }
+            }
             // Don't step on other monsters
             foreach (var positionable in board.PositionableObjects)
             {
@@ -42,7 +51,7 @@
                 {
                     if (newPosition == positionable.Position)
                     {
-                        return !(isOnTopOtherNPC);
+                        return isOnTopOtherNPC;
                     }
                 }
             }

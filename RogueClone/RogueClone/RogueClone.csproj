@@ -67,6 +67,7 @@
     <Compile Include="Common\ConsoleHelpers.cs" />
     <Compile Include="Common\GlobalConstants.cs" />
     <Compile Include="Common\Image.cs" />
+    <Compile Include="Common\InvalidPositionRangeException.cs" />
     <Compile Include="Common\Move.cs" />
     <Compile Include="Characters\Hero\Hero.cs" />
     <Compile Include="Characters\Hero\Rogue.cs" />

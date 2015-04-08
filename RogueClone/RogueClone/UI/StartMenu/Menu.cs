@@ -67,28 +67,28 @@
             }
         }
 
-        public Menu HandleMenuInput()
-        {
-            if (Console.KeyAvailable)
-            {
-                ConsoleKeyInfo key = Console.ReadKey(true);
+        //public Menu HandleMenuInput()
+        //{
+        //    if (Console.KeyAvailable)
+        //    {
+        //        ConsoleKeyInfo key = Console.ReadKey(true);
 
-                switch (key.Key)
-                {
-                    case ConsoleKey.UpArrow:
-                        this.CurrentSelectionIndex--;
-                        break;
-                    case ConsoleKey.DownArrow:
-                        this.CurrentSelectionIndex++;
-                        break;
-                    case ConsoleKey.Enter:
-                        return this.ApplyChoice();
-                }
-            }
-            return null;
-        }
+        //        switch (key.Key)
+        //        {
+        //            case ConsoleKey.UpArrow:
+        //                this.CurrentSelectionIndex--;
+        //                break;
+        //            case ConsoleKey.DownArrow:
+        //                this.CurrentSelectionIndex++;
+        //                break;
+        //            case ConsoleKey.Enter:
+        //                return this.ApplyChoice();
+        //        }
+        //    }
+        //    return null;
+        //}
 
-        private Menu ApplyChoice()
+        public Menu ApplyChoice()
         {
             Console.Clear();
 

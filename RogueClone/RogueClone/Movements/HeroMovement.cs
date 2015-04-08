@@ -2,6 +2,7 @@
 {
     using RogueClone.Common;
     using System;
+    using System.Linq;
     public class HeroMovement
     {
         public static bool IsValidMovement(Board board, Position newPosition)
@@ -21,11 +22,23 @@
                 isInsideDungeon = true;
                 return isInsideDungeon;
             }
+            var allWalls = board.HorizontalWallsPos.Concat(board.VerticalWallsPos).ToArray();
+            foreach (var wall in allWalls)
+            {
+                if (newPosition == wall)
+                {
+                    return false;
+                }
+            }
             foreach (var item in board.PositionableObjects)
             {
                 if (item is Character && newPosition == item.Position)
                 {
                     return false;
+                }
+                else if (newPosition == item.Position)
+                {
+                    return true;
                 }
             }
             foreach (var corridorPos in board.CorridorsPos)

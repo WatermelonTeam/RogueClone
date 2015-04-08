@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RogueClone.UI.StartMenu;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,6 +41,23 @@ namespace RogueClone.InputProviders
                 default:
                     return ShopKeeperOptions.InvalidOption;
             }
+        }
+        public Menu HandleMenuInput(Menu menu)
+        {
+            ConsoleKeyInfo pressedKey = Console.ReadKey(true);
+
+            switch (pressedKey.Key)
+            {
+                case ConsoleKey.UpArrow:
+                    menu.CurrentSelectionIndex--;
+                    break;
+                case ConsoleKey.DownArrow:
+                    menu.CurrentSelectionIndex++;
+                    break;
+                case ConsoleKey.Enter:
+                    return menu.ApplyChoice();
+            }
+            return null;
         }
     }
 }
