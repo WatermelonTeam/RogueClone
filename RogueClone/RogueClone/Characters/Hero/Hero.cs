@@ -100,7 +100,15 @@
 
         public override void TakeDamage(int damage)
         {
-           
+            int resultHP = base.Health.Current - (damage - this.Armor);
+            if (resultHP <= 0)
+            {
+                base.Die();
+            }
+            else
+            {
+                this.Health.Current = resultHP;
+            }
         }
         private void IteractWithItem(Item item)
         {

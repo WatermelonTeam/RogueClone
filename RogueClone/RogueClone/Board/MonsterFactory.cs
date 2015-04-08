@@ -42,7 +42,7 @@
                 if (check < MonsterSpawnChance)
                 {
                     int randomFloor = MonsterFactory.rand.Next(0, board.FreeFloorsPos.Count);
-                    AddMonstereToBoard(new Monster("Stupid Monster", board.FloorsPos[randomFloor - 1], level, 100 + 50 * level, 10 + 5 * level, 0), board, randomFloor);
+                    AddMonstereToBoard(new Monster("Stupid Monster", board.FloorsPos[randomFloor - 1], level, 100 + 50 * level, 10 + 5 * level, 5), board, randomFloor);
                 }
             }
             return board;

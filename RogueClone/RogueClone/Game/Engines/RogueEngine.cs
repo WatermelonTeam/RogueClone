@@ -2,6 +2,7 @@
 {
     using RogueClone;
     using RogueClone.Common;
+    using System.Linq;
     using RogueClone.InputProviders;
     using System;
     using System.Collections.Generic;
@@ -35,9 +36,18 @@
             bool isNextToCharacter = false;
             int itemDescriptionLength = 0;
             int itemNameLength = 0;
+
+            foreach (var monster in monsters)
+            {
+                monster.Death += (sender, args) =>
+                {
+                    Monster mnstr = sender as Monster;
+                    hero.Level.AddXP(mnstr.XPGain);
+                };
+            }
             
             ConsoleRenderer.RenderAllItems(board.PositionableObjects);
-            while (true)
+            while (hero.IsAlive)
             {
                 Position desiredPos = input.SetMovement(board, hero.Position);
                 ConsoleRenderer.RenderMove(board, hero, desiredPos);
@@ -133,7 +143,26 @@
                         ConsoleRenderer.RenderCharacter(monster);
 
                     }
+
+                    if (desiredPos == monster.Position)
+                    {
+                        monster.TakeDamage(hero.Weapon);
+                    }
+
                 }
+
+                if (monsters.Any(mnstr => mnstr.IsAlive == false))
+                {
+                    var deadMonsters = monsters.Where(mnstr => mnstr.IsAlive == false).ToArray();
+                    foreach (var monster in deadMonsters)
+                    {
+                        monsters.Remove(monster);
+                        board.PositionableObjects.Remove(monster);
+                        board.FreeFloorsPos.Add(monster.Position);
+                        ConsoleRenderer.RenderObjectRemoval(monster.Position);
+                    }
+                }
+
                 foreach (var positionable in board.PositionableObjects)
                 {
                     if (positionable is Character)
@@ -217,7 +246,7 @@
                 }
                 
             }
-            
+            return 0;
         }
 
         //public static void RemoveItemFromBoard(IPositionable item, Board board)
@@ -231,7 +260,7 @@
         /// </summary>
         public void Start()
         {
-            bool isDead = false;
+            //bool isDead = false;
             BoardFactory factory = new BoardFactory(new Position(0 + 10, 0 + 2), new Position(80 - 1, 25 - 1));
             Board board = factory.GenerateBoard();
             int boardLevel = 0;
@@ -242,7 +271,7 @@
             hero.Health.Current = 50;
             hero.Mana.Current = 70;
 
-            while (!isDead)
+            while (hero.IsAlive)
             {
                 MonsterFactory mFactory = new MonsterFactory(boardLevel);
                 mFactory.SpawnMonstersOnBoard(board);

@@ -19,6 +19,8 @@
             this.characterIcon = icon;
             this.characterColor = color;
             this.Position = position;
+
+            this.IsAlive = true;
         }
 
         public Position Position
@@ -45,6 +47,7 @@
             }
         }
 
+        public bool IsAlive { get; protected set; }
         public string Name
         {
             get
@@ -79,6 +82,7 @@
         public void Die()
         {
             this.Health.Current = 0;
+            this.IsAlive = false;
             this.OnDeath(EventArgs.Empty);
         }
         public abstract void TakeDamage(int amount);

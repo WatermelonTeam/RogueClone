@@ -70,3 +70,9 @@ C:\Users\Pariador\Desktop\WatermelonApp\BIGGERBETAFASTASTRONGA\RogueClone\RogueC
 C:\Users\Pariador\Desktop\WatermelonApp\BIGGERBETAFASTASTRONGA\RogueClone\RogueClone\bin\Debug\RogueClone.exe
 C:\Users\Pariador\Desktop\WatermelonApp\BIGGERBETAFASTASTRONGA\RogueClone\RogueClone\bin\Debug\RogueClone.pdb
 C:\Users\Pariador\Desktop\WatermelonApp\BIGGERBETAFASTASTRONGA\RogueClone\RogueClone\obj\Debug\RogueClone.csprojResolveAssemblyReference.cache
+C:\Users\Pariador\Desktop\WatermelonApp\fuck this\RogueClone\RogueClone\bin\Debug\RogueClone.exe.config
+C:\Users\Pariador\Desktop\WatermelonApp\fuck this\RogueClone\RogueClone\obj\Debug\RogueClone.exe
+C:\Users\Pariador\Desktop\WatermelonApp\fuck this\RogueClone\RogueClone\obj\Debug\RogueClone.pdb
+C:\Users\Pariador\Desktop\WatermelonApp\fuck this\RogueClone\RogueClone\bin\Debug\RogueClone.exe
+C:\Users\Pariador\Desktop\WatermelonApp\fuck this\RogueClone\RogueClone\bin\Debug\RogueClone.pdb
+C:\Users\Pariador\Desktop\WatermelonApp\fuck this\RogueClone\RogueClone\obj\Debug\RogueClone.csprojResolveAssemblyReference.cache
