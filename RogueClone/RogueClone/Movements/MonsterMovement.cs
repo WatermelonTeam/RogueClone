@@ -14,19 +14,17 @@
                 && newPosition.X < RogueEngine.ConsoleWidth
                 && newPosition.Y < RogueEngine.ConsoleHeight - ConsoleRenderer.StatsPanelHeight);
             bool isInsideDungeon = false;
+            bool isOnTopOtherNPC = false;
             //So they can move through items and stairs like the hero
             if (!isInsideBoard)
             {
                 return isInsideBoard;
             }
+            
             if (newPosition == board.EntryStairPos || newPosition == board.ExitStairPos)
             {
                 isInsideDungeon = true;
                 return isInsideDungeon;
-            }
-            if (newPosition == board.ShopKeeperPos)
-            {
-                return false;
             }
             //Making sure monsters dont follow in corridors
             foreach (var corridorPos in board.CorridorsPos)
@@ -35,6 +33,17 @@
                 {
                     isInsideDungeon = false;
                     return isInsideDungeon;
+                }
+            }
+            // Don't step on other monsters
+            foreach (var positionable in board.PositionableObjects)
+            {
+                if (positionable is Monster)
+                {
+                    if (newPosition == positionable.Position)
+                    {
+                        return !(isOnTopOtherNPC);
+                    }
                 }
             }
             foreach (var floorPos in board.FloorsPos)

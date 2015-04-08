@@ -133,7 +133,7 @@
                     throw new Exception("Something went horribly wrong in switch at BoardFactory.");
             }
 
-            int removedCount = BoardFactory.rand.Next(0, 7); 
+            int removedCount = BoardFactory.rand.Next(0, 5); 
             List<Position> removedPortions = new List<Position>(new Position[]{
                                             new Position(0, 0), new Position(0, 1), new Position(0, 2),
                                             new Position(1, 0), new Position(1, 1), new Position(1, 2),
@@ -149,25 +149,28 @@
             {
                 removedPortions.RemoveAt(BoardFactory.rand.Next(0, removedPortions.Count));
             }
-
             if (removedCount >= 4) //there may be disconnected rooms
             {
                 // there should not be any lonely room in its row and column for corridors to work 
-                var leftPortions = allPortions.Except(removedPortions);
+                var leftPortions = allPortions.Except(removedPortions).ToList();
                 bool lonelyRoom = true;
                 while (lonelyRoom)
                 {
                     lonelyRoom = false;
+                    if (leftPortions.Count == 4 && leftPortions.Count(p => p.X % 2 == 0 && p.Y % 2 == 0) == 2)
+                    {
+                        lonelyRoom = false;
+                        removedPortions.RemoveAt(BoardFactory.rand.Next(0, removedPortions.Count - 1));
+                        break;
+                    }
                     foreach (var portion in leftPortions)
                     {
-                        if (portion.X == portion.Y || Math.Abs(portion.X - portion.Y) == 2)
+                        if (leftPortions.Count(p => p.X == portion.X) < 2 && leftPortions.Count(p => p.Y == portion.Y) < 2)
                         {
-                            if (leftPortions.Count(p => p.X == portion.X) < 2 && leftPortions.Count(p => p.Y == portion.Y) < 2)
-                            {
-                                lonelyRoom = true;
-                                removedPortions.RemoveAt(BoardFactory.rand.Next(0, removedPortions.Count));
-                                break;
-                            }
+                            lonelyRoom = true;
+                            removedPortions.RemoveAt(BoardFactory.rand.Next(0, removedPortions.Count - 1));
+                            leftPortions = allPortions.Except(removedPortions).ToList();
+                            break;
                         }
                     }
                 }
@@ -391,7 +394,7 @@
 
                     if (check < boardPositionable.ItemChance)
                     {
-                        int randomFloor = BoardFactory.rand.Next(0, board.FreeFloorsPos.Count);
+                        int randomFloor = BoardFactory.rand.Next(0, board.FloorsPos.Count); //freefloors
                         switch (boardPositionable.Name)
                         {
                             case "Gold": AddPositionableToBoard(new Gold(board.FloorsPos[randomFloor]), board, randomFloor); break;
@@ -407,7 +410,7 @@
                             case "WizardWeaponWeak": AddPositionableToBoard(new WizardWeapon(board.FloorsPos[randomFloor], 50, 2), board, randomFloor); break;
                             case "Trinket": AddPositionableToBoard(new Trinket(board.FloorsPos[randomFloor]) , board, randomFloor); 
                                 break;
-                            case "ShopKeeper": AddPositionableToBoard(new ShopKeeper("Tayn Eeon", board.FloorsPos[randomFloor - 1], 150, new List<Item> { new Trinket(board.FloorsPos[randomFloor]) } ), board, randomFloor);
+                            case "ShopKeeper": AddPositionableToBoard(new ShopKeeper("Tayn Eeon", board.FloorsPos[randomFloor], 150, new List<Item> { new Trinket(board.FloorsPos[randomFloor]) } ), board, randomFloor);
                                 break;
                             default:
                                 break;
@@ -420,7 +423,7 @@
         {
             //board.GoldPositionsPos.Add(board.FloorsPos[randomFloor]);
             board.PositionableObjects.Add(item);//////////////////////////////////////////////////////////
-            board.FreeFloorsPos.RemoveAt(randomFloor);
+            board.FloorsPos.RemoveAt(randomFloor); //freefloors
         }
     }
 }

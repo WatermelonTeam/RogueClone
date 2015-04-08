@@ -57,26 +57,48 @@
         }
         public Position NextMovingPosition(Board board, Position heroPosition)
         {
-            int xDist = Position.X - heroPosition.X;
-            int yDist = Position.Y - heroPosition.Y;
+            int xDist = this.Position.X - heroPosition.X;
+            int yDist = this.Position.Y - heroPosition.Y;
+            var nextPostition = this.Position;
+            // diagonal movement
+            if (xDist > 0 && yDist > 0 && Math.Abs(xDist) == Math.Abs(yDist))
+            {
+                nextPostition = new Position(Position.X - 1, Position.Y - 1);
+            }
+            if (xDist < 0 && yDist < 0 && Math.Abs(xDist) == Math.Abs(yDist))
+            {
+                nextPostition = new Position(Position.X + 1, Position.Y + 1);
+            }
+            if (xDist > 0 && yDist < 0 && Math.Abs(xDist) == Math.Abs(yDist))
+            {
+                nextPostition = new Position(Position.X - 1, Position.Y + 1);
+            }
+            if (xDist < 0 && yDist > 0 && Math.Abs(xDist) == Math.Abs(yDist))
+            {
+                nextPostition = new Position(Position.X + 1, Position.Y - 1);
+            }
+            // straight movement
             if (xDist > 0 && Math.Abs(xDist) > Math.Abs(yDist))
             {
-                return new Position(Position.X - 1, Position.Y);
+                nextPostition = new Position(Position.X - 1, Position.Y);
             }
             if (xDist < 0 && Math.Abs(xDist) > Math.Abs(yDist))
             {
-                return new Position(Position.X + 1, Position.Y);
+                nextPostition = new Position(Position.X + 1, Position.Y);
             }
             if (yDist > 0 && Math.Abs(yDist) > Math.Abs(xDist))
             {
-                return new Position(Position.X, Position.Y - 1);
+                nextPostition = new Position(Position.X, Position.Y - 1);
             }
             if (yDist < 0 && Math.Abs(yDist) > Math.Abs(xDist))
             {
-                return new Position(Position.X, Position.Y + 1);
+                nextPostition = new Position(Position.X, Position.Y + 1);
             }
-
-            return heroPosition;
+            if (MonsterMovement.IsValidMovement(board, nextPostition))
+            {
+                return nextPostition;
+            }
+            return this.Position;
         }
         public void MoveTo(Board board, Position newPosition)
         {

@@ -45,8 +45,8 @@
         {
             Console.CursorVisible = false;
             Console.OutputEncoding = System.Text.Encoding.Unicode;
-            
-            Console.Title = "░░░░ ROGUECLONE ░░░░";
+
+            Console.Title = "████ ROGUECLONE ████";
 
             Console.BackgroundColor = GlobalConstants.RoomColor.ToConsoleColor();
             var commonWalkableDungeon = board.FloorsPos.Concat(board.CorridorsPos).ToArray();

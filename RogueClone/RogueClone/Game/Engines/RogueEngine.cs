@@ -28,8 +28,10 @@
         }
         private int PlayBoard(Board board, List<Board> boards, Hero hero, int boardLevel, List<Monster> monsters)
         {
-            bool itemStepped = true;
-            bool stairsSteppedOn = true;
+            bool itemSteppedByHero = true;
+            bool itemSteppedByMonster = false;
+            bool stairsSteppedOnByHero = true;
+            bool stairsSteppedOnByMonster = false;
             bool isNextToCharacter = false;
             int itemDescriptionLength = 0;
             int itemNameLength = 0;
@@ -62,26 +64,26 @@
                     }
                     return 1;
                 }
-                if (stairsSteppedOn)
+                if (stairsSteppedOnByHero)
                 {
                     ConsoleRenderer.RenderStairs(board);
-                    stairsSteppedOn = false;
+                    stairsSteppedOnByHero = false;
                 }
                 if (hero.Position == board.EntryStairPos || hero.Position == board.ExitStairPos)
                 {
-                    stairsSteppedOn = true;
+                    stairsSteppedOnByHero = true;
                 }
-                if (itemStepped)
+                if (itemSteppedByHero)
                 {
                     ConsoleRenderer.RenderAllItems(board.PositionableObjects);
                     ConsoleRenderer.RemoveDescription(itemNameLength, itemDescriptionLength);
-                    itemStepped = false;
+                    itemSteppedByHero = false;
                 }
                 if (isNextToCharacter)
                 {
                     ConsoleRenderer.RenderAllItems(board.PositionableObjects);
                     ConsoleRenderer.RemoveDescription(itemNameLength, itemDescriptionLength);
-                    itemStepped = false;
+                    itemSteppedByHero = false;
                 }
                 // GameEngine is alias to ConsoleRenderer.Engine just check the usings              
                 ConsoleRenderer.RenderStats(hero, boardLevel);
@@ -94,12 +96,40 @@
                     {
                         hero.TakeDamage(monster.Damage);
                     }
-                    else if (hero.Position.Distance(monster.Position) < 5.5 && hero.Position.Distance(monster.Position)>2)
+                    else if (hero.Position.Distance(monster.Position) < 5.5 && hero.Position.Distance(monster.Position) >= 1.5)
                     {
                         Position newPos = monster.NextMovingPosition(board, hero.Position);
                         if (MonsterMovement.IsValidMovement(board, newPos))
+                        {
                             ConsoleRenderer.RenderMove(board, monster, newPos);
-                        monster.MoveTo(board,newPos);
+                            if (stairsSteppedOnByMonster)
+                            {
+                                ConsoleRenderer.RenderStairs(board);
+                                stairsSteppedOnByMonster = false;
+                            }
+                            if (itemSteppedByMonster)
+                            {
+                                ConsoleRenderer.RenderAllItems(board.PositionableObjects);
+                                itemSteppedByMonster = false;
+                            }
+                        }
+
+                        if (monster.Position == board.EntryStairPos || monster.Position == board.ExitStairPos)
+                        {
+                            stairsSteppedOnByMonster = true;
+                        }
+                        foreach (var positionable in board.PositionableObjects)
+                        {
+                            if (monster.Position == positionable.Position)
+                            {
+                                if (positionable is Item)
+                                {
+                                    itemSteppedByMonster = true;
+                                }
+                            }
+                        }
+
+                        ConsoleRenderer.RenderCharacter(monster);
 
                     }
                 }
@@ -121,7 +151,7 @@
                             ConsoleRenderer.RenderItemDescription(positionable as Item);
                             itemDescriptionLength = (positionable as Item).Description.Length;
                             itemNameLength = (positionable as Item).Name.Length;
-                            itemStepped = true;
+                            itemSteppedByHero = true;
                             this.steppedOnItem = (char)(positionable as Item).Icon;
                             this.itemColor = (positionable as Item).ItemColor.ToConsoleColor();
                             hero.TakeItem(positionable, board);
