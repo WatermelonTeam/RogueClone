@@ -13,7 +13,7 @@
         private const int MaxGoldCount = 10;
         private const int ItemLargeProbability = 10;
         private const int ItemSmallProbability = 5;
-        private const int ShopkeeperProbability = 10;
+        private const int ShopkeeperProbability = 100;
         private const int GoldProbability = 25;
         private const int MinRoomRows = 5;
         private const int MinRoomCols = 10;
@@ -410,7 +410,7 @@
                             case "WizardWeaponWeak": AddPositionableToBoard(new WizardWeapon(board.FloorsPos[randomFloor], 50, 2), board, randomFloor); break;
                             case "Trinket": AddPositionableToBoard(new Trinket(board.FloorsPos[randomFloor]) , board, randomFloor); 
                                 break;
-                            case "ShopKeeper": AddPositionableToBoard(new ShopKeeper("Tayn Eeon", board.FloorsPos[randomFloor], 150, new List<Item> { new Trinket(board.FloorsPos[randomFloor]) } ), board, randomFloor);
+                            case "ShopKeeper": AddPositionableToBoard(ShopKeeper.GetShopKeeper(board.FloorsPos[randomFloor]), board, randomFloor);
                                 break;
                             default:
                                 break;

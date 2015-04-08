@@ -62,6 +62,7 @@
     <Compile Include="Board\BoardsTest.cs" />
     <Compile Include="Board\MonsterFactory.cs" />
     <Compile Include="Characters\Character.cs" />
+    <Compile Include="Characters\NPCs\ShopKeeperOptions.cs" />
     <Compile Include="Common\Colour.cs" />
     <Compile Include="Common\ConsoleHelpers.cs" />
     <Compile Include="Common\GlobalConstants.cs" />
@@ -109,6 +110,12 @@
     <Compile Include="Items\Offense\RogueWeapon.cs" />
     <Compile Include="Items\Trinket.cs" />
     <Compile Include="Items\Offense\Weapon.cs" />
+    <Compile Include="UI\StartMenu\Credits.cs" />
+    <Compile Include="UI\StartMenu\GlobalMenuOptions.cs" />
+    <Compile Include="UI\StartMenu\MainMenu.cs" />
+    <Compile Include="UI\StartMenu\Menu.cs" />
+    <Compile Include="UI\StartMenu\Options.cs" />
+    <Compile Include="UI\StartMenu\StartGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -131,7 +138,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="UI\Art\RogueCloneArt.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

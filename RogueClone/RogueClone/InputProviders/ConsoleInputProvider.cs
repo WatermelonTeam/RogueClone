@@ -20,5 +20,26 @@ namespace RogueClone.InputProviders
                 default: return position;
             }
         }
+        public ShopKeeperOptions ShopKeeperInteraction()
+        {
+            ConsoleKeyInfo pressedKey = Console.ReadKey(true);
+            switch (pressedKey.Key)
+            {
+                case ConsoleKey.Escape:
+                    return ShopKeeperOptions.Escape;
+                case ConsoleKey.D1:
+                    return ShopKeeperOptions.BuyItemOne;
+                case ConsoleKey.D2:
+                    return ShopKeeperOptions.BuyItemTwo;
+                case ConsoleKey.D3:
+                    return ShopKeeperOptions.BuyItemThree;
+                case ConsoleKey.D4:
+                    return ShopKeeperOptions.BuyItemFour;
+                case ConsoleKey.D5:
+                    return ShopKeeperOptions.BuyItemFive;
+                default:
+                    return ShopKeeperOptions.InvalidOption;
+            }
+        }
     }
 }
